@@ -128,6 +128,14 @@
                   <div class="text-danger">{{ error_address }}</div>
                   {% endif %} </div>
               </div>
+              
+              <div class="form-group">
+                <label class="col-sm-2 control-label" for="input-DesContacts">{{ entry_DesContacts }}</label>
+                <div class="col-sm-10">
+                  <textarea name="config_DesContacts" placeholder="{{ entry_DesContacts }}" rows="5" id="input-DesContacts" class="form-control">{{ config_DesContacts }}</textarea>
+                 </div>
+              </div>
+
               <div class="form-group">
                 <label class="col-sm-2 control-label" for="input-geocode"><span data-toggle="tooltip" data-container="#tab-general" title="{{ help_geocode }}">{{ entry_geocode }}</span></label>
                 <div class="col-sm-10">

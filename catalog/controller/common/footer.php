@@ -38,16 +38,26 @@ class ControllerCommonFooter extends Controller {
 		$data['newsletter'] = $this->url->link('account/newsletter', '', true);
 		$data['theme_url'] = 'catalog/view/theme/medilux';
 		$data['powered'] = sprintf($this->language->get('text_powered'), $this->config->get('config_name'), date('Y', time()));
+
 		$data['telephone'] = $this->config->get('config_telephone');
 		$data['mail'] = $this->config->get('config_email');
+		
 		$data['inst'] = $this->config->get('config_inst');
 		$data['facebook'] = $this->config->get('config_faceebook');
 		$data['vk'] = $this->config->get('config_vk');
+
 		$data['logo_footer'] = $this->config->get('config_footerLogo');
 		if (is_file(DIR_IMAGE . $this->config->get('config_footerLogo'))) {
 			$data['logo_footer'] = $server . 'image/' . $this->config->get('config_footerLogo');
 		} else {
 			$data['logo_footer'] = '';
+		}
+
+		$data['logo'] = $this->config->get('config_logo');
+		if (is_file(DIR_IMAGE . $this->config->get('config_logo'))) {
+			$data['logo'] = $server . 'image/' . $this->config->get('config_logo');
+		} else {
+			$data['logo'] = '';
 		}
 
 

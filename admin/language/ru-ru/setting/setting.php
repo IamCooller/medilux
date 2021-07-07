@@ -42,6 +42,8 @@ $_['entry_theme']                    = 'Тема';
 $_['entry_name']                     = 'Название магазина';
 $_['entry_owner']                    = 'Владелец магазина';
 $_['entry_address']                  = 'Адрес магазина';
+$_['entry_DesContacts']              = 'Описание компании в контактах';
+
 $_['entry_geocode']                  = 'Geocode';
 $_['entry_email']                    = 'E-Mail';
 $_['entry_telephone']                = 'Телефон';

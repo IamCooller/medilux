@@ -264,41 +264,7 @@ $(document).ready(function() {
     $("#KPTel").mask("+7(999)999-99-99");
 
 
-    ymaps.ready(init);
 
-    function init() {
-        var thirdOffice = '<div><img src="img/logo.png" style="display: block; margin: 0 auto;margin-bottom: 10px;"></div>' +
-            '<p>Компания «Медилюкс» не просто специализируется на реализации оборудования. Мы считаем себя причастными к развитию частных медицинских центров и к модернизации медицинской отрасли России.</p>' +
-            '119071, г. Москва, ул. Малая Калужская, д.15, стр.16, офис 510';
-        var myMap = new ymaps.Map("map", {
-            center: [55.718233, 37.601987],
-            zoom: 14,
-            controls: ['zoomControl', 'fullscreenControl', 'routeButtonControl']
-        }, {
-            searchControlProvider: 'yandex#search'
-        })
-
-
-        myPlacemark = new ymaps.Placemark(myMap.getCenter(), {
-            balloonContent: thirdOffice,
-        }, {
-            // Опции.
-            // Необходимо указать данный тип макета.
-            iconLayout: 'default#image',
-            // Своё изображение иконки метки.
-            iconImageHref: 'img/favicon.jpg',
-            // Размеры метки.
-            iconImageSize: [50, 55],
-            // Смещение левого верхнего угла иконки относительно
-            // её "ножки" (точки привязки).
-            iconImageOffset: [0, -38]
-        });
-
-        myMap.geoObjects.add(myPlacemark);
-        myPlacemark.balloon.open();
-
-
-    }
 
 
 });

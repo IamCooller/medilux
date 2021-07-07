@@ -26,11 +26,11 @@ class ControllerInformationContact extends Controller {
 
 			$this->response->redirect($this->url->link('information/contact/success'));
 		}
-
+		$data['NewsLettet'] = $this->load->controller('extension/module/newsletter');
 		$data['breadcrumbs'] = array();
 
 		$data['breadcrumbs'][] = array(
-			'text' => $this->language->get('text_home'),
+			'text' => 'Медилюкс',
 			'href' => $this->url->link('common/home')
 		);
 
@@ -73,11 +73,32 @@ class ControllerInformationContact extends Controller {
 		$data['address'] = nl2br($this->config->get('config_address'));
 		$data['geocode'] = $this->config->get('config_geocode');
 		$data['geocode_hl'] = $this->config->get('config_language');
+
 		$data['telephone'] = $this->config->get('config_telephone');
+		$data['mail'] = $this->config->get('config_email');
+
 		$data['fax'] = $this->config->get('config_fax');
 		$data['open'] = nl2br($this->config->get('config_open'));
 		$data['comment'] = $this->config->get('config_comment');
 
+		$data['inst'] = $this->config->get('config_inst');
+		$data['facebook'] = $this->config->get('config_faceebook');
+		$data['vk'] = $this->config->get('config_vk');
+
+		$data['DesContacts'] = $this->config->get('config_DesContacts');
+		
+
+		$data['logo'] = $this->config->get('config_logo');
+		if ($this->request->server['HTTPS']) {
+			$server = $this->config->get('config_ssl');
+		} else {
+			$server = $this->config->get('config_url');
+		}
+		if (is_file(DIR_IMAGE . $this->config->get('config_logo'))) {
+			$data['logo'] = $server . 'image/' . $this->config->get('config_logo');
+		} else {
+			$data['logo'] = '';
+		}
 		$data['locations'] = array();
 
 		$this->load->model('localisation/location');
@@ -123,6 +144,7 @@ class ControllerInformationContact extends Controller {
 		} else {
 			$data['enquiry'] = '';
 		}
+
 
 		// Captcha
 		if ($this->config->get('captcha_' . $this->config->get('config_captcha') . '_status') && in_array('contact', (array)$this->config->get('config_captcha_page'))) {
@@ -174,7 +196,7 @@ class ControllerInformationContact extends Controller {
 		$data['breadcrumbs'] = array();
 
 		$data['breadcrumbs'][] = array(
-			'text' => $this->language->get('text_home'),
+			'text' => 'Медилюкс',
 			'href' => $this->url->link('common/home')
 		);
 

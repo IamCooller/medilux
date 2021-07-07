@@ -15,7 +15,6 @@
                     <li><a href="#">Спецпредложения</a></li>
                 </ul>
                 <ul>
-                    <li><a href="#">Программы лояльности</a></li>
                     <li><a href="{{contact}}">Контакты</a></li>
                     <li><a href="#">Политика конфиденциальности</a></li>
                 </ul>
@@ -81,6 +80,33 @@
         </div>
 
     </footer>
+
+      <div id="hidden" style="display: none;">
+        <img src="{{logo}}" alt="logo">
+        <p>Заполните форму и наш менеджер свяжется с вами в ближайшее время!</p>
+        <form action="#" id='formPhone'>
+            <input type="text" placeholder="Введите имя...">
+            <input type="tel" id="tel" placeholder="Телефон...">
+            <button>Заказать звонок</button>
+        </form>
+    </div>
+
+    <div id="KPForm" style="display: none;">
+        <p>Оформить заявку</p>
+        <form action="#" id='FormKP'>
+            <input type="text" placeholder="Введите имя...">
+            <input type="email" placeholder="E-mail...">
+            <select name="client" id="typeClient">
+                <option value="">Тип клиента</option>
+                <option value="">Тип клиента</option>
+                <option value="">Тип клиента</option>
+                <option value="">Тип клиента</option>
+            </select>
+            <input type="tel" id="KPTel" placeholder="Телефон...">
+            <textarea cols="30" rows="5" placeholder="Комментарий к заказу"></textarea>
+            <button>отправить</button>
+        </form>
+    </div>
 </body>
 
 </html>

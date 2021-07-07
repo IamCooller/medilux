@@ -17,7 +17,7 @@ class ControllerCommonHome extends Controller {
 		$data['header'] = $this->load->controller('common/header');
 		$data['NewsLettet'] = $this->load->controller('extension/module/newsletter');
 	
-	
+
 
 
 
@@ -48,7 +48,7 @@ class ControllerCommonHome extends Controller {
 
 			$data['informations'] = array();
 
-			foreach ($this->model_catalog_information->getInformations() as $result) {
+		/* 	foreach ($this->model_catalog_information->getInformations() as $result) {
 				if ($result['image']) {
 					$image = $this->model_tool_image->resize($result['image'], $this->config->get('theme_' . $this->config->get('config_theme') . '_image_product_width'), $this->config->get('theme_' . $this->config->get('config_theme') . '_image_product_height'));
 				} else {
@@ -61,6 +61,23 @@ class ControllerCommonHome extends Controller {
 						'thumb'       => $image,
 						'date' => $result['date_available'],
 						'description' => utf8_substr(trim(strip_tags(html_entity_decode($result['description'], ENT_QUOTES, 'UTF-8'))), 0, $this->config->get('theme_' . $this->config->get('config_theme') . '_product_description_length')) . '..',
+					);
+				}
+			} */
+			$data['filter_tag'] = '';
+			foreach ($this->model_blog_blog->getBlogs($data) as $result) {
+				if ($result['image']) {
+					$image = $this->model_tool_image->resize($result['image'], $this->config->get('theme_' . $this->config->get('config_theme') . '_image_product_width'), $this->config->get('theme_' . $this->config->get('config_theme') . '_image_product_height'));
+				} else {
+					$image = $this->model_tool_image->resize('placeholder.png', $this->config->get('theme_' . $this->config->get('config_theme') . '_image_product_width'), $this->config->get('theme_' . $this->config->get('config_theme') . '_image_product_height'));
+				}	
+				if ($result) {
+					$data['informations'][] = array(
+						'title' => $result['title'],
+						'href'  => $this->url->link('blog/blog', 'blog_id=' . $result['blog_id']),
+						'thumb'       => $image,
+						'date' => date('d-m-Y', strtotime($result['date_added'])),
+						'description' => $result['short_description'],
 					);
 				}
 			}

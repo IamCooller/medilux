@@ -8,9 +8,9 @@
   
     <section class="specialOffers">
         <div class="container option">
-            <h2 class="title">
+            <div class="title">
                 Спецпредложения
-            </h2>
+            </div>
        
             <div class="specialOffers__list">
                  {% for product in products %}
@@ -29,17 +29,20 @@
   <section class="feedback">
  
         <div class="container option">
-            <div class="feedback-form" id="respond">
+           <div class="feedback-form" id="respond">
                 <div class="feedback-description">
-                    <h4>{{ heading_title }}</h4>
-                    <p>{{ html }}</p>
+                  <div class="h4">
+                        Хотите быть в курсе всех предложений от Медилюкс?
+                    </div>
+                    <p>подпишитесь на нашу e-mail рассылку</p>
                 </div>
+                  
                 <div class="feedback-input">
-                    <input type="text" placeholder="Введите имя...">
-					<input type="text" id="email{{ module }}" name="email" class="form-control" placeholder="Введите e-mail..." />
+                	<input type="text" id="email{{ module }}" name="email" class="form-control" placeholder="E-mail" />
+                    <input type="text" id="name{{ module }}" placeholder="Имя" name="name" class="form-control">    
                 </div>
                 <div class="feedback-button">
-                    <a id="button-subscribe" class="{{ module }} btn btn-primary">Подписаться</a>
+                    <button id="button-subscribe" class="{{ module }}">Подписаться</button>
                 </div>
             </div>
 
@@ -48,166 +51,96 @@
     </section>
     <section class="news">
         <div class="container option">
-            <h2 class="title">НОВОСТИ И ПОЛЕЗНАЯ ИНФОРМАЦИЯ</h2>
+            <div class="title">НОВОСТИ И ПОЛЕЗНАЯ ИНФОРМАЦИЯ</div>
 
 
 
    {% if informations %}
+
             <div class="news__list">
+
               {% for information in informations %}
-                  <div class="news__item">
+                   <div class="news__item">
                     <div class="news__item-title">
-                        Ультразвуковый денситометр SONOST-3000
+                     {{information.title}} 
                     </div>
                     <div class="news__item-img">
-                        <img src="img/news.jpg" />
+                          <img src=" {{information.thumb}} ">
                     </div>
                     <div class="news__item-bottom-top">
                         <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus rutrum ligula ac tincidunt dignissim.
+                                {{information.description}}
                         </p>
                         <div class="news__item-bottom">
-                            <div class="news__item-data">8.04.2021</div>
-                            <div class="news__item-more">
-                                <a href="">Подробнее
-                                                                                         <svg
-                                                                                            width="6"
-                                                                                            height="8"
-                                                                                            viewBox="0
-                                                                                            0
-                                                                                            6
-                                                                                            8"
-                                                                                            fill="none"
-                                                                                            xmlns="http://www.w3.org/2000/svg">
-                                                                                            <path
-                                                                                                d="M5.06925
-                                                                                                3.78047L1.36901
-                                                                                                0.0904667C1.24778
-                                                                                                -0.0303609
-                                                                                                1.0515
-                                                                                                -0.0301578
-                                                                                                0.930469
-                                                                                                0.0910917C0.809532
-                                                                                                0.212326
-                                                                                                0.809844
-                                                                                                0.408715
-                                                                                                0.931094
-                                                                                                0.529637L4.41108
-                                                                                                4.00001L0.930969
-                                                                                                7.47037C0.809735
-                                                                                                7.59131
-                                                                                                0.809422
-                                                                                                7.78758
-                                                                                                0.930344
-                                                                                                7.90883C0.991015
-                                                                                                7.96961
-                                                                                                1.0705
-                                                                                                8
-                                                                                                1.14998
-                                                                                                8C1.22926
-                                                                                                8
-                                                                                                1.30844
-                                                                                                7.96981
-                                                                                                1.369
-                                                                                                7.90945L5.06925
-                                                                                                4.21954C5.12764
-                                                                                                4.16145
-                                                                                                5.16041
-                                                                                                4.08239
-                                                                                                5.16041
-                                                                                                4.00001C5.16041
-                                                                                                3.91764
-                                                                                                5.12755
-                                                                                                3.83867
-                                                                                                5.06925
-                                                                                                3.78047Z"
-                                                                                                fill="#393185"
-                                                                                                />
-                                                                                            </svg>
-                                                                                        </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="news__item">
-                    <div class="news__item-title">
-                      {{information.title}} 
-                    </div>
-                    <div class="news__item-img">
-                        <img src=" {{information.thumb}} ">
-                    </div>
-
-
-    <div class="news__item-bottom-top">
-                         <p> {{information.description}}</p>
-                        <div class="news__item-bottom">
-                            <div class="news__item-data">   {{information.date}}</div>
+                            <div class="news__item-data">  {{information.date}}</div>
                             <div class="news__item-more">
                                 <a href="{{information.href}}">Подробнее
-                                                                                         <svg
-                                                                                            width="6"
-                                                                                            height="8"
-                                                                                            viewBox="0
-                                                                                            0
-                                                                                            6
-                                                                                            8"
-                                                                                            fill="none"
-                                                                                            xmlns="http://www.w3.org/2000/svg">
-                                                                                            <path
-                                                                                                d="M5.06925
-                                                                                                3.78047L1.36901
-                                                                                                0.0904667C1.24778
-                                                                                                -0.0303609
-                                                                                                1.0515
-                                                                                                -0.0301578
-                                                                                                0.930469
-                                                                                                0.0910917C0.809532
-                                                                                                0.212326
-                                                                                                0.809844
-                                                                                                0.408715
-                                                                                                0.931094
-                                                                                                0.529637L4.41108
-                                                                                                4.00001L0.930969
-                                                                                                7.47037C0.809735
-                                                                                                7.59131
-                                                                                                0.809422
-                                                                                                7.78758
-                                                                                                0.930344
-                                                                                                7.90883C0.991015
-                                                                                                7.96961
-                                                                                                1.0705
-                                                                                                8
-                                                                                                1.14998
-                                                                                                8C1.22926
-                                                                                                8
-                                                                                                1.30844
-                                                                                                7.96981
-                                                                                                1.369
-                                                                                                7.90945L5.06925
-                                                                                                4.21954C5.12764
-                                                                                                4.16145
-                                                                                                5.16041
-                                                                                                4.08239
-                                                                                                5.16041
-                                                                                                4.00001C5.16041
-                                                                                                3.91764
-                                                                                                5.12755
-                                                                                                3.83867
-                                                                                                5.06925
-                                                                                                3.78047Z"
-                                                                                                fill="#393185"
-                                                                                                />
-                                                                                            </svg>
-                                                                                        </a>
+                                                                                                <svg
+                                                                                                    width="6"
+                                                                                                    height="8"
+                                                                                                    viewBox="0
+                                                                                                    0
+                                                                                                    6
+                                                                                                    8"
+                                                                                                    fill="none"
+                                                                                                    xmlns="http://www.w3.org/2000/svg">
+                                                                                                    <path
+                                                                                                        d="M5.06925
+                                                                                                        3.78047L1.36901
+                                                                                                        0.0904667C1.24778
+                                                                                                        -0.0303609
+                                                                                                        1.0515
+                                                                                                        -0.0301578
+                                                                                                        0.930469
+                                                                                                        0.0910917C0.809532
+                                                                                                        0.212326
+                                                                                                        0.809844
+                                                                                                        0.408715
+                                                                                                        0.931094
+                                                                                                        0.529637L4.41108
+                                                                                                        4.00001L0.930969
+                                                                                                        7.47037C0.809735
+                                                                                                        7.59131
+                                                                                                        0.809422
+                                                                                                        7.78758
+                                                                                                        0.930344
+                                                                                                        7.90883C0.991015
+                                                                                                        7.96961
+                                                                                                        1.0705
+                                                                                                        8
+                                                                                                        1.14998
+                                                                                                        8C1.22926
+                                                                                                        8
+                                                                                                        1.30844
+                                                                                                        7.96981
+                                                                                                        1.369
+                                                                                                        7.90945L5.06925
+                                                                                                        4.21954C5.12764
+                                                                                                        4.16145
+                                                                                                        5.16041
+                                                                                                        4.08239
+                                                                                                        5.16041
+                                                                                                        4.00001C5.16041
+                                                                                                        3.91764
+                                                                                                        5.12755
+                                                                                                        3.83867
+                                                                                                        5.06925
+                                                                                                        3.78047Z"
+                                                                                                        fill="#393185"
+                                                                                                        />
+                                                                                                    </svg>
+                                                                                                </a>
                             </div>
                         </div>
-                    </div>        
-                    </div>
                     </div>
                 </div>
-  {% endfor %}
-{% endif %}
-            </div>
+                                                                                                
+                {% endfor %}
+                  </div>
+
+                  
+                {% endif %}
+          
             <a href="#" class="news__more">Больше полезной информации <svg width="6" height="8" viewBox="0 0 6 8" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M5.06925 3.78047L1.36901 0.0904667C1.24778 -0.0303609 1.0515 -0.0301578 0.930465 0.0910917C0.809528 0.212326 0.80984 0.408715 0.93109 0.529637L4.41108 4.00001L0.930965 7.47037C0.809731 7.59131 0.809418 7.78758 0.93034 7.90883C0.991011 7.96961 1.0705 8 1.14998 8C1.22926 8 1.30843 7.96981 1.36899 7.90945L5.06925 4.21954C5.12764 4.16145 5.1604 4.08239 5.1604 4.00001C5.1604 3.91764 5.12754 3.83867 5.06925 3.78047Z" fill="#393185"/>
                 </svg>
@@ -272,12 +205,13 @@ $(document).ready(function() {
 			success: function(json) {
 			
 				if (json['error']) {
+                    $('.text-danger').empty();
 					$('#respond').after('<span class="text-danger">' + json['error'] + '</span>');
                     
 				}
 				if (json['success']) {
-                    	alert('Спасибо');
-					$('#respond').after('<span class="text-success">' + '{{ success_message }}' + '</span>');
+                      $('.text-danger').empty();
+					$('#respond').after('<span class="text-success">' + 'Спасибо, сообщение отправлено!' + '</span>');
 					$.cookie( 'newsletter_already_added' , 1 , { expires: 14 , path: '/' });
 					setTimeout(function() { $('.popup_close').trigger('click'); }, 1200);
 					$('input[id=\'email{{ module }}\']').val('');

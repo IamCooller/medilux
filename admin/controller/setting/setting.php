@@ -243,6 +243,13 @@ class ControllerSettingSetting extends Controller {
 			$data['config_address'] = $this->config->get('config_address');
 		}
 
+		if (isset($this->request->post['config_DesContacts'])) {
+			$data['config_DesContacts'] = $this->request->post['config_DesContacts'];
+		} else {
+			$data['config_DesContacts'] = $this->config->get('config_DesContacts');
+		}
+
+		
 		if (isset($this->request->post['config_geocode'])) {
 			$data['config_geocode'] = $this->request->post['config_geocode'];
 		} else {
