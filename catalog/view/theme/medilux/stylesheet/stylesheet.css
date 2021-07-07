@@ -1,0 +1,285 @@
+@import url(../fonts/fonts.css);
+@import url(../css/normilaze.css);
+@import url(../css/jquery.fancybox.min.css);
+@import url(../css/slick.css);
+@import url(../css/bootstrap.min.css);
+@import url(../css/menu.css);
+@import url(../css/main.css);
+@import url(../css/brands.css);
+@import url(../css/about.css);
+@import url(../css/specialOffer.css);
+@import url(../css/feedback.css);
+@import url(../css/news.css);
+@import url(../css/footer.css);
+@import url(../css/catalogs.css);
+@import url(../css/aboutMain.css);
+@import url(../css/caralogMore.css);
+@import url(../css/contacts.css);
+@import url(../css/newsMain.css);
+@import url(../css/specialOfferMore.css);
+@import url(../css/newsOne.css);
+@import url(../css/oneItem.css);
+@import url(../css/mediaSize.css);
+body {
+    background: #FAFAFA;
+    font-family: 'Montserrat', sans-serif;
+    overflow-x: hidden;
+}
+
+::-webkit-scrollbar {
+    width: 5px;
+    background-color: #DBDBDB;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #393185;
+    border-radius: 3px;
+    height: 30px;
+}
+
+::-webkit-scrollbar-button:vertical:start:decrement {
+    display: none;
+}
+
+::-webkit-scrollbar-button:vertical:end:increment {
+    display: none;
+}
+
+::-webkit-scrollbar-button:horizontal:start:decrement {
+    display: none;
+}
+
+::-webkit-scrollbar-button:horizontal:end:increment {
+    display: none;
+}
+
+.loaderArea {
+    background: #fff;
+    overflow: hidden;
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 100000;
+}
+
+.load {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    /*change these sizes to fit into your project*/
+    width: 100px;
+    height: 100px;
+}
+
+.load hr {
+    border: 0;
+    margin: 0;
+    width: 40%;
+    height: 40%;
+    position: absolute;
+    border-radius: 50%;
+    opacity: 1;
+    animation: spin 2s ease infinite;
+    -webkit-animation: spin 2s ease infinite;
+}
+
+.load :first-child {
+    background: #393185;
+    animation-delay: -1.5s
+}
+
+.load :nth-child(2) {
+    background: #4b5761;
+    animation-delay: -1s
+}
+
+.load :nth-child(3) {
+    background: #393185;
+    animation-delay: -0.5s
+}
+
+.load :last-child {
+    background: #4b5761
+}
+
+@keyframes spin {
+    0%,
+    100% {
+        transform: translate(0)
+    }
+    25% {
+        transform: translate(160%)
+    }
+    50% {
+        transform: translate(160%, 160%)
+    }
+    75% {
+        transform: translate(0, 160%)
+    }
+}
+
+#hidden {
+    max-width: 430px;
+    width: 100%;
+    background: #EDECF2;
+    border: 1px solid #EDECF2;
+    box-sizing: border-box;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 3px;
+    padding: 30px;
+    display: flex;
+    text-align: center;
+}
+
+#hidden img {
+    display: block;
+    margin: 0 auto;
+    margin-bottom: 30px;
+}
+
+#hidden p {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 1.27;
+    color: #393185;
+    margin-bottom: 30px;
+}
+
+#hidden form {
+    max-width: 370px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+#hidden input {
+    height: 39px;
+    background: #FFFFFF;
+    border: 1px solid #EDECF2;
+    box-sizing: border-box;
+    border-radius: 3px;
+    padding-left: 11px;
+    outline: none;
+    margin-bottom: 30px;
+}
+
+#hidden input::placeholder {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 1.28;
+    color: #898989;
+}
+
+#hidden form button {
+    display: block;
+    background: #393185;
+    border-radius: 3px;
+    height: 37px;
+    max-width: 169px;
+    width: 100%;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 12px;
+    line-height: 1.25;
+    text-transform: uppercase;
+    color: #FFFFFF;
+    border: none;
+    margin: 0 auto;
+}
+
+#KPForm {
+    max-width: 870px;
+    width: 100%;
+    background: #EDECF2;
+    border: 1px solid #EDECF2;
+    box-sizing: border-box;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 3px;
+    padding: 30px 50px;
+    display: flex;
+    text-align: center;
+}
+
+#KPForm p {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 1.27;
+    text-transform: uppercase;
+    color: #393185;
+    margin-bottom: 32px;
+}
+
+#KPForm form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+
+#KPForm form input,
+#KPForm form select {
+    max-width: 369px;
+    width: 100%;
+    height: 39px;
+    background: #FFFFFF;
+    border: 1px solid #EDECF2;
+    box-sizing: border-box;
+    border-radius: 3px;
+    outline: none;
+    padding: 0 11px;
+}
+
+#KPForm form input:placeholder {
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 1.28;
+    color: #898989;
+}
+
+#KPForm form select {
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 1.28;
+    color: #898989;
+}
+
+#KPForm form textarea {
+    width: 100%;
+    background: #FFFFFF;
+    border: 1px solid #EDECF2;
+    box-sizing: border-box;
+    border-radius: 3px;
+    outline: none;
+    padding: 10px 11px;
+    resize: none;
+    margin-bottom: 30px;
+}
+
+#KPForm form button {
+    background: #393185;
+    border-radius: 3px;
+    font-weight: bold;
+    font-size: 12px;
+    line-height: 15px;
+    text-transform: uppercase;
+    height: 37px;
+    color: #FFFFFF;
+    display: block;
+    margin: 0 auto;
+    width: 100%;
+    max-width: 110px;
+    outline: none;
+    border: none;
+}
+
+@media (max-width:880px) {
+    #KPForm form input,
+    #KPForm form select {
+        max-width: 100%;
+    }
+}

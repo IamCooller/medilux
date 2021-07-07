@@ -1,0 +1,32 @@
+{% if categories %}
+      <ul id="accordion" class="accordion">
+        {% for category in categories %}
+        {% if category.children %}
+        <li>
+        <a href="#" class="link"><img class="menu-icon"src="{{ category.image }}">{{ category.name }}
+          <svg class='arrow-menu' width="8" height="5" viewBox="0 0 8 5" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M1.14286 0L4 3.125L6.85714 0L8 0.625L4 5L0 0.625L1.14286 0Z" fill="#393185"/>
+                                </svg>
+                                </a>
+         
+             {% for children in category.children|batch(category.children|length / category.column|round(1, 'ceil')) %}
+              <ul class="submenu">
+                {% for child in children %}
+                <li><a href="{{ child.href }}">{{ child.name }}</a></li>
+                {% endfor %}
+              </ul>
+              {% endfor %}
+         
+        </li>
+        {% else %}
+        <li><a href="{{ category.href }}" class="link"><img class="menu-icon"src="{{ category.image }}">{{ category.name }}</a></li>
+        {% endif %}
+        {% endfor %}
+      </ul>
+   
+  
+
+{% endif %} 
+
+
+

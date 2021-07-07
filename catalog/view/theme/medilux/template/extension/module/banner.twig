@@ -1,0 +1,19 @@
+<div class="main__banner" id="banner{{ module }}">
+  {% for banner in banners %}
+    {% if banner.link %}
+      <a href={{banner.link}}>
+         {% endif %}
+          <div class="main__banner-item" style="background: url({{ banner.image }}) center no-repeat;">   
+            {% if banner.title %}
+              <div class="main__banner-item-title h2">{{banner.title}} </div>
+            {% endif %}
+              {% if banner.titleTwo or  banner.titleThree %}
+              <div class="main__banner-item-description">
+                                  <div class="h3">{{banner.titleTwo}}</div>
+                                  <div class="h4">{{banner.titleThree}}</div>
+                              </div>
+            {% endif %}    
+            </div>
+      </a> 
+      {% endfor %}
+

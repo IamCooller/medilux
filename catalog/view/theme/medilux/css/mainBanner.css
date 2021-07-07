@@ -1,0 +1,107 @@
+.mainBanner .main__banner {
+    display: -ms-grid;
+    display: grid;
+    position: relative;
+    width: 100vw;
+    margin-top: 100px;
+}
+
+.mainBanner .main__banner .main__banner-item {
+    width: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-line-pack: center;
+    align-content: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-align: start;
+    -ms-flex-align: start;
+    align-items: flex-start;
+    padding: 65px 24px;
+    height: 100%;
+}
+
+.mainBanner .main__banner .main__banner-item h2 {
+    font-style: normal;
+    font-weight: 450;
+    font-size: 55px;
+    line-height: 1.18;
+    max-width: 450px;
+    text-transform: uppercase;
+    color: #393185;
+}
+
+.mainBanner .main__banner .main__banner-item .main__banner-item-description {
+    max-width: 485px;
+    padding-left: 30px;
+    position: relative;
+    margin-top: 30px;
+}
+
+.mainBanner .main__banner .main__banner-item .main__banner-item-description::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    width: 5px;
+    background: #393185;
+    height: 100%;
+}
+
+.mainBanner .main__banner .main__banner-item .main__banner-item-description h3 {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 30px;
+    line-height: 1.26;
+    text-transform: uppercase;
+    margin-bottom: 15px;
+    color: #000000;
+}
+
+.mainBanner .main__banner .main__banner-item .main__banner-item-description h4 {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 30px;
+    line-height: 1.23;
+    color: #000000;
+}
+
+.mainBanner .main__banner .slick-dots {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    margin: 0;
+    margin-left: 30%
+}
+
+.mainBanner .main__banner .slick-dots li {
+    list-style: none;
+    margin-right: 10px;
+}
+
+.mainBanner .main__banner .slick-dots li:last-child {
+    margin-right: 0;
+}
+
+.mainBanner .main__banner .slick-dots li button {
+    background: none;
+    border: none;
+    font-size: 0;
+    background: #DBDBDB;
+    border-radius: 100px;
+    width: 10px;
+    height: 10px;
+    padding: 0;
+}
+
+.mainBanner .main__banner .slick-dots li.slick-active button {
+    background: #393185;
+}

@@ -1,0 +1,23 @@
+ 
+     <section class="brands">
+        <div class="container option">
+          <div class="title">Бренды и производители оборудования</div>
+ <div class="brands-slick" id="carousel{{ module }}">
+   {% for banner in banners %}
+     {% if banner.link %}<a href="{{ banner.link }}">
+      {% endif %}
+        <div class="brands-slick-img">
+          <img src="{{banner.image}}">
+            {% if banner.title %}
+              {% endif %}
+                {% if banner.titleTwo %}
+              {% endif %}
+            {% if banner.titleThree %}
+          {% endif %}
+        </div>
+      </a>
+    {% endfor %}
+ </div>
+
+         </div>
+    </section>

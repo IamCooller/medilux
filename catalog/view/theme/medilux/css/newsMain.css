@@ -1,0 +1,200 @@
+.newsMain {
+    margin-top: 30px;
+    margin-bottom: 60px;
+}
+
+.newsMain form {
+    max-width: 420px;
+    width: 100%;
+    position: relative;
+    margin-bottom: 30px;
+}
+
+.newsMain form input {
+    width: 100%;
+    height: 39px;
+    border: 1px solid #B3B3B3;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    border-radius: 3px;
+    padding-left: 11px;
+    padding-right: 49px;
+    outline: none;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 1.28;
+    color: #000;
+}
+
+.newsMain form input::-webkit-input-placeholder {
+    color: #898989;
+}
+
+.newsMain form input::-moz-placeholder {
+    color: #898989;
+}
+
+.newsMain form input:-ms-input-placeholder {
+    color: #898989;
+}
+
+.newsMain form input::-ms-input-placeholder {
+    color: #898989;
+}
+
+.newsMain form input::placeholder {
+    color: #898989;
+}
+
+.newsMain form button {
+    position: absolute;
+    border: none;
+    outline: none;
+    background: #393185;
+    border-radius: 0px 3px 3px 0px;
+    height: 100%;
+    text-align: center;
+    -webkit-transition: .3s;
+    -o-transition: .3s;
+    transition: .3s;
+    width: 48px;
+    right: 0;
+    z-index: 8;
+}
+
+.newsMain form button svg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%)
+}
+
+.newsMain form button:hover {
+    background: none;
+    border: 2px solid #393185;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    border-radius: 0px 3px 3px 0px;
+}
+
+.newsMain form button:hover svg path {
+    fill: #393185;
+    color: #393185;
+}
+
+.newsMain .newsMain__list {
+    display: grid;
+    justify-content: space-between;
+    align-items: center;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 30px;
+}
+
+.newsMain .newsMain__list .newsMain__item {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    background: #FFFFFF;
+    border: 1px solid #EDECF2;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    border-radius: 3px;
+    padding-top: 12px;
+}
+
+.newsMain .newsMain__list .newsMain__item .newsMain__item-title {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 17px;
+    line-height: 1.23;
+    text-align: center;
+    color: #000000;
+    max-width: 256px;
+    margin: 0 auto;
+    margin-bottom: 15px;
+}
+
+.newsMain .newsMain__list .newsMain__item img {
+    width: 100%;
+}
+
+.newsMain .newsMain__list .newsMain__item p {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 1.28;
+    color: #000000;
+    padding: 15px;
+}
+
+.newsMain .newsMain__list .newsMain__item .newsMain__item-bottom {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    padding: 15px;
+    padding-top: 0;
+}
+
+.newsMain .newsMain__list .newsMain__item .newsMain__item-bottom .newsMain__item-data {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 1.25;
+    text-align: center;
+    color: #898989;
+}
+
+.newsMain .newsMain__list .newsMain__item .newsMain__item-bottom a {
+    font-style: normal;
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 1.07;
+    color: #393185;
+    text-decoration: none;
+}
+
+.newsMain .newsMain__list .newsMain__item .newsMain__item-bottom svg {
+    margin-left: 8px;
+}
+
+.newsMain .newsMain__more {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 1.07;
+    text-align: right;
+    color: #393185;
+    margin-top: 30px;
+    text-decoration: none;
+    text-decoration: none;
+    -webkit-box-pack: end;
+    -ms-flex-pack: end;
+    justify-content: center;
+}
+
+.newsMain .newsMain__more svg {
+    margin-left: 8px;
+}
