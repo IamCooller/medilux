@@ -30,6 +30,7 @@ class ControllerCommonNewsletter extends Controller {
 			$data['newsltr'][] = array(
 				'id' => $res['id'],
 				'email' => $res['email'],
+				'name' => $res['name'],
 				'delete' => $this->url->link('common/newsletter/delete', 'user_token=' . $this->session->data['user_token'] . '&id='.$res['id'], true)
 			);
 		}

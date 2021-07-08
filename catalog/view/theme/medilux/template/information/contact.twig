@@ -176,7 +176,7 @@ function getCookie(name) {
 			url: 'index.php?route=extension/module/newsletter/subscribe',
 			type: 'post',
 			dataType: 'json',
-			data: 'email=' + encodeURIComponent($('input[id=\'email{{ module }}\']').val()),
+			data:{email: ($('input[id=\'email{{ module }}\']').val()) , name: ($('input[id=\'name{{ module }}\']').val())}, 
 			success: function(json) {
 			
 				if (json['error']) {
@@ -190,6 +190,7 @@ function getCookie(name) {
 					$.cookie( 'newsletter_already_added' , 1 , { expires: 14 , path: '/' });
 					setTimeout(function() { $('.popup_close').trigger('click'); }, 1200);
 					$('input[id=\'email{{ module }}\']').val('');
+                    $('input[id=\'name{{ module }}\']').val('');
 				}}
 		});
 	});

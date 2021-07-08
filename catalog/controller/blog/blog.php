@@ -358,11 +358,11 @@ class ControllerBlogBlog extends Controller {
 			
 			$url = '';
 			
-      		$data['breadcrumbs'] [] = array(
+  /*     		$data['breadcrumbs'] [] = array(
         		'href'      => $this->url->link('blog/blog', $url . '&blog_id=' . $this->request->get['blog_id']),
         		'text'      => $this->language->get('text_error')
       		);
-				
+				 */
 	  		$this->document->setTitle($this->language->get('text_error'));
 
 			$data['heading_title'] = $this->language->get('text_error');
@@ -430,7 +430,7 @@ class ControllerBlogBlog extends Controller {
 				
 		$pagination->limit = $this->config->get('blogsetting_comment_per_page');
 		if (empty($pagination->limit)) {
-		$pagination->limit = 5;
+		$pagination->limit = 9;
 		}
 		
 		$pagination->url = $this->url->link('blog/blog/comment', 'blog_id=' . $this->request->get['blog_id'] . '&page={page}');

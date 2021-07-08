@@ -4,7 +4,7 @@ class ControllerInformationInformation extends Controller {
 		$this->load->language('information/information');
 
 		$this->load->model('catalog/information');
-
+		$data['NewsLettet'] = $this->load->controller('extension/module/newsletter');
 		$data['breadcrumbs'] = array();
 
 		$data['breadcrumbs'][] = array(

@@ -50,13 +50,14 @@ class ControllerExtensionModuleNewsletter extends Controller {
 	
 	
 	public function subscribe() {
-	
 	$this->load->language('extension/module/newsletter');
 	
 		$json = array();
+	
 		if ($this->request->server['REQUEST_METHOD'] == 'POST') {
 			if(!filter_var($this->request->post['email'], FILTER_VALIDATE_EMAIL)){
 				$json['error'] = $this->language->get('error_email');
+				
 			}
 			if (!isset($json['error'])) {
 				$this->load->model('extension/module/newsletter'); 

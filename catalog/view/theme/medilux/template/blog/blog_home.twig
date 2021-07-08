@@ -1,63 +1,147 @@
 {{ header }} 
 <div class="container">
-  <ul class="breadcrumb">
-    {% for breadcrumb in breadcrumbs %} 
-    <li><a href="{{ breadcrumb.href }}">{{ breadcrumb.text }}</a></li>
-    {% endfor %} 
-  </ul>
-  <div class="row">{{ column_left }}
-    {% if column_left and column_right %}
-    {% set class = 'col-sm-6' %}
-    {% elseif column_left or column_right %}
-    {% set class = 'col-sm-9' %}
-    {% else %}
-    {% set class = 'col-sm-12' %}
-    {% endif %}
-     
-    <div id="content" class="{{ class }}">{{ content_top }} 
-      <div class="blog">
-      <h1>{{ heading_title }}</h1>
-      
-      {% if description%} 
-      <div class="main_description">
-      {{ description }} 
+  <div class="breadcrumbs">
+            <span><a href="{{continue}}">Медилюкс</a></span> <svg width="6" height="10" viewBox="0 0 6 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M5.58656 4.72558L0.961262 0.113083C0.80972 -0.0379512 0.56437 -0.0376973 0.413081 0.113865C0.26191 0.265407 0.2623 0.510894 0.413862 0.662046L4.76384 5.00002L0.413706 9.33797C0.262164 9.48914 0.261773 9.73447 0.412925 9.88603C0.488764 9.96201 0.58812 10 0.687475 10C0.786576 10 0.88554 9.96226 0.961243 9.88681L5.58656 5.27443C5.65954 5.20181 5.7005 5.10299 5.7005 5.00002C5.7005 4.89705 5.65943 4.79834 5.58656 4.72558Z" fill="#707070"></path>
+                </svg>
+            <span>Новости</span>
+        </div>
       </div>
-      {% endif %} 
-    
-    {% if blogs%} 
-    <div class="blog_grid_holder column-{{ list_columns }}">
-      {% for blog in blogs %} 
-        <div class="blog_item">
-                
-                <div class="summary">
-                <h2 class="blog_title"><a href="{{ blog.href }}">{{ blog.title }}</a></h2>
-                <div class="blog_stats">
-                {% if author_status%} <span><i class="fa fa-user"></i><b class="text">{{ text_posted_by }}</b> <b class="hl">{{ blog.author }}</b></span>{% endif %} 
-                {% if date_added_status%} <span><i class="fa fa-clock-o"></i><b class="text">{{ text_posted_on }}</b> <b class="hl">{{ blog.date_added_full }}</b></span>{% endif %} 
-        {% if page_view_status%} <span><i class="fa fa-eye"></i><b class="text">{{ text_read }}</b> <b class="hl">{{ blog.count_read }}</b></span>{% endif %} 
-        {% if comments_count_status%} <span><i class="fa fa-comments"></i><b class="text">{{ text_comments }}</b> <b class="hl">{{ blog.comment_total }}</b></span>{% endif %} 
+<section class="newsMain">
+        <div class="container">
+
+            <div class="newsMain__list">
+           
+             {% if blogs%} 
+                {% for blog in blogs %} 
+                <div class="newsMain__item">
+                    <div class="newsMain__item-title">
+                      {{ blog.title }}
+                    </div>
+                    <div class="newsMain__item-img">
+                        <img src="{{ blog.image }}" alt="{{ blog.title }}" title="{{ blog.title }}">
+                    </div>
+                    <p>{{ blog.short_description }}</p>
+                    <div class="newsMain__item-bottom">
+                        <div class="newsMain__item-data">
+                         {{ blog.date_added_full }}
+                        </div>
+
+
+                        <div class="newsMain__item-more">
+                            <a href="{{ blog.href }}">Читать <svg width="6" height="8" viewBox="0 0 6 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M5.06925 3.78047L1.36901 0.0904667C1.24778 -0.0303609 1.0515 -0.0301578 0.930469 0.0910917C0.809532 0.212326 0.809844 0.408715 0.931094 0.529637L4.41108 4.00001L0.930969 7.47037C0.809735 7.59131 0.809422 7.78758 0.930344 7.90883C0.991015 7.96961 1.0705 8 1.14998 8C1.22926 8 1.30844 7.96981 1.369 7.90945L5.06925 4.21954C5.12764 4.16145 5.16041 4.08239 5.16041 4.00001C5.16041 3.91764 5.12755 3.83867 5.06925 3.78047Z" fill="#393185"></path>
+                            </svg>
+                            </a>
+                        </div>
+                    </div>
                 </div>
-                {% if blog.image%} 
-                <div class="image">
-                  <a href="{{ blog.href }}"><img src="{{ blog.image }}" alt="{{ blog.title }}" title="{{ blog.title }}" /></a>
-                </div>
-                {% endif %} 
-        <p>{{ blog.short_description }}</p>
-                <p><a href="{{ blog.href }}">{{ text_read_more }}  <i class="fa fa-long-arrow-right"></i></a></p>
-                </div>
-               </div>
-      {% endfor %}
-      
-          </div>
-    <div class="row">
-        <div class="col-sm-6 text-left">{{ results }}</div>
-        <div class="col-sm-6 text-right">{{ pagination }}</div>
-      </div>
-  {% else %}  
+ {% endfor %}
+            </div>
+              {% else %}  
     <div>{{ text_no_results }}</div>
-  {% endif %}  
-    </div>
-      {{ content_bottom }}</div>
-    {{ column_right }}</div>
+  {% endif %} 
+           {{ pagination }}
+                
+              
+        </div>
+    </section>
+
+        <section class="feedback">
+ 
+        <div class="container option">
+         <div class="feedback-form" id="respond">
+                <div class="feedback-description">
+                  <div class="h4">
+                        Хотите быть в курсе всех предложений от Медилюкс?
+                    </div>
+                    <p>подпишитесь на нашу e-mail рассылку</p>
+                </div>
+                  
+                <div class="feedback-input">
+                	<input type="text" id="email{{ module }}" name="email" class="form-control" placeholder="E-mail" />
+                    <input type="text" id="name{{ module }}" placeholder="Имя" name="name" class="form-control">    
+                </div>
+                <div class="feedback-button">
+                    <button id="button-subscribe" class="{{ module }}">Подписаться</button>
+                </div>
+            </div>
+
+        </div>
+
+        </div>
+       
+    </section>
+
 </div>
+
+
+<script>
+  
+  
+
+{% if only_once %}
+	if (getCookie('newsletter_already_popup') == undefined) {	
+		initNewsletter();
+		$.cookie( 'newsletter_already_popup' , 1 , { expires: 14 , path: '/' });
+	}
+{% else %}
+	if (getCookie('newsletter_already_added') == undefined) {
+		initNewsletter();
+	}
+{% endif %}
+
+$('.popup_close').click(function () {
+	$('.popup_mask').hide();
+	$('.window_holder').hide();
+});	
+
+
+
+function initNewsletter() {
+	setTimeout(function() {	
+		$('.popup_mask').fadeTo(750,0.5);	
+		$('.window_holder').show();
+		setTimeout(function() { $('.window_holder').addClass('active'); }, 750);
+	}, {{ delay }});
+}
+function getCookie(name) {
+  var matches = document.cookie.match(new RegExp(
+    "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
+  ));
+  return matches ? decodeURIComponent(matches[1]) : undefined;
+}
+
+	$('.newsletter_box input[name=\'email{{ module }}\']').bind('keydown', function(e) {
+		if (e.keyCode == 13) {
+			$('#button-subscribe{{ module }}').trigger('click');
+		}
+	});
+	$('#button-subscribe').on('click', function() {
+		$.ajax({
+			url: 'index.php?route=extension/module/newsletter/subscribe',
+			type: 'post',
+			dataType: 'json',
+			data:{email: ($('input[id=\'email{{ module }}\']').val()) , name: ($('input[id=\'name{{ module }}\']').val())}, 
+			success: function(json) {
+			
+				if (json['error']) {
+                    $('.text-danger').empty();
+					$('#respond').after('<span class="text-danger">' + json['error'] + '</span>');
+                    
+				}
+				if (json['success']) {
+                      $('.text-danger').empty();
+					$('#respond').after('<span class="text-success">' + 'Спасибо, сообщение отправлено!' + '</span>');
+					$.cookie( 'newsletter_already_added' , 1 , { expires: 14 , path: '/' });
+					setTimeout(function() { $('.popup_close').trigger('click'); }, 1200);
+					$('input[id=\'email{{ module }}\']').val('');
+                    $('input[id=\'name{{ module }}\']').val('');
+				}}
+		});
+	});
+  </script>
+ 
+
 {{ footer }}  
+

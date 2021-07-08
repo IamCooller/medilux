@@ -1,11 +1,112 @@
 {{ header }}
+    <div class="container">
+        <div class="breadcrumbs">
+            <span><a href="{{continue}}">Медилюкс</a></span> <svg width="6" height="10" viewBox="0 0 6 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M5.58656 4.72558L0.961262 0.113083C0.80972 -0.0379512 0.56437 -0.0376973 0.413081 0.113865C0.26191 0.265407 0.2623 0.510894 0.413862 0.662046L4.76384 5.00002L0.413706 9.33797C0.262164 9.48914 0.261773 9.73447 0.412925 9.88603C0.488764 9.96201 0.58812 10 0.687475 10C0.786576 10 0.88554 9.96226 0.961243 9.88681L5.58656 5.27443C5.65954 5.20181 5.7005 5.10299 5.7005 5.00002C5.7005 4.89705 5.65943 4.79834 5.58656 4.72558Z" fill="#707070"/>
+                </svg>
+            <span>О нас</span>
+        </div>
+    </div>
 
-      {{ description }}
-      
-      {{ content_bottom }}
+
+ <section class="aboutMain">
+        <div class="container option">       
+                  {{ description }}
+      </div>
+</section>
+
+   <section class="feedback">
+ 
+        <div class="container option">
+         <div class="feedback-form" id="respond">
+                <div class="feedback-description">
+                  <div class="h4">
+                        Хотите быть в курсе всех предложений от Медилюкс?
+                    </div>
+                    <p>подпишитесь на нашу e-mail рассылку</p>
+                </div>
+                  
+                <div class="feedback-input">
+                	<input type="text" id="email{{ module }}" name="email" class="form-control" placeholder="E-mail" />
+                    <input type="text" id="name{{ module }}" placeholder="Имя" name="name" class="form-control">    
+                </div>
+                <div class="feedback-button">
+                    <button id="button-subscribe" class="{{ module }}">Подписаться</button>
+                </div>
+            </div>
+
+        </div>
+
+        </div>
+       
+    </section>
+
+</div>
+
+
+<script>
+  
+  
+
+{% if only_once %}
+	if (getCookie('newsletter_already_popup') == undefined) {	
+		initNewsletter();
+		$.cookie( 'newsletter_already_popup' , 1 , { expires: 14 , path: '/' });
+	}
+{% else %}
+	if (getCookie('newsletter_already_added') == undefined) {
+		initNewsletter();
+	}
+{% endif %}
+
+$('.popup_close').click(function () {
+	$('.popup_mask').hide();
+	$('.window_holder').hide();
+});	
 
 
 
+function initNewsletter() {
+	setTimeout(function() {	
+		$('.popup_mask').fadeTo(750,0.5);	
+		$('.window_holder').show();
+		setTimeout(function() { $('.window_holder').addClass('active'); }, 750);
+	}, {{ delay }});
+}
+function getCookie(name) {
+  var matches = document.cookie.match(new RegExp(
+    "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
+  ));
+  return matches ? decodeURIComponent(matches[1]) : undefined;
+}
 
-    
+	$('.newsletter_box input[name=\'email{{ module }}\']').bind('keydown', function(e) {
+		if (e.keyCode == 13) {
+			$('#button-subscribe{{ module }}').trigger('click');
+		}
+	});
+	$('#button-subscribe').on('click', function() {
+		$.ajax({
+			url: 'index.php?route=extension/module/newsletter/subscribe',
+			type: 'post',
+			dataType: 'json',
+			data:{email: ($('input[id=\'email{{ module }}\']').val()) , name: ($('input[id=\'name{{ module }}\']').val())}, 
+			success: function(json) {
+			
+				if (json['error']) {
+                    $('.text-danger').empty();
+					$('#respond').after('<span class="text-danger">' + json['error'] + '</span>');
+                    
+				}
+				if (json['success']) {
+                      $('.text-danger').empty();
+					$('#respond').after('<span class="text-success">' + 'Спасибо, сообщение отправлено!' + '</span>');
+					$.cookie( 'newsletter_already_added' , 1 , { expires: 14 , path: '/' });
+					setTimeout(function() { $('.popup_close').trigger('click'); }, 1200);
+					$('input[id=\'email{{ module }}\']').val('');
+                    $('input[id=\'name{{ module }}\']').val('');
+				}}
+		});
+	});
+  </script>
 {{ footer }}

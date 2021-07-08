@@ -178,7 +178,7 @@ class ControllerBlogHome extends Controller {
 		if (empty($pagination->limit)) {$pagination->limit = 5;}
 		$pagination->text = $this->language->get('text_pagination');
 		$pagination->url = $this->url->link('blog/home', $url . '&page={page}');
-		
+		$totla =  $this->url->link('blog/home', $url . '&page={page}');
 		$data['pagination'] = $pagination->render();
 		
 		$data['results'] = sprintf($this->language->get('text_pagination'), ($blog_total) ? ($pagefix) + 1 : 0, ((($page - 1) * $limit) > ($blog_total - $limit)) ? $blog_total : (($pagefix) + $limit), $blog_total, ceil($blog_total / $limit));

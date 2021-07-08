@@ -1,6 +1,6 @@
 <?php
 // Heading
-$_['page_title']    = 'Блог: Последние статьи';
+$_['page_title']    = 'Новости: Последние статьи';
 $_['heading_title']    = $_['page_title'];
 
 // Text
