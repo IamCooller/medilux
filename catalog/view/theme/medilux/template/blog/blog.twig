@@ -1,174 +1,136 @@
 {{ header }} 
 <div class="container">
-  <ul class="breadcrumb">
-    {% for breadcrumb in breadcrumbs %} 
-    <li><a href="{{ breadcrumb.href }}">{{ breadcrumb.text }}</a></li>
-    {% endfor %} 
-  </ul>
-  <div class="row">{{ column_left }}
-    {% if column_left and column_right %}
-    {% set class = 'col-sm-6' %}
-    {% elseif column_left or column_right %}
-    {% set class = 'col-sm-9' %}
-    {% else %}
-    {% set class = 'col-sm-12' %}
-    {% endif %}
-     dasdasdas
-    <div id="content" class="{{ class }}">{{ content_top }} 
-    <div class="blog blog_post">
-    
-    {% if main_thumb  and  blogsetting_post_thumb %} 
-    <div class="main_thumb"><img src="{{ blogsetting_post_thumb }}" alt="{{ heading_title }}" title="{{ heading_title }}" /></div>
-    {% endif %} 
-    
-  <h1>{{ heading_title }}</h1>
-  <div class="blog_stats">
-  {% if post_author_status %} <span><i class="fa fa-user"></i><b class="text">{{ text_posted_by }}</b> <b class="hl">{{ author }}</b></span>{% endif %} 
-  {% if post_date_added_status %} <span><i class="fa fa-clock-o"></i><b class="text">{{ text_posted_on }}</b> <b class="hl">{{ date_added_full }}</b></span>{% endif %} 
-  {% if post_page_view_status %} <span><i class="fa fa-eye"></i><b class="text">{{ text_read }}</b> <b class="hl">{{ new_read_counter_value }}</b></span>{% endif %} 
-  {% if post_comments_count_status %} <span><i class="fa fa-comments"></i><b class="text">{{ text_comments }} :</b> <b class="hl">{{ comment_total }}</b></span>{% endif %} 
-  </div>
-    
-  <div class="main_description">
-  {{ description }} 
-  </div>
-    
-  {% if tags %} 
-  <p class="tags">
-    {{ text_tags }} 
-  {% for i in 0..((tags|length)-1) %}
-  {% if i < (tags|length - 1) %}
-  <a href="{{ tags[i]['href'] }}">{{ tags[i]['tag'] }}</a>, 
-  {% else %}   
-  <a href="{{ tags[i]['href'] }}">{{ tags[i]['tag'] }}</a>
-  {% endif %} 
-  {% endfor %} 
-  </p>
-  {% endif %}  
-  
-  {% if share_status %} 
-  <div class="share">
-    <div class="addthis_toolbox addthis_default_style">
-    <a class="addthis_button_facebook"><i class="fa fa-facebook"></i></a>
-    <a class="addthis_button_twitter"><i class="fa fa-twitter"></i></a>
-    <a class="addthis_button_vk"><i class="fa fa-vk" style="background: #4a76a8;"></i></a>
-    <a class="addthis_button_odnoklassniki_ru"><i class="fa fa-odnoklassniki" style="background: #ee8208;"></i></a>
-    <style>.blog_post .share .fa-vk:after {content: "BK";} .blog_post .share .fa-odnoklassniki:after {content: "OK";} </style>
-    <a class="addthis_button_compact"><i class="fa fa-navicon"></i></a>
-    </div>
-    <script src="//s7.addthis.com/js/300/addthis_widget.js"></script>
-  </div>
-  {% endif %} 
-  
-    <!-- Related Products -->
-    {% if products %} 
-      <h3><i class="fa fa-list"></i>{{ text_related_products }}</h3>
-       <div class="blog_grid_holder blog_products column-{{ rel_prod_per_row }}">
-        {% for product in products %} 
-          <div class="blog_item blog_product">
-            <div class="image"><a href="{{ product.href }}"><img src="{{ product.thumb }}" alt="{{ product.name }}" title="{{ product.name }}" class="img-responsive" /></a></div>
-              <a class="name" href="{{ product.href }}">{{ product.name }}</a>
-              {% if product.rating %} 
-              <div class="rating">
-                {% for i in 0..5 %}
-                {% if product.rating < i %} 
-                <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i></span>
-                {% else %}   
-                <span class="fa fa-stack"><i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i></span>
-                {% endif %}
-                {% endfor %}
-              </div>
-              {% endif %} 
 
-              {% if product.price %} 
-              <p class="price">
-                {% if not product.special %} 
-                {{ product.price }} 
-                {% else %}   
-                <span class="price-new">{{ product.special }}</span> <span class="price-old">{{ product.price }}</span>
-                {% endif %} 
-                {% if product.tax %} 
-                <span class="price-tax">{{ text_tax }}  {{ product.tax }}</span>
-                {% endif %} 
-              </p>
-              {% endif %}  
-              <a class="btn btn-primary" onclick="cart.add('{{ product.product_id }} ', '{{ product.minimum }} ');">{{ button_cart }}</a>
-          </div>
-          {% endfor %}
-      </div>
-    {% endif %}    
-   <!-- Related Products End -->
-     
-     
-     
-  {% if related_blogs %} 
-    <h3><i class="fa fa-list"></i>{{ text_related_blog }}</h3>
-    <div class="blog_grid_holder related column-{{ rel_per_row }}">
-      {% for blog in related_blogs %} 
-            <div class="blog_item">
-                <div class="summary">
-                <h2 class="blog_title"><a href="{{ blog.href }}">{{ blog.title }}</a></h2>
-                <div class="blog_stats">
-                {% if author_status%} <span><i class="fa fa-user"></i><b class="text">{{ text_posted_by }}</b> <b class="hl">{{ blog.author }}</b></span>{% endif %} 
-                {% if date_added_status%} <span><i class="fa fa-clock-o"><b class="text"></i>{{ text_posted_on }}</b> <b class="hl">{{ blog.date_added_full }}</b></span>{% endif %} 
-        {% if page_view_status%} <span><i class="fa fa-eye"></i><b class="text">{{ text_read }}</b> <b class="hl">{{ blog.count_read }}</b></span>{% endif %} 
-        {% if comments_count_status%} <span><i class="fa fa-comments"><b class="text"></i>{{ text_comments }}</b> <b class="hl">{{ blog.comment_total }}</b></span>{% endif %} 
+
+  <div class="breadcrumbs">
+    {% for breadcrumb in breadcrumbs %} 
+            <span><a href="{{ breadcrumb.href}}">{{ breadcrumb.text }}</a></span> 
+            {% if breadcrumb == true %}
+            <svg width="6" height="10" viewBox="0 0 6 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M5.58656 4.72558L0.961262 0.113083C0.80972 -0.0379512 0.56437 -0.0376973 0.413081 0.113865C0.26191 0.265407 0.2623 0.510894 0.413862 0.662046L4.76384 5.00002L0.413706 9.33797C0.262164 9.48914 0.261773 9.73447 0.412925 9.88603C0.488764 9.96201 0.58812 10 0.687475 10C0.786576 10 0.88554 9.96226 0.961243 9.88681L5.58656 5.27443C5.65954 5.20181 5.7005 5.10299 5.7005 5.00002C5.7005 4.89705 5.65943 4.79834 5.58656 4.72558Z" fill="#707070"></path>
+                </svg>
+            {% endif %}
+            {% endfor %} 
+        </div>
+        </div>
+ <section class="newsOne">
+        <div class="container option">
+            <h2>{{ heading_title }}</h2>
+            <div class="newsOne_data">
+             {{ date_added_full }}
+            </div>
+            <div class="newsOne__content">
+            {% if main_thumb  and  blogsetting_post_thumb %} 
+    <img src="{{ blogsetting_post_thumb }}" alt="{{ heading_title }}" title="{{ heading_title }}" {% if description == false  %} style="float: none;" {% endif %}/>
+    {% endif %} 
+              {{ description }} 
+            </div>
+            <div class="newsOne__aditional">
+                Ознакомиться с ним подробнее и оставить заявку можно здесь:
+                <a href="#">Ссылка на страницу в каталоге этого товара</a>
+            </div>
+
+            <a href="javascript:history.go(-1)" class="newsOne__allNews"><svg width="6" height="8" viewBox="0 0 6 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M0.930754 3.78047L4.63099 0.0904667C4.75222 -0.0303609 4.9485 -0.0301578 5.06954 0.0910917C5.19047 0.212326 5.19016 0.408715 5.06891 0.529637L1.58892 4.00001L5.06904 7.47037C5.19027 7.59131 5.19058 7.78758 5.06966 7.90883C5.00899 7.96961 4.9295 8 4.85002 8C4.77074 8 4.69157 7.96981 4.63101 7.90945L0.930754 4.21954C0.872364 4.16145 0.839598 4.08239 0.839598 4.00001C0.839598 3.91764 0.872458 3.83867 0.930754 3.78047Z" fill="#393185"></path>
+                </svg>
+                 К списку новостей</a>
+
+        </div>
+    </section>
+      <section class="feedback">
+ 
+        <div class="container option">
+         <div class="feedback-form" id="respond">
+                <div class="feedback-description">
+                  <div class="h4">
+                        Хотите быть в курсе всех предложений от Медилюкс?
+                    </div>
+                    <p>подпишитесь на нашу e-mail рассылку</p>
                 </div>
-                {% if blog.image  and  rel_thumb_status %} 
-                <div class="image">
-                  <a href="{{ blog.href }}"><img src="{{ blog.image }}" alt="{{ blog.title }}" title="{{ blog.title }}" /></a>
+                  
+                <div class="feedback-input">
+                	<input type="text" id="email{{ module }}" name="email" class="form-control" placeholder="E-mail" />
+                    <input type="text" id="name{{ module }}" placeholder="Имя" name="name" class="form-control">    
                 </div>
-                {% endif %} 
-                <p>{{ blog.short_description }}</p>
-                <p><a href="{{ blog.href }}">{{ text_read_more }}  <i class="fa fa-long-arrow-right"></i></a></p>
+                <div class="feedback-button">
+                    <button id="button-subscribe" class="{{ module }}">Подписаться</button>
                 </div>
-               </div>
-      {% endfor %}          
-    </div>
-  {% endif %}   
-   <!-- Related Blog End -->
-   
-     <!-- Comment Area start -->
-      {% if allow_comment%} 
-        <h3><i class="fa fa-comments"></i>{{ text_comments }}</h3>
-          <form id="comment_form">
-                <div id="comment"></div>
-                <h3><i class="fa fa-pencil"></i>{{ text_write_comment }}</h3>
-                <div class="row">
-                <div class="form-group col-sm-6 required">
-                <label class="control-label" for="input-name">{{ entry_name }}</label>
-                <input type="text" name="name" value="" id="input-name" class="form-control" />
-                </div>
-                <div class="form-group col-sm-6 required">
-                <label class="control-label" for="input-email">{{ entry_email }}</label>
-                <input type="text" name="email" value="" id="input-email" class="form-control" />
-                </div>
-                </div>
-                
-                <div class="row">
-                <div class="form-group col-sm-12 required">
-                <label class="control-label" for="input-review">{{ entry_comment }}</label>
-                <textarea name="comment" rows="5" id="input-comment" class="form-control"></textarea>
-                </div>
-                </div>
-                
-                
-                <div class="row">
-                <div class="col-sm-12">
-                  {{ captcha }}
-                </div>
-                </div>
-                
-                <div class="row">
-                <div class="form-group col-sm-12 text-right">
-                <button type="button" id="button-comment" class="btn btn-primary">{{ button_send }}</button>
-                </div>
-                </div>
-        </form>
-      {% endif %} 
-      </div>
-      {{ content_bottom }}</div>
-    {{ column_right }}</div>
+            </div>
+
+        </div>
+
+        </div>
+       
+    </section>
+
+</div>
+
+
+<script>
+  
+  
+
+{% if only_once %}
+	if (getCookie('newsletter_already_popup') == undefined) {	
+		initNewsletter();
+		$.cookie( 'newsletter_already_popup' , 1 , { expires: 14 , path: '/' });
+	}
+{% else %}
+	if (getCookie('newsletter_already_added') == undefined) {
+		initNewsletter();
+	}
+{% endif %}
+
+$('.popup_close').click(function () {
+	$('.popup_mask').hide();
+	$('.window_holder').hide();
+});	
+
+
+
+function initNewsletter() {
+	setTimeout(function() {	
+		$('.popup_mask').fadeTo(750,0.5);	
+		$('.window_holder').show();
+		setTimeout(function() { $('.window_holder').addClass('active'); }, 750);
+	}, {{ delay }});
+}
+function getCookie(name) {
+  var matches = document.cookie.match(new RegExp(
+    "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
+  ));
+  return matches ? decodeURIComponent(matches[1]) : undefined;
+}
+
+	$('.newsletter_box input[name=\'email{{ module }}\']').bind('keydown', function(e) {
+		if (e.keyCode == 13) {
+			$('#button-subscribe{{ module }}').trigger('click');
+		}
+	});
+	$('#button-subscribe').on('click', function() {
+		$.ajax({
+			url: 'index.php?route=extension/module/newsletter/subscribe',
+			type: 'post',
+			dataType: 'json',
+			data:{email: ($('input[id=\'email{{ module }}\']').val()) , name: ($('input[id=\'name{{ module }}\']').val())}, 
+			success: function(json) {
+			
+				if (json['error']) {
+                    $('.text-danger').empty();
+					$('#respond').after('<span class="text-danger">' + json['error'] + '</span>');
+                    
+				}
+				if (json['success']) {
+                      $('.text-danger').empty();
+					$('#respond').after('<span class="text-success">' + 'Спасибо, сообщение отправлено!' + '</span>');
+					$.cookie( 'newsletter_already_added' , 1 , { expires: 14 , path: '/' });
+					setTimeout(function() { $('.popup_close').trigger('click'); }, 1200);
+					$('input[id=\'email{{ module }}\']').val('');
+                    $('input[id=\'name{{ module }}\']').val('');
+				}}
+		});
+	});
+  </script>
 </div>
 <script type="text/javascript"><!--
 
@@ -219,3 +181,9 @@ $('#button-comment').on('click', function() {
 
 </script>
 {{ footer }}  
+
+
+
+
+
+

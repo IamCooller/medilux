@@ -39,6 +39,10 @@
     margin: 0 10px;
 }
 
+.breadcrumbs svg:last-child {
+    display: none
+}
+
 body {
     padding-top: 204px;
 }

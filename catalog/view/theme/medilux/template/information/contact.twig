@@ -134,7 +134,7 @@
 
     }
 
-    {% if only_once %}
+{% if only_once %}
 	if (getCookie('newsletter_already_popup') == undefined) {	
 		initNewsletter();
 		$.cookie( 'newsletter_already_popup' , 1 , { expires: 14 , path: '/' });
