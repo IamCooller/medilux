@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Июл 08 2021 г., 17:15
+-- Время создания: Июл 09 2021 г., 16:23
 -- Версия сервера: 10.3.22-MariaDB
 -- Версия PHP: 7.1.33
 
@@ -302,13 +302,13 @@ CREATE TABLE `oc_blog` (
 INSERT INTO `oc_blog` (`blog_id`, `allow_comment`, `count_read`, `sort_order`, `status`, `author`, `date_added`, `image`) VALUES
 (1, 1, 0, 0, 1, 'John', '2021-07-07 11:57:37', 'catalog/demo/about1.png'),
 (2, 1, 1, 0, 1, 'John', '2021-07-07 13:22:47', 'catalog/demo/aboutMain2.png'),
-(3, 1, 1, 0, 1, 'John', '2021-07-07 13:26:47', 'catalog/demo/banner11.png'),
-(4, 1, 0, 0, 1, 'John', '2021-07-07 13:27:04', 'catalog/demo/images/news.jpg'),
-(5, 1, 1, 0, 1, 'John', '2021-07-07 13:27:23', 'catalog/demo/aboutMain.png'),
-(6, 1, 0, 0, 1, 'John', '2021-07-07 14:23:32', 'catalog/demo/images/catalog/catalog1.jpg'),
+(3, 1, 2, 0, 1, 'John', '2021-07-07 13:26:47', 'catalog/demo/banner11.png'),
+(4, 1, 1, 0, 1, 'John', '2021-07-07 13:27:04', 'catalog/demo/images/news.jpg'),
+(5, 1, 3, 0, 1, 'John', '2021-07-07 13:27:23', 'catalog/demo/aboutMain.png'),
+(6, 1, 1, 0, 1, 'John', '2021-07-07 14:23:32', 'catalog/demo/images/catalog/catalog1.jpg'),
 (7, 1, 0, 0, 1, 'John', '2021-07-07 14:23:54', 'catalog/demo/images/catalog/catalog4.jpg'),
-(8, 1, 3, 0, 1, 'John', '2021-07-07 14:24:15', 'catalog/demo/images/catalog/catalog1.jpg'),
-(9, 1, 4, 0, 1, 'John', '2021-07-07 14:24:34', 'catalog/demo/images/catalog/catalog5.jpg');
+(8, 1, 25, 0, 1, 'John', '2021-07-07 14:24:15', 'catalog/demo/images/catalog/catalog1.jpg'),
+(9, 1, 16, 0, 1, 'John', '2021-07-07 14:24:34', 'catalog/demo/images/catalog/catalog5.jpg');
 
 -- --------------------------------------------------------
 
@@ -410,7 +410,7 @@ INSERT INTO `oc_blog_description` (`blog_id`, `language_id`, `title`, `page_titl
 (6, 1, 'Ультразвуковый денситометр SONOST-3000йсвысыв', '', '', '', 'Очень важный текст', '', ''),
 (7, 1, 'Ультразвуковый денситометр SONOST-3000', '', '', '', 'Текст', '', ''),
 (8, 1, 'Ультразвуковый денситометр SONOST-3000', '', '', '', 'Тексттт', '', ''),
-(9, 1, ' Ультразвуковый денситометр SONOST-3000                     ', '', '', '', 'Кратко', '', '');
+(9, 1, ' Ультразвуковый денситометр SONOST-3000                     ', '', '', '', 'Кратко здесь есть текст аууу', '  &lt;div class=&quot;newsOne__content&quot; style=&quot;color: rgb(33, 37, 41); font-family: Montserrat, sans-serif; font-size: 16px; background-color: rgb(250, 250, 250);&quot;&gt;&lt;img src=&quot;http://medilux/image/catalog/demo/images/catalog/catalog5.jpg&quot; alt=&quot; Ультразвуковый денситометр SONOST-3000                     &quot; title=&quot; Ультразвуковый денситометр SONOST-3000                     &quot; style=&quot;border-style: none; float: left; margin-right: 40px; margin-bottom: 15px; max-width: 419px; height: auto; width: 419px;&quot;&gt;&lt;p style=&quot;margin-bottom: 1rem; font-size: 12px; line-height: 1.25; color: rgb(79, 79, 79);&quot;&gt;Наша сервисная служба установила рентгеновский аппарат Jumong в клинику «Дентал форте элит», г. Набережные Челны.Jumong – классический цифровой рентгенографический аппарат на два рабочих места.&lt;/p&gt;&lt;h5 style=&quot;margin-bottom: 0.5rem; line-height: 1.28; font-size: 14px; color: rgb(0, 0, 0);&quot;&gt;Основные преимущества рентген аппарата Jumong:&lt;/h5&gt;&lt;ul style=&quot;padding-left: 2rem; margin-bottom: 1rem;&quot;&gt;&lt;li style=&quot;font-size: 14px; line-height: 1.28; color: rgb(79, 79, 79); margin-bottom: 10px;&quot;&gt;Прекрасно подходит для медицинских учреждений с широким диапазоном исследований и большим потоком пациентов.&lt;/li&gt;&lt;li style=&quot;font-size: 14px; line-height: 1.28; color: rgb(79, 79, 79); margin-bottom: 10px;&quot;&gt;Простота и удобство системы заключается в напольно-рельсовом механизме плавного перемещения стойки рентгеновской трубки, что дает возможность точно позиционировать необходимую область исследования.&lt;/li&gt;&lt;li style=&quot;font-size: 14px; line-height: 1.28; color: rgb(79, 79, 79); margin-bottom: 10px;&quot;&gt;Аппарат оснащен двумя высококачественными цифровыми детекторами (производство Южная Корея) с активной матрицей 3072 х 3072 пикселей. Оценить снимок, обладающий высокой пространственной разрешающей способностью и контрастностью, можно уже через 3 секунды.&lt;/li&gt;&lt;li style=&quot;font-size: 14px; line-height: 1.28; color: rgb(79, 79, 79); margin-bottom: 10px;&quot;&gt;Детекторы (один в столе, второй на вертикальной стойке) позволяют делать весь спектр рентгенографических снимков.&lt;/li&gt;&lt;li style=&quot;font-size: 14px; line-height: 1.28; color: rgb(79, 79, 79); margin-bottom: 10px;&quot;&gt;Надежная фиксация стойки детектора и рентгеновской трубки при вертикальном перемещении осуществляется за счет магнитных тормозов (Опционально доступно автоматизированное перемещение).&lt;/li&gt;&lt;li style=&quot;font-size: 14px; line-height: 1.28; color: rgb(79, 79, 79); margin-bottom: 10px;&quot;&gt;Рентгеновский стол снимков с механизированным перемещением в 4-х направлениях (Опционально доступно в 6 направлениях).&lt;/li&gt;&lt;li style=&quot;font-size: 14px; line-height: 1.28; color: rgb(79, 79, 79); margin-bottom: 10px;&quot;&gt;Двухфокусная рентгеновская трубка за счет большой теплоемкости (300 кТЕ) чрезвычайно надежна и долговечна. Два фокусных пятна позволяют настроить параметры под любые задачи.&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;&lt;div class=&quot;newsOne__aditional&quot; style=&quot;font-size: 12px; line-height: 1.25; color: rgb(79, 79, 79); margin-top: 30px; font-family: Montserrat, sans-serif; background-color: rgb(250, 250, 250);&quot;&gt;Ознакомиться с ним подробнее и оставить заявку можно здесь:&amp;nbsp;&lt;a href=&quot;http://medilux/#&quot; style=&quot;color: rgb(57, 49, 133);&quot;&gt;Ссылка на страницу в каталоге этого товара&lt;/a&gt;&lt;/div&gt;&lt;ul&gt;\r\n                &lt;/ul&gt;', '');
 
 -- --------------------------------------------------------
 
@@ -464,7 +464,6 @@ CREATE TABLE `oc_blog_to_layout` (
 INSERT INTO `oc_blog_to_layout` (`blog_id`, `store_id`, `layout_id`) VALUES
 (1, 0, 0),
 (8, 0, 0),
-(9, 0, 0),
 (7, 0, 0),
 (6, 0, 0);
 
@@ -528,41 +527,43 @@ CREATE TABLE `oc_category` (
   `status` tinyint(1) NOT NULL,
   `date_added` datetime NOT NULL,
   `date_modified` datetime NOT NULL,
-  `information` tinyint(1) NOT NULL
+  `information` tinyint(1) NOT NULL,
+  `image_full` varchar(255) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
 -- Дамп данных таблицы `oc_category`
 --
 
-INSERT INTO `oc_category` (`category_id`, `image`, `parent_id`, `top`, `column`, `sort_order`, `status`, `date_added`, `date_modified`, `information`) VALUES
-(77, 'catalog/demo/images/icons/icon8.png', 0, 1, 1, 1, 1, '2021-06-10 11:23:40', '2021-06-10 12:21:24', 0),
-(61, 'catalog/demo/images/icons/icon1.png', 0, 1, 1, 0, 1, '2021-06-10 10:46:59', '2021-06-10 11:17:03', 0),
-(62, '', 61, 0, 1, 0, 1, '2021-06-10 10:48:23', '2021-06-10 10:48:23', 0),
-(63, '', 61, 0, 1, 0, 1, '2021-06-10 10:48:46', '2021-06-10 10:48:46', 0),
-(64, '', 61, 0, 1, 0, 1, '2021-06-10 10:49:09', '2021-06-10 10:49:09', 0),
-(65, 'catalog/demo/images/icons/icon2.png', 0, 1, 1, 0, 1, '2021-06-10 11:17:32', '2021-06-10 11:17:32', 0),
-(66, 'catalog/demo/images/icons/icon3.png', 0, 1, 1, 0, 1, '2021-06-10 11:18:21', '2021-06-10 11:18:21', 0),
-(67, 'catalog/demo/images/icons/icon4.png', 0, 1, 1, 0, 1, '2021-06-10 11:18:54', '2021-06-10 11:18:54', 0),
-(68, '', 67, 0, 1, 0, 1, '2021-06-10 11:19:16', '2021-06-10 11:19:16', 0),
-(69, '', 67, 0, 1, 0, 1, '2021-06-10 11:19:40', '2021-06-10 11:19:40', 0),
-(70, '', 67, 0, 1, 0, 1, '2021-06-10 11:20:02', '2021-06-10 11:20:02', 0),
-(71, 'catalog/demo/images/icons/icon5.png', 0, 1, 1, 0, 1, '2021-06-10 11:20:26', '2021-06-10 11:20:26', 0),
-(72, 'catalog/demo/images/icons/icon6.png', 0, 1, 1, 0, 1, '2021-06-10 11:21:02', '2021-06-10 11:21:02', 0),
-(73, '', 72, 0, 1, 0, 1, '2021-06-10 11:21:42', '2021-06-10 11:21:42', 0),
-(74, '', 72, 0, 1, 0, 1, '2021-06-10 11:22:05', '2021-06-10 11:58:17', 0),
-(75, '', 72, 0, 1, 0, 1, '2021-06-10 11:22:27', '2021-06-10 11:22:27', 0),
-(80, '', 77, 0, 1, 0, 1, '2021-06-10 11:24:48', '2021-06-10 11:24:48', 0),
-(79, '', 77, 0, 1, 0, 1, '2021-06-10 11:24:25', '2021-06-10 11:24:25', 0),
-(78, '', 77, 0, 1, 0, 1, '2021-06-10 11:24:04', '2021-06-10 11:24:04', 0),
-(76, 'catalog/demo/images/icons/icon7.png', 72, 1, 1, 0, 1, '2021-06-10 11:22:54', '2021-06-10 11:23:19', 0),
-(59, '', 0, 0, 1, 0, 1, '2021-05-31 11:39:58', '2021-05-31 11:40:30', 0),
-(81, '', 77, 0, 1, 0, 1, '2021-06-10 11:25:12', '2021-06-10 11:25:12', 0),
-(82, '', 77, 0, 1, 0, 1, '2021-06-10 11:25:29', '2021-06-10 11:25:29', 0),
-(83, 'catalog/demo/images/icons/icon9.png', 0, 1, 1, 0, 1, '2021-06-10 11:25:49', '2021-06-10 11:25:49', 0),
-(84, 'catalog/demo/images/icons/icon10.png', 0, 1, 1, 0, 1, '2021-06-10 11:26:18', '2021-06-10 11:26:18', 0),
-(85, 'catalog/demo/images/icons/icon11.png', 0, 1, 1, 0, 1, '2021-06-10 11:26:37', '2021-06-10 11:26:37', 0),
-(86, 'catalog/demo/images/icons/icon12.png', 0, 1, 1, 0, 1, '2021-06-10 11:26:56', '2021-06-10 11:26:56', 0);
+INSERT INTO `oc_category` (`category_id`, `image`, `parent_id`, `top`, `column`, `sort_order`, `status`, `date_added`, `date_modified`, `information`, `image_full`) VALUES
+(77, 'catalog/demo/images/icons/icon8.png', 0, 1, 1, 1, 1, '2021-06-10 11:23:40', '2021-07-09 16:19:11', 0, 'catalog/demo/images/catalog/catalog8.jpg'),
+(61, 'catalog/demo/images/icons/icon1.png', 0, 1, 1, 0, 1, '2021-06-10 10:46:59', '2021-07-09 11:32:54', 0, 'catalog/demo/images/catalog/catalog1.jpg'),
+(62, '', 61, 0, 1, 0, 1, '2021-06-10 10:48:23', '2021-06-10 10:48:23', 0, NULL),
+(63, '', 61, 0, 1, 0, 1, '2021-06-10 10:48:46', '2021-06-10 10:48:46', 0, NULL),
+(64, '', 61, 0, 1, 0, 1, '2021-06-10 10:49:09', '2021-06-10 10:49:09', 0, NULL),
+(65, 'catalog/demo/images/icons/icon2.png', 0, 1, 1, 0, 1, '2021-06-10 11:17:32', '2021-07-09 11:34:02', 0, 'catalog/demo/images/catalog/catalog2.jpg'),
+(66, 'catalog/demo/images/icons/icon3.png', 0, 1, 1, 0, 1, '2021-06-10 11:18:21', '2021-07-09 11:28:59', 0, 'catalog/demo/images/catalog/catalog3.jpg'),
+(67, 'catalog/demo/images/icons/icon4.png', 0, 1, 1, 0, 1, '2021-06-10 11:18:54', '2021-07-09 11:30:12', 0, 'catalog/demo/images/catalog/catalog4.jpg'),
+(68, '', 67, 0, 1, 0, 1, '2021-06-10 11:19:16', '2021-06-10 11:19:16', 0, NULL),
+(69, '', 67, 0, 1, 0, 1, '2021-06-10 11:19:40', '2021-06-10 11:19:40', 0, NULL),
+(70, '', 67, 0, 1, 0, 1, '2021-06-10 11:20:02', '2021-06-10 11:20:02', 0, NULL),
+(71, 'catalog/demo/images/icons/icon5.png', 0, 1, 1, 0, 1, '2021-06-10 11:20:26', '2021-07-09 11:27:44', 0, 'catalog/demo/images/catalog/catalog5.jpg'),
+(72, 'catalog/demo/images/icons/icon6.png', 0, 1, 1, 0, 1, '2021-06-10 11:21:02', '2021-07-09 11:34:36', 0, 'catalog/demo/images/catalog/catalog6.jpg'),
+(73, '', 72, 0, 1, 0, 1, '2021-06-10 11:21:42', '2021-06-10 11:21:42', 0, NULL),
+(74, '', 72, 0, 1, 0, 1, '2021-06-10 11:22:05', '2021-06-10 11:58:17', 0, NULL),
+(75, '', 72, 0, 1, 0, 1, '2021-06-10 11:22:27', '2021-06-10 11:22:27', 0, NULL),
+(80, '', 77, 0, 1, 0, 1, '2021-06-10 11:24:48', '2021-06-10 11:24:48', 0, NULL),
+(79, '', 77, 0, 1, 0, 1, '2021-06-10 11:24:25', '2021-06-10 11:24:25', 0, NULL),
+(78, '', 77, 0, 1, 0, 1, '2021-06-10 11:24:04', '2021-06-10 11:24:04', 0, NULL),
+(76, 'catalog/demo/images/icons/icon7.png', 72, 1, 1, 0, 1, '2021-06-10 11:22:54', '2021-06-10 11:23:19', 0, NULL),
+(59, '', 59, 0, 1, 0, 1, '2021-05-31 11:39:58', '2021-05-31 11:40:30', 0, NULL),
+(81, '', 77, 0, 1, 0, 1, '2021-06-10 11:25:12', '2021-06-10 11:25:12', 0, NULL),
+(82, '', 77, 0, 1, 0, 1, '2021-06-10 11:25:29', '2021-06-10 11:25:29', 0, NULL),
+(83, 'catalog/demo/images/icons/icon9.png', 0, 1, 1, 0, 1, '2021-06-10 11:25:49', '2021-07-09 11:30:38', 0, 'catalog/demo/images/catalog/catalog9.jpg'),
+(84, 'catalog/demo/images/icons/icon10.png', 0, 1, 1, 0, 1, '2021-06-10 11:26:18', '2021-07-09 11:29:38', 0, 'catalog/demo/images/catalog/catalog10.jpg'),
+(85, 'catalog/demo/images/icons/icon11.png', 0, 1, 1, 0, 1, '2021-06-10 11:26:37', '2021-07-09 11:33:30', 0, 'catalog/demo/images/catalog/catalog11.jpg'),
+(86, 'catalog/demo/images/icons/icon12.png', 0, 1, 1, 0, 1, '2021-06-10 11:26:56', '2021-07-09 11:32:16', 0, 'catalog/demo/images/catalog/catalog12.jpg'),
+(87, 'catalog/demo/images/icons/icon7.png', 0, 0, 1, 0, 1, '2021-07-09 12:17:46', '2021-07-09 12:17:46', 0, 'catalog/demo/images/catalog/catalog7.jpg');
 
 -- --------------------------------------------------------
 
@@ -595,12 +596,12 @@ INSERT INTO `oc_category_description` (`category_id`, `language_id`, `name`, `he
 (62, 1, 'Цифровые рентгены', '', '', '', 'Цифровые рентгены', '', ''),
 (63, 1, 'Денситометры', '', '', '', 'Денситометры', '', ''),
 (64, 1, 'Маммографы', '', '', '', 'Маммографы', '', ''),
-(86, 1, 'Прочие медицинские товары', '', '', '', 'Прочие медицинские товары', '', ''),
 (81, 1, 'Фетальные мониторы', '', '', '', 'Фетальные мониторы', '', ''),
 (82, 1, 'Весы и ростомеры', '', '', '', 'Весы и ростомеры', '', ''),
 (83, 1, 'Неонатология', '', '', '', 'Неонатология', '', ''),
 (84, 1, 'Лабораторная диагностика', '', '', '', 'Лабораторная диагностика', '', ''),
 (85, 1, 'Стерилизация и дезинфекция', '', '', '', 'Стерилизация и дезинфекция', '', ''),
+(66, 1, 'Жесткая эндоскопия', '', '', '', 'Жесткая эндоскопия', '', ''),
 (67, 1, 'ЛОР-оборудование', '', '', '', 'ЛОР-оборудование', '', ''),
 (68, 1, 'ЛОР-комбайны', '', '', '', 'ЛОР-комбайны', '', ''),
 (69, 1, 'ЛОР-кресла', '', '', '', 'ЛОР-кресла', '', ''),
@@ -612,8 +613,9 @@ INSERT INTO `oc_category_description` (`category_id`, `language_id`, `name`, `he
 (75, 1, 'ИВЛ', '', '', '', 'ИВЛ', '', ''),
 (76, 1, 'Функциональная диагностика', '', '', '', 'Функциональная диагностика', '', ''),
 (77, 1, 'Акушерство и гинекология', '', '', '', 'Акушерство и гинекология', '', ''),
-(66, 1, 'Жесткая эндоскопия', '', '', '', 'Жесткая эндоскопия', '', ''),
-(59, 1, 'Каталог', '', '', '', 'Catalogs', '', '');
+(59, 1, 'Каталог', '', '', '', 'Catalogs', '', ''),
+(87, 1, 'Функциональная диагностика ', '', '', '', 'Функциональная диагностика ', '', ''),
+(86, 1, 'Прочие медицинские товары', '', '', '', 'Прочие медицинские товары', '', '');
 
 -- --------------------------------------------------------
 
@@ -625,6 +627,15 @@ CREATE TABLE `oc_category_filter` (
   `category_id` int(11) NOT NULL,
   `filter_id` int(11) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- Дамп данных таблицы `oc_category_filter`
+--
+
+INSERT INTO `oc_category_filter` (`category_id`, `filter_id`) VALUES
+(77, 1),
+(77, 2),
+(77, 3);
 
 -- --------------------------------------------------------
 
@@ -697,7 +708,8 @@ INSERT INTO `oc_category_path` (`category_id`, `path_id`, `level`) VALUES
 (80, 80, 1),
 (80, 77, 0),
 (62, 62, 1),
-(59, 59, 0);
+(59, 59, 0),
+(87, 87, 0);
 
 -- --------------------------------------------------------
 
@@ -717,6 +729,7 @@ CREATE TABLE `oc_category_to_layout` (
 
 INSERT INTO `oc_category_to_layout` (`category_id`, `store_id`, `layout_id`) VALUES
 (59, 0, 0),
+(87, 0, 0),
 (61, 0, 0),
 (62, 0, 0),
 (63, 0, 0),
@@ -786,7 +799,8 @@ INSERT INTO `oc_category_to_store` (`category_id`, `store_id`) VALUES
 (83, 0),
 (84, 0),
 (85, 0),
-(86, 0);
+(86, 0),
+(87, 0);
 
 -- --------------------------------------------------------
 
@@ -910,7 +924,7 @@ CREATE TABLE `oc_currency` (
 --
 
 INSERT INTO `oc_currency` (`currency_id`, `title`, `code`, `symbol_left`, `symbol_right`, `decimal_place`, `value`, `status`, `date_modified`) VALUES
-(1, 'Рубль', 'RUB', '', 'р.', '0', 1.00000000, 1, '2021-07-08 08:19:08');
+(1, 'Рубль', 'RUB', '', 'р.', '0', 1.00000000, 1, '2021-07-09 08:13:07');
 
 -- --------------------------------------------------------
 
@@ -1096,7 +1110,7 @@ CREATE TABLE `oc_customer_online` (
 --
 
 INSERT INTO `oc_customer_online` (`ip`, `customer_id`, `url`, `referer`, `date_added`) VALUES
-('127.0.0.1', 0, 'http://medilux/index.php?route=blog/blog&amp;blog_id=8', 'http://medilux/news', '2021-07-08 14:13:13');
+('127.0.0.1', 0, 'http://medilux/akusherstvo-i-ginekologiya', 'http://medilux/catalogs', '2021-07-09 13:19:17');
 
 -- --------------------------------------------------------
 
@@ -1603,6 +1617,15 @@ CREATE TABLE `oc_filter` (
   `sort_order` int(3) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
+--
+-- Дамп данных таблицы `oc_filter`
+--
+
+INSERT INTO `oc_filter` (`filter_id`, `filter_group_id`, `sort_order`) VALUES
+(1, 1, 0),
+(2, 1, 0),
+(3, 1, 0);
+
 -- --------------------------------------------------------
 
 --
@@ -1616,6 +1639,15 @@ CREATE TABLE `oc_filter_description` (
   `name` varchar(64) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
+--
+-- Дамп данных таблицы `oc_filter_description`
+--
+
+INSERT INTO `oc_filter_description` (`filter_id`, `language_id`, `filter_group_id`, `name`) VALUES
+(1, 1, 1, 'Крутой бренд'),
+(2, 1, 1, 'Менее крутой'),
+(3, 1, 1, 'Не крутой');
+
 -- --------------------------------------------------------
 
 --
@@ -1626,6 +1658,13 @@ CREATE TABLE `oc_filter_group` (
   `filter_group_id` int(11) NOT NULL,
   `sort_order` int(3) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- Дамп данных таблицы `oc_filter_group`
+--
+
+INSERT INTO `oc_filter_group` (`filter_group_id`, `sort_order`) VALUES
+(1, 1);
 
 -- --------------------------------------------------------
 
@@ -1638,6 +1677,13 @@ CREATE TABLE `oc_filter_group_description` (
   `language_id` int(11) NOT NULL,
   `name` varchar(64) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- Дамп данных таблицы `oc_filter_group_description`
+--
+
+INSERT INTO `oc_filter_group_description` (`filter_group_id`, `language_id`, `name`) VALUES
+(1, 1, 'Бренды');
 
 -- --------------------------------------------------------
 
@@ -2040,9 +2086,10 @@ INSERT INTO `oc_layout_module` (`layout_module_id`, `layout_id`, `code`, `positi
 (68, 6, 'account', 'column_right', 1),
 (128, 1, 'html.36', 'content_bottom', 1),
 (127, 1, 'carousel.35', 'content_bottom', 0),
-(72, 3, 'category', 'column_left', 1),
+(157, 3, 'category', 'column_left', 1),
 (126, 1, 'banner.33', 'content_top', 0),
-(129, 15, 'html.36', 'content_top', 0);
+(129, 15, 'html.36', 'content_top', 0),
+(158, 3, 'filter', 'content_top', 0);
 
 -- --------------------------------------------------------
 
@@ -2064,7 +2111,7 @@ CREATE TABLE `oc_layout_route` (
 INSERT INTO `oc_layout_route` (`layout_route_id`, `layout_id`, `store_id`, `route`) VALUES
 (38, 6, 0, 'account/%'),
 (17, 10, 0, 'affiliate/%'),
-(44, 3, 0, 'product/category'),
+(128, 3, 0, 'product/category'),
 (103, 1, 0, 'common/home'),
 (20, 2, 0, 'product/product'),
 (121, 11, 0, 'information/information'),
@@ -2282,7 +2329,9 @@ INSERT INTO `oc_newsletter` (`id`, `email`, `name`) VALUES
 (12, 'info@total-web.com.ua', ''),
 (17, 'dasd@inbox.ru', 'Headersdf'),
 (18, 'info@total-web.com.ua', 'Изоспан В fix'),
-(19, 'dasd@inbox.ru', 'Илья');
+(19, 'dasd@inbox.ru', 'Илья'),
+(20, 'dasd@inbox.ru', ' wgarrowdown.png'),
+(21, 'info@total-web.com.ua', 'Header');
 
 -- --------------------------------------------------------
 
@@ -2703,9 +2752,9 @@ CREATE TABLE `oc_product` (
 
 INSERT INTO `oc_product` (`product_id`, `model`, `sku`, `upc`, `ean`, `jan`, `isbn`, `mpn`, `location`, `quantity`, `stock_status_id`, `image`, `manufacturer_id`, `shipping`, `price`, `points`, `tax_class_id`, `date_available`, `weight`, `weight_class_id`, `length`, `width`, `height`, `length_class_id`, `subtract`, `minimum`, `sort_order`, `status`, `viewed`, `date_added`, `date_modified`, `product_offer`, `product_discond`) VALUES
 (52, 'CHS-PU34', '', '', '', '', '', '', '', 1, 7, 'catalog/demo/images/items/specialOffers1.png', 0, 1, '0.0000', 0, 0, '2021-06-10', '0.00000000', 1, '0.00000000', '0.00000000', '0.00000000', 1, 1, 1, 1, 1, 0, '2021-06-10 15:20:07', '2021-07-06 13:09:50', 1, 0),
-(53, 'Bionet FC 700', '', '', '', '', '', '', '', 1, 7, 'catalog/demo/images/items/item1.png', 0, 1, '0.0000', 0, 0, '2021-06-10', '0.00000000', 1, '0.00000000', '0.00000000', '0.00000000', 1, 1, 1, 1, 1, 0, '2021-06-10 15:20:43', '2021-07-06 14:48:22', 1, 0),
-(54, 'SONOST-3000', '', '', '', '', '', '', '', 1, 7, 'catalog/demo/images/items/specialOffers2.png', 8, 1, '0.0000', 0, 0, '2021-06-10', '0.00000000', 1, '0.00000000', '0.00000000', '0.00000000', 1, 1, 1, 1, 1, 4, '2021-06-10 15:21:35', '2021-07-07 09:45:57', 1, 1),
-(51, 'SONOST-3000', '', '', '', '', '', '', '', 1, 7, 'catalog/demo/images/items/specialOffers3.png', 0, 1, '0.0000', 0, 0, '2021-06-10', '0.00000000', 1, '0.00000000', '0.00000000', '0.00000000', 1, 1, 1, 1, 1, 0, '2021-06-10 15:19:30', '2021-07-02 15:01:28', 1, 0);
+(53, 'Bionet FC 700', '', '', '', '', '', '', '', 1, 7, 'catalog/demo/images/items/item1.png', 0, 1, '0.0000', 0, 0, '2021-06-10', '0.00000000', 1, '0.00000000', '0.00000000', '0.00000000', 1, 1, 1, 1, 1, 0, '2021-06-10 15:20:43', '2021-07-09 16:09:00', 1, 0),
+(54, 'SONOST-3000', '', '', '', '', '', '', '', 1, 7, 'catalog/demo/images/items/specialOffers2.png', 8, 1, '0.0000', 0, 0, '2021-06-10', '0.00000000', 1, '0.00000000', '0.00000000', '0.00000000', 1, 1, 1, 1, 1, 6, '2021-06-10 15:21:35', '2021-07-09 16:08:32', 1, 1),
+(51, 'SONOST-3000', '', '', '', '', '', '', '', 1, 7, 'catalog/demo/images/items/specialOffers3.png', 0, 1, '0.0000', 0, 0, '2021-06-10', '0.00000000', 1, '0.00000000', '0.00000000', '0.00000000', 1, 1, 1, 1, 1, 0, '2021-06-10 15:19:30', '2021-07-09 16:08:47', 1, 0);
 
 -- --------------------------------------------------------
 
@@ -2771,7 +2820,7 @@ CREATE TABLE `oc_product_discount` (
 --
 
 INSERT INTO `oc_product_discount` (`product_discount_id`, `product_id`, `customer_group_id`, `quantity`, `priority`, `price`, `date_start`, `date_end`) VALUES
-(478, 54, 1, 0, 0, '55.0000', '0000-00-00', '0000-00-00');
+(479, 54, 1, 0, 0, '55.0000', '0000-00-00', '0000-00-00');
 
 -- --------------------------------------------------------
 
@@ -2783,6 +2832,15 @@ CREATE TABLE `oc_product_filter` (
   `product_id` int(11) NOT NULL,
   `filter_id` int(11) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- Дамп данных таблицы `oc_product_filter`
+--
+
+INSERT INTO `oc_product_filter` (`product_id`, `filter_id`) VALUES
+(51, 2),
+(53, 3),
+(54, 1);
 
 -- --------------------------------------------------------
 
@@ -3139,32 +3197,32 @@ CREATE TABLE `oc_seo_url` (
 --
 
 INSERT INTO `oc_seo_url` (`seo_url_id`, `store_id`, `language_id`, `query`, `keyword`) VALUES
-(927, 0, 1, 'category_id=71', 'videosistemy'),
+(1048, 0, 1, 'category_id=71', 'videosistemy'),
 (730, 0, 1, 'manufacturer_id=8', 'apple'),
 (1038, 0, 1, 'information_id=10', 'about_us'),
-(928, 0, 1, 'category_id=72', 'hirurgiya-i-reanimaciya'),
+(1057, 0, 1, 'category_id=72', 'hirurgiya-i-reanimaciya'),
 (919, 0, 1, 'category_id=64', 'mammografy'),
-(921, 0, 1, 'category_id=65', 'uzi-apparaty'),
-(922, 0, 1, 'category_id=66', 'zhestkaya-endoskopiya'),
-(923, 0, 1, 'category_id=67', 'lor-oborudovanie'),
+(1056, 0, 1, 'category_id=65', 'uzi-apparaty'),
+(1049, 0, 1, 'category_id=66', 'zhestkaya-endoskopiya'),
+(1051, 0, 1, 'category_id=67', 'lor-oborudovanie'),
 (924, 0, 1, 'category_id=68', 'lor-kombajny'),
 (925, 0, 1, 'category_id=69', 'lor-kresla'),
 (926, 0, 1, 'category_id=70', 'infuzionnye-pompy'),
 (918, 0, 1, 'category_id=63', 'densitometry'),
-(920, 0, 1, 'category_id=61', 'rentgen-oborudovanie'),
+(1054, 0, 1, 'category_id=61', 'rentgen-oborudovanie'),
 (917, 0, 1, 'category_id=62', 'cifrovye-rentgeny'),
 (937, 0, 1, 'category_id=80', 'ginekologicheskie-svetilniki'),
 (936, 0, 1, 'category_id=79', 'ginekologicheskie-kresla'),
 (935, 0, 1, 'category_id=78', 'kolposkopy'),
-(946, 0, 1, 'category_id=77', 'akusherstvo-i-ginekologiya'),
+(1062, 0, 1, 'category_id=77', 'akusherstvo-i-ginekologiya'),
 (933, 0, 1, 'category_id=76', 'funkcionalnaya-diagnostika'),
 (929, 0, 1, 'category_id=73', 'ehvch'),
 (944, 0, 1, 'category_id=74', 'monitory-pacienta'),
 (931, 0, 1, 'category_id=75', 'ivl'),
 (938, 0, 1, 'category_id=81', 'fetalnye-monitory'),
-(1009, 0, 1, 'product_id=51', 'ultrazvukovyj-densitometr-sonost-3000'),
-(1027, 0, 1, 'product_id=54', 'ultrazvukovyj-densitometr-sonost-3000-2'),
-(1022, 0, 1, 'product_id=53', 'fetalnyj-monitor-bionet-fc-700'),
+(1060, 0, 1, 'product_id=51', 'ultrazvukovyj-densitometr-sonost-3000'),
+(1059, 0, 1, 'product_id=54', 'ultrazvukovyj-densitometr-sonost-3000-2'),
+(1061, 0, 1, 'product_id=53', 'fetalnyj-monitor-bionet-fc-700'),
 (1020, 0, 1, 'product_id=52', 'ustanovka-fototerapevticheskaya-chs-pu34'),
 (828, 0, 1, 'manufacturer_id=9', 'canon'),
 (829, 0, 1, 'manufacturer_id=5', 'htc'),
@@ -3211,10 +3269,10 @@ INSERT INTO `oc_seo_url` (`seo_url_id`, `store_id`, `language_id`, `query`, `key
 (908, 0, 1, 'information/search', 'search-information'),
 (1041, 0, 1, 'blog/home', 'news'),
 (939, 0, 1, 'category_id=82', 'vesy-i-rostomery'),
-(940, 0, 1, 'category_id=83', 'neonatologiya'),
-(941, 0, 1, 'category_id=84', 'laboratornaya-diagnostika'),
-(942, 0, 1, 'category_id=85', 'sterilizaciya-i-dezinfekciya'),
-(943, 0, 1, 'category_id=86', 'prochie-medicinskie-tovary');
+(1052, 0, 1, 'category_id=83', 'neonatologiya'),
+(1050, 0, 1, 'category_id=84', 'laboratornaya-diagnostika'),
+(1055, 0, 1, 'category_id=85', 'sterilizaciya-i-dezinfekciya'),
+(1053, 0, 1, 'category_id=86', 'prochie-medicinskie-tovary');
 
 -- --------------------------------------------------------
 
@@ -3235,11 +3293,12 @@ CREATE TABLE `oc_session` (
 INSERT INTO `oc_session` (`session_id`, `data`, `expire`) VALUES
 ('00a0db16cbe557e701eeaf0e03', '{\"language\":\"ru-ru\",\"currency\":\"RUB\"}', '2021-07-06 07:39:28'),
 ('0595e1d94dc234a4cdca19459e', '{\"language\":\"ru-ru\",\"currency\":\"RUB\",\"user_id\":\"1\",\"user_token\":\"MohGrGjli0ioPjLxQvaIwJp33NdIIEYu\",\"directory_file_manager\":\"demo\\/images\",\"page_file_manager\":\"2\"}', '2021-06-04 14:44:28'),
+('0c2f33e45e071c05e7395591c7', '{\"language\":\"ru-ru\",\"currency\":\"RUB\",\"user_id\":\"1\",\"user_token\":\"D1i1r39c9Qn3RxaXPtMARGm8xq4EmTe9\",\"directory_file_manager\":\"demo\\/images\\/catalog\",\"page_file_manager\":null}', '2021-07-09 14:19:17'),
 ('143c69df721eb9bf0bf3e51249', '{\"language\":\"ru-ru\",\"currency\":\"RUB\",\"user_id\":\"1\",\"user_token\":\"kZOABmHUdEckatTinbuZAgSTchJGcGnw\"}', '2021-06-17 13:15:03'),
 ('148f9f5ef42cda63b3f2f91238', '{\"language\":\"ru-ru\",\"currency\":\"RUB\"}', '2021-05-31 10:10:21'),
 ('2303f63833cb4b2ba67f0c92ec', '{\"language\":\"ru-ru\",\"currency\":\"RUB\",\"user_id\":\"1\",\"user_token\":\"Q11rS5qa8wHtKlPZM1pAvksqutmWywRm\"}', '2021-06-29 08:44:58'),
 ('231cfe46ecd38b9e170fab6d1d', '{\"language\":\"ru-ru\",\"currency\":\"RUB\",\"user_id\":\"1\",\"user_token\":\"DxXPFQQxK2KjPGtMcrF0wxpgpNBKenvT\",\"directory_file_manager\":\"demo\\/images\\/items\",\"page_file_manager\":null}', '2021-07-06 12:48:26'),
-('48f4a288049c3a44aea6d8c137', '{\"language\":\"ru-ru\",\"currency\":\"RUB\",\"user_id\":\"1\",\"user_token\":\"lo60iByUcTjF799LA47cTxK3eAJ0C78A\",\"directory_file_manager\":\"demo\\/images\",\"page_file_manager\":null}', '2021-07-08 15:13:15'),
+('48f4a288049c3a44aea6d8c137', '{\"language\":\"ru-ru\",\"currency\":\"RUB\",\"user_id\":\"1\",\"user_token\":\"lo60iByUcTjF799LA47cTxK3eAJ0C78A\",\"directory_file_manager\":\"demo\\/images\",\"page_file_manager\":null}', '2021-07-08 15:56:33'),
 ('5670462ceec5eb09e72e6cd0f9', '{\"api_id\":\"1\"}', '2021-05-31 09:33:43'),
 ('6847d6ef108572878868dd3a11', '{\"language\":\"ru-ru\",\"currency\":\"RUB\",\"user_id\":\"1\",\"user_token\":\"lfzAgwnYpsTrPwSt9Cd5quQPzdHw0TnP\",\"directory_file_manager\":\"demo\\/images\\/items\",\"page_file_manager\":null,\"install\":\"3Dzb1rcGNm\"}', '2021-07-02 13:08:12'),
 ('7c172ba73f0756193a84c94beb', '{\"language\":\"ru-ru\",\"currency\":\"RUB\",\"user_id\":\"1\",\"user_token\":\"aQThATx00EJjPImHDtveiaANlJAO2Xkb\",\"install\":\"aGgPkL3rkQ\",\"directory_file_manager\":\"demo\\/images\\/catalog\",\"page_file_manager\":null}', '2021-07-07 15:45:31'),
@@ -3593,7 +3652,8 @@ INSERT INTO `oc_setting` (`setting_id`, `store_id`, `code`, `key`, `value`, `ser
 (2544, 0, 'blogsetting', 'blogsetting_comment_per_page', '5', 0),
 (2545, 0, 'blogsetting', 'blogsetting_comment_approve', '0', 0),
 (2546, 0, 'blogsetting', 'blogsetting_comment_notification', '0', 0),
-(2547, 0, 'blogsetting', 'blogsetting_author_change', '0', 0);
+(2547, 0, 'blogsetting', 'blogsetting_author_change', '0', 0),
+(2548, 0, 'module_filter', 'module_filter_status', '1', 0);
 
 -- --------------------------------------------------------
 
@@ -5244,7 +5304,7 @@ ALTER TABLE `oc_cart`
 -- AUTO_INCREMENT для таблицы `oc_category`
 --
 ALTER TABLE `oc_category`
-  MODIFY `category_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=87;
+  MODIFY `category_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=88;
 
 --
 -- AUTO_INCREMENT для таблицы `oc_category_image`
@@ -5388,13 +5448,13 @@ ALTER TABLE `oc_extension_path`
 -- AUTO_INCREMENT для таблицы `oc_filter`
 --
 ALTER TABLE `oc_filter`
-  MODIFY `filter_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `filter_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT для таблицы `oc_filter_group`
 --
 ALTER TABLE `oc_filter_group`
-  MODIFY `filter_group_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `filter_group_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT для таблицы `oc_geo_zone`
@@ -5436,13 +5496,13 @@ ALTER TABLE `oc_layout`
 -- AUTO_INCREMENT для таблицы `oc_layout_module`
 --
 ALTER TABLE `oc_layout_module`
-  MODIFY `layout_module_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=157;
+  MODIFY `layout_module_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=159;
 
 --
 -- AUTO_INCREMENT для таблицы `oc_layout_route`
 --
 ALTER TABLE `oc_layout_route`
-  MODIFY `layout_route_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=128;
+  MODIFY `layout_route_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=129;
 
 --
 -- AUTO_INCREMENT для таблицы `oc_length_class`
@@ -5484,7 +5544,7 @@ ALTER TABLE `oc_module`
 -- AUTO_INCREMENT для таблицы `oc_newsletter`
 --
 ALTER TABLE `oc_newsletter`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT для таблицы `oc_option`
@@ -5568,7 +5628,7 @@ ALTER TABLE `oc_product`
 -- AUTO_INCREMENT для таблицы `oc_product_discount`
 --
 ALTER TABLE `oc_product_discount`
-  MODIFY `product_discount_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=479;
+  MODIFY `product_discount_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=480;
 
 --
 -- AUTO_INCREMENT для таблицы `oc_product_image`
@@ -5646,13 +5706,13 @@ ALTER TABLE `oc_review`
 -- AUTO_INCREMENT для таблицы `oc_seo_url`
 --
 ALTER TABLE `oc_seo_url`
-  MODIFY `seo_url_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1042;
+  MODIFY `seo_url_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1063;
 
 --
 -- AUTO_INCREMENT для таблицы `oc_setting`
 --
 ALTER TABLE `oc_setting`
-  MODIFY `setting_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2548;
+  MODIFY `setting_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2549;
 
 --
 -- AUTO_INCREMENT для таблицы `oc_statistics`

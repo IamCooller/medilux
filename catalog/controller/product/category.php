@@ -33,7 +33,7 @@ class ControllerProductCategory extends Controller {
 		} else {
 			$filter = '';
 		}
-
+		$data['filter'] = $this->load->controller('extension/module/filter');
 		if (isset($this->request->get['sort'])) {
 			$sort = $this->request->get['sort'];
 		} else {

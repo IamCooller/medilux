@@ -36,22 +36,10 @@
     </div>
     <section class="caralogMore">
     {{ column_top }}
+ 
             <div class="container option">
-                <div class="catalogMore__filters">
-                    Фильтровать по:
-                    <select>
-                        <option label="По бренду" value="1" selected="">По бренду</option>
-                        <option>По бренду</option>
-                        <option>По бренду</option>
-                    </select>
-                    <select>
-                        <option label="По типам оборудования" value="1" selected="">По типам оборудования</option>
-                        <option>По типам оборудования</option>
-                        <option>По типам оборудования</option>
-                    </select>
-                </div>
-
-
+                  {{filter}}
+         
                 <div class="Offers__list">
                 {% for product in products %}
                     <div class="Offers__list-item">
