@@ -9,6 +9,25 @@ class ControllerProductCategory extends Controller {
 
 		$this->load->model('tool/image');
 
+		$data['categories'] = array();
+
+		$categories = $this->model_catalog_category->getCategories(0);
+
+		foreach ($categories as $category) {		
+
+			$filter_data = array(
+				'filter_category_id'  => $category['category_id'],
+				'filter_sub_category' => true
+			);
+
+			$data['categories'][] = array(
+				'category_id' => $category['category_id'],
+				'name'        => $category['name'] . ($this->config->get('config_product_count') ? ' (' . $this->model_catalog_product->getTotalProducts($filter_data) . ')' : ''),
+				'href'        => $this->url->link('product/category', 'path=' . $category['category_id'])
+			);
+		}
+
+
 		if (isset($this->request->get['filter'])) {
 			$filter = $this->request->get['filter'];
 		} else {
@@ -133,8 +152,11 @@ class ControllerProductCategory extends Controller {
 
 			$data['categories'] = array();
 
+			
 			$results = $this->model_catalog_category->getCategories($category_id);
-
+			
+			
+			
 			foreach ($results as $result) {
 				$filter_data = array(
 					'filter_category_id'  => $result['category_id'],
@@ -352,8 +374,13 @@ class ControllerProductCategory extends Controller {
 
 			$data['continue'] = $this->url->link('common/home');
 
-			$data['column_left'] = $this->load->controller('common/column_left');
+			if($category_id == 59) {
+				$data['catalog'] = $this->load->controller('extension/module/category');
+			}else{
+				$data['catalog'] = '';
+			}
 			$data['column_right'] = $this->load->controller('common/column_right');
+			$data['column_top'] = $this->load->controller('common/column_top');
 			$data['content_top'] = $this->load->controller('common/content_top');
 			$data['content_bottom'] = $this->load->controller('common/content_bottom');
 			$data['footer'] = $this->load->controller('common/footer');
@@ -398,12 +425,21 @@ class ControllerProductCategory extends Controller {
 
 			$this->response->addHeader($this->request->server['SERVER_PROTOCOL'] . ' 404 Not Found');
 
-			$data['column_left'] = $this->load->controller('common/column_left');
+			if($category_id == 59) {
+				$data['catalog'] = $this->load->controller('extension/module/category');
+
+			}else{
+				$data['catalog'] = '';
+			}
+			
 			$data['column_right'] = $this->load->controller('common/column_right');
+			$data['column_top'] = $this->load->controller('common/column_top');
 			$data['content_top'] = $this->load->controller('common/content_top');
 			$data['content_bottom'] = $this->load->controller('common/content_bottom');
 			$data['footer'] = $this->load->controller('common/footer');
 			$data['header'] = $this->load->controller('common/header');
+
+		
 
 			$this->response->setOutput($this->load->view('error/not_found', $data));
 		}

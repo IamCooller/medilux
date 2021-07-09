@@ -2,7 +2,11 @@
 class ControllerExtensionModuleCategory extends Controller {
 	public function index() {
 		$this->load->language('extension/module/category');
-
+		if ($this->request->server['HTTPS']) {
+			$server = $this->config->get('config_ssl');
+		} else {
+			$server = $this->config->get('config_url');
+		}
 		if (isset($this->request->get['path'])) {
 			$parts = explode('_', (string)$this->request->get['path']);
 		} else {
@@ -32,19 +36,6 @@ class ControllerExtensionModuleCategory extends Controller {
 		foreach ($categories as $category) {
 			$children_data = array();
 
-			if ($category['category_id'] == $data['category_id']) {
-				$children = $this->model_catalog_category->getCategories($category['category_id']);
-
-				foreach($children as $child) {
-					$filter_data = array('filter_category_id' => $child['category_id'], 'filter_sub_category' => true);
-
-					$children_data[] = array(
-						'category_id' => $child['category_id'],
-						'name' => $child['name'] . ($this->config->get('config_product_count') ? ' (' . $this->model_catalog_product->getTotalProducts($filter_data) . ')' : ''),
-						'href' => $this->url->link('product/category', 'path=' . $category['category_id'] . '_' . $child['category_id'])
-					);
-				}
-			}
 
 			$filter_data = array(
 				'filter_category_id'  => $category['category_id'],
@@ -53,10 +44,13 @@ class ControllerExtensionModuleCategory extends Controller {
 
 			$data['categories'][] = array(
 				'category_id' => $category['category_id'],
-				'name'        => $category['name'] . ($this->config->get('config_product_count') ? ' (' . $this->model_catalog_product->getTotalProducts($filter_data) . ')' : ''),
+				'name'        => $category['name'],
+				'image'     => $server . 'image/' . $category['image'],
+				'image_full'     => $server . 'image/' . $category['image_full'],
 				'children'    => $children_data,
 				'href'        => $this->url->link('product/category', 'path=' . $category['category_id'])
 			);
+
 		}
 
 		return $this->load->view('extension/module/category', $data);

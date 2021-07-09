@@ -20,15 +20,10 @@
              {{ date_added_full }}
             </div>
             <div class="newsOne__content">
-            {% if main_thumb  and  blogsetting_post_thumb %} 
-    <img src="{{ blogsetting_post_thumb }}" alt="{{ heading_title }}" title="{{ heading_title }}" {% if description == false  %} style="float: none;" {% endif %}/>
-    {% endif %} 
+
               {{ description }} 
             </div>
-            <div class="newsOne__aditional">
-                Ознакомиться с ним подробнее и оставить заявку можно здесь:
-                <a href="#">Ссылка на страницу в каталоге этого товара</a>
-            </div>
+
 
             <a href="javascript:history.go(-1)" class="newsOne__allNews"><svg width="6" height="8" viewBox="0 0 6 8" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M0.930754 3.78047L4.63099 0.0904667C4.75222 -0.0303609 4.9485 -0.0301578 5.06954 0.0910917C5.19047 0.212326 5.19016 0.408715 5.06891 0.529637L1.58892 4.00001L5.06904 7.47037C5.19027 7.59131 5.19058 7.78758 5.06966 7.90883C5.00899 7.96961 4.9295 8 4.85002 8C4.77074 8 4.69157 7.96981 4.63101 7.90945L0.930754 4.21954C0.872364 4.16145 0.839598 4.08239 0.839598 4.00001C0.839598 3.91764 0.872458 3.83867 0.930754 3.78047Z" fill="#393185"></path>

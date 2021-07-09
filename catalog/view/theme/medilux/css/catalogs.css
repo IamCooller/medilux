@@ -55,7 +55,8 @@
 .catalogs__title p {
     margin: auto 0;
     margin-left: 45px;
-    max-width: 143px;
+    width: 100%;
+    font-weight: 500;
 }
 
 .catalogs__title img {

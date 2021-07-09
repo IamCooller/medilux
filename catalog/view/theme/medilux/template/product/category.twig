@@ -1,341 +1,169 @@
 {{ header }}
 
-<div id="product-category" class="container">
+{% if catalog == true %}
+<div class="container">
+  <div class="breadcrumbs">
+    {% for breadcrumb in breadcrumbs %} 
+            <span><a href="{{ breadcrumb.href}}">{{ breadcrumb.text }}</a></span> 
+            {% if breadcrumb == true %}
+            <svg width="6" height="10" viewBox="0 0 6 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M5.58656 4.72558L0.961262 0.113083C0.80972 -0.0379512 0.56437 -0.0376973 0.413081 0.113865C0.26191 0.265407 0.2623 0.510894 0.413862 0.662046L4.76384 5.00002L0.413706 9.33797C0.262164 9.48914 0.261773 9.73447 0.412925 9.88603C0.488764 9.96201 0.58812 10 0.687475 10C0.786576 10 0.88554 9.96226 0.961243 9.88681L5.58656 5.27443C5.65954 5.20181 5.7005 5.10299 5.7005 5.00002C5.7005 4.89705 5.65943 4.79834 5.58656 4.72558Z" fill="#707070"></path>
+                </svg>
+            {% endif %}
+            {% endfor %} 
+        </div>
+        </div>
+    {% endif %}   
+<div id="product-category">
 
-  <div class="row">{{ column_left }}
-    {% if column_left and column_right %}
-    {% set class = 'col-sm-6' %}
-    {% elseif column_left or column_right %}
-    {% set class = 'col-sm-9' %}
-    {% else %}
-    {% set class = 'col-sm-12' %}
-    {% endif %}
-    <div id="content" class="{{ class }}">{{ content_top }}
-      <h2>{{ heading_title }}</h2>
-      {% if thumb or description %}
-      <div class="row"> {% if thumb %}
-        <div class="col-sm-2"><img src="{{ thumb }}" alt="{{ heading_title }}" title="{{ heading_title }}" class="img-thumbnail" /></div>
-        {% endif %}
-        {% if description %}
-        <div class="col-sm-10">{{ description }}</div>
-        {% endif %}</div>
-      <hr>
-      {% endif %}
-      {% if categories %}
-      <h3>{{ text_refine }}</h3>
-      {% if categories|length <= 5 %}
-      <div class="row">
-        <div class="col-sm-3">
-          <ul>
-            {% for category in categories %}
-            <li><a href="{{ category.href }}">{{ category.name }}</a></li>
-            {% endfor %}
-          </ul>
+ 
+
+ {{catalog}}
+
+
+ {% if catalog == false %}
+ <div class="container">
+        <div class="breadcrumbs">
+          {% for breadcrumb in breadcrumbs %} 
+            <span><a href="{{ breadcrumb.href}}">{{ breadcrumb.text }}</a></span> 
+            {% if breadcrumb == true %}
+            <svg width="6" height="10" viewBox="0 0 6 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M5.58656 4.72558L0.961262 0.113083C0.80972 -0.0379512 0.56437 -0.0376973 0.413081 0.113865C0.26191 0.265407 0.2623 0.510894 0.413862 0.662046L4.76384 5.00002L0.413706 9.33797C0.262164 9.48914 0.261773 9.73447 0.412925 9.88603C0.488764 9.96201 0.58812 10 0.687475 10C0.786576 10 0.88554 9.96226 0.961243 9.88681L5.58656 5.27443C5.65954 5.20181 5.7005 5.10299 5.7005 5.00002C5.7005 4.89705 5.65943 4.79834 5.58656 4.72558Z" fill="#707070"></path>
+                </svg>
+                 {% endif %}
+            {% endfor %} 
         </div>
-      </div>
-      {% else %}
-      <div class="row">{% for category in categories|batch((categories|length / 4)|round(1, 'ceil')) %}
-        <div class="col-sm-3">
-          <ul>
-            {% for child in category %}
-            <li><a href="{{ child.href }}">{{ child.name }}</a></li>
-            {% endfor %}
-          </ul>
-        </div>
-        {% endfor %}</div>
-      <br />
-      {% endif %}
-      {% endif %}
-      {% if products %}
-      <div class="row">
-        <div class="col-md-2 col-sm-6 hidden-xs">
-          <div class="btn-group btn-group-sm">
-            <button type="button" id="list-view" class="btn btn-default" data-toggle="tooltip" title="{{ button_list }}"><i class="fa fa-th-list"></i></button>
-            <button type="button" id="grid-view" class="btn btn-default" data-toggle="tooltip" title="{{ button_grid }}"><i class="fa fa-th"></i></button>
-          </div>
-        </div>
-        <div class="col-md-3 col-sm-6">
-          <div class="form-group"><a href="{{ compare }}" id="compare-total" class="btn btn-link">{{ text_compare }}</a></div>
-        </div>
-        <div class="col-md-4 col-xs-6">
-          <div class="form-group input-group input-group-sm">
-            <label class="input-group-addon" for="input-sort">{{ text_sort }}</label>
-            <select id="input-sort" class="form-control" onchange="location = this.value;">
-              
-              
-              
-              {% for sorts in sorts %}
-              {% if sorts.value == '%s-%s'|format(sort, order) %}
-              
-              
-              
-              <option value="{{ sorts.href }}" selected="selected">{{ sorts.text }}</option>
-              
-              
-              
-              {% else %}
-              
-              
-              
-              <option value="{{ sorts.href }}">{{ sorts.text }}</option>
-              
-              
-              
-              {% endif %}
-              {% endfor %}
-            
-            
-            
-            </select>
-          </div>
-        </div>
-        <div class="col-md-3 col-xs-6">
-          <div class="form-group input-group input-group-sm">
-            <label class="input-group-addon" for="input-limit">{{ text_limit }}</label>
-            <select id="input-limit" class="form-control" onchange="location = this.value;">
-              
-              
-              
-              {% for limits in limits %}
-              {% if limits.value == limit %}
-              
-              
-              
-              <option value="{{ limits.href }}" selected="selected">{{ limits.text }}</option>
-              
-              
-              
-              {% else %}
-              
-              
-              
-              <option value="{{ limits.href }}">{{ limits.text }}</option>
-              
-              
-              
-              {% endif %}
-              {% endfor %}
-            
-            
-            
-            </select>
-          </div>
-        </div>
-      </div>
-      <div class="row"> {% for product in products %}
-        <div class="product-layout product-list col-xs-12">
-          <div class="product-thumb">
-            <div class="image"><a href="{{ product.href }}"><img src="{{ product.thumb }}" alt="{{ product.name }}" title="{{ product.name }}" class="img-responsive" /></a></div>
-            <div>
-              <div class="caption">
-                <h4><a href="{{ product.href }}">{{ product.name }}</a></h4>
-                <p>{{ product.description }}</p>
-                {% if product.price %}
-                <p class="price"> {% if not product.special %}
-                  {{ product.price }}
-                  {% else %} <span class="price-new">{{ product.special }}</span> <span class="price-old">{{ product.price }}</span> {% endif %}
-                  {% if product.tax %} <span class="price-tax">{{ text_tax }} {{ product.tax }}</span> {% endif %} </p>
-                {% endif %}
-                {% if product.rating %}
-                <div class="rating"> {% for i in 1..5 %}
-                  {% if product.rating < i %} <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span> {% else %} <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i><i class="fa fa-star-o fa-stack-2x"></i></span>{% endif %}
-                  {% endfor %} </div>
-                {% endif %} </div>
-              <div class="button-group">
-                <button type="button" onclick="cart.add('{{ product.product_id }}', '{{ product.minimum }}');"><i class="fa fa-shopping-cart"></i> <span class="hidden-xs hidden-sm hidden-md">{{ button_cart }}</span></button>
-                <button type="button" data-toggle="tooltip" title="{{ button_wishlist }}" onclick="wishlist.add('{{ product.product_id }}');"><i class="fa fa-heart"></i></button>
-                <button type="button" data-toggle="tooltip" title="{{ button_compare }}" onclick="compare.add('{{ product.product_id }}');"><i class="fa fa-exchange"></i></button>
-              </div>
+    </div>
+    <section class="caralogMore">
+    {{ column_top }}
+            <div class="container option">
+                <div class="catalogMore__filters">
+                    Фильтровать по:
+                    <select>
+                        <option label="По бренду" value="1" selected="">По бренду</option>
+                        <option>По бренду</option>
+                        <option>По бренду</option>
+                    </select>
+                    <select>
+                        <option label="По типам оборудования" value="1" selected="">По типам оборудования</option>
+                        <option>По типам оборудования</option>
+                        <option>По типам оборудования</option>
+                    </select>
+                </div>
+
+
+                <div class="Offers__list">
+                {% for product in products %}
+                    <div class="Offers__list-item">
+                        <a href="{{product.href}}">
+                        <img src="{{product.thumb}}" alt="{{product.name}}" /> 
+                            <p> {{product.name}}
+                            </p>
+                            </a><a class="itemPoP" href="#KPForm" data-fancybox="">Получить КП</a>
+                    </div>
+      {% endfor %}
+                </div>
+                <div class="Offers__paggination">
+                  {{pagination}}
+                </div>
+
+
             </div>
-          </div>
-        </div>
-        {% endfor %} </div>
-      <div class="row">
-        <div class="col-sm-6 text-left">{{ pagination }}</div>
-        <div class="co
-      </div>l-sm-6 text-right">{{ results }}</div>
-      {% endif %}
-      {% if not categories and not products %}
-      <p>{{ text_empty }}</p>
-      <div class="buttons">
-        <div class="pull-right"><a href="{{ continue }}" class="btn btn-primary">{{ button_continue }}</a></div>
-      </div>
-      {% endif %}
-      {{ content_bottom }}</div>
-    {{ column_right }}</div>
-</div>
-{{heading_title}}
-{{ footer }} 
+        </section>
+ {% endif %}
 
-
-
-
-
-
-
-
-
-
-
- <section class="catalogs">
+  <section class="feedback">
+ 
         <div class="container option">
-            <div class="catalogs__option">
-                <div class="catalogs__item">
-                    <a href="#">
-                        <div class="catlogs__image">
-                            <img src="img/catalog/catalog1.png">
-                        </div>
-                        <div class="catalogs__title">
-                            <img src="img/icon1.png" alt="">
-                            <p>Рентген оборудование
-                            </p>
-                        </div>
-                    </a>
-                </div>
-
-                <div class="catalogs__item">
-                    <a href="#">
-                        <div class="catlogs__image">
-                            <img src="img/catalog/catalog2.png">
-                        </div>
-                        <div class="catalogs__title">
-                            <img src="img/icon2.png" alt="">
-                            <p>УЗИ аппараты</p>
-                        </div>
-                    </a>
-                </div>
-                <div class="catalogs__item">
-                    <a href="#">
-                        <div class="catlogs__image">
-                            <img src="img/catalog/catalog3.png">
-                        </div>
-                        <div class="catalogs__title">
-                            <img src="img/icon3.png" alt="">
-                            <p>Жесткая эндоскопия</p>
-                        </div>
-                    </a>
-                </div>
-                <div class="catalogs__item">
-                    <a href="#">
-                        <div class="catlogs__image">
-                            <img src="img/catalog/catalog4.png">
-                        </div>
-                        <div class="catalogs__title">
-                            <img src="img/icon4.png" alt="">
-                            <p>ЛОР-оборудование</p>
-                        </div>
-                    </a>
-                </div>
-                <div class="catalogs__item">
-                    <a href="#">
-                        <div class="catlogs__image">
-                            <img src="img/catalog/catalog5.png">
-                        </div>
-                        <div class="catalogs__title">
-                            <img src="img/icon5.png" alt="">
-                            <p>Видесистемы</p>
-                        </div>
-                    </a>
-                </div>
-                <div class="catalogs__item">
-                    <a href="#">
-                        <div class="catlogs__image">
-                            <img src="img/catalog/catalog6.png">
-                        </div>
-                        <div class="catalogs__title">
-                            <img src="img/icon6.png" alt="">
-                            <p>Хирургия и реанимация</p>
-                        </div>
-                    </a>
-                </div>
-                <div class="catalogs__item">
-                    <a href="#">
-                        <div class="catlogs__image">
-                            <img src="img/catalog/catalog7.png">
-                        </div>
-                        <div class="catalogs__title">
-                            <img src="img/icon7.png" alt="">
-                            <p>Функциональная диагностика
-                            </p>
-                        </div>
-                    </a>
-                </div>
-                <div class="catalogs__item">
-                    <a href="#">
-                        <div class="catlogs__image">
-                            <img src="img/catalog/catalog8.png">
-                        </div>
-                        <div class="catalogs__title">
-                            <img src="img/icon8.png" alt="">
-                            <p>Акушерство и гинекология
-                            </p>
-                        </div>
-                    </a>
-                </div>
-                <div class="catalogs__item">
-                    <a href="#">
-                        <div class="catlogs__image">
-                            <img src="img/catalog/catalog9.png">
-                        </div>
-                        <div class="catalogs__title">
-                            <img src="img/icon9.png" alt="">
-                            <p>Неонатология</p>
-                        </div>
-                    </a>
-                </div>
-                <div class="catalogs__item">
-                    <a href="#">
-                        <div class="catlogs__image">
-                            <img src="img/catalog/catalog10.png">
-                        </div>
-                        <div class="catalogs__title">
-                            <img src="img/icon10.png" alt="">
-                            <p>Лабораторная диагностика
-                            </p>
-                        </div>
-                    </a>
-                </div>
-                <div class="catalogs__item">
-                    <a href="#">
-                        <div class="catlogs__image">
-                            <img src="img/catalog/catalog11.png">
-                        </div>
-                        <div class="catalogs__title">
-                            <img src="img/icon11.png" alt="">
-                            <p>Стерилизация и дезинфекция</p>
-                        </div>
-                    </a>
-                </div>
-                <div class="catalogs__item">
-                    <a href="#">
-                        <div class="catlogs__image">
-                            <img src="img/catalog/catalog12.png">
-                        </div>
-                        <div class="catalogs__title">
-                            <img src="img/icon12.png" alt="">
-                            <p>Прочие медицинские товары</p>
-                        </div>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-      <section class="feedback">
-        <div class="container option">
-            <div class="feedback-form">
+         <div class="feedback-form" id="respond">
                 <div class="feedback-description">
-                    <h4>Хотите быть в курсе всех предложений от МЕДИЛЮКС</h4>
-                    <p>подпишитесь на нашу <br> e-mail рассылку</p>
+                  <div class="h4">
+                        Хотите быть в курсе всех предложений от Медилюкс?
+                    </div>
+                    <p>подпишитесь на нашу e-mail рассылку</p>
                 </div>
+                  
                 <div class="feedback-input">
-                    <input type="text" placeholder="Введите имя...">
-                    <input type="text" placeholder="Введите e-mail...">
+                	<input type="text" id="email{{ module }}" name="email" class="form-control" placeholder="E-mail" />
+                    <input type="text" id="name{{ module }}" placeholder="Имя" name="name" class="form-control">    
                 </div>
                 <div class="feedback-button">
-                    <button>Подписаться</button>
+                    <button id="button-subscribe" class="{{ module }}">Подписаться</button>
                 </div>
             </div>
 
         </div>
+
+        </div>
+       
     </section>
+
+</div>
+
+
+<script>
+  
+  
+
+{% if only_once %}
+	if (getCookie('newsletter_already_popup') == undefined) {	
+		initNewsletter();
+		$.cookie( 'newsletter_already_popup' , 1 , { expires: 14 , path: '/' });
+	}
+{% else %}
+	if (getCookie('newsletter_already_added') == undefined) {
+		initNewsletter();
+	}
+{% endif %}
+
+$('.popup_close').click(function () {
+	$('.popup_mask').hide();
+	$('.window_holder').hide();
+});	
+
+
+
+function initNewsletter() {
+	setTimeout(function() {	
+		$('.popup_mask').fadeTo(750,0.5);	
+		$('.window_holder').show();
+		setTimeout(function() { $('.window_holder').addClass('active'); }, 750);
+	}, {{ delay }});
+}
+function getCookie(name) {
+  var matches = document.cookie.match(new RegExp(
+    "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
+  ));
+  return matches ? decodeURIComponent(matches[1]) : undefined;
+}
+
+	$('.newsletter_box input[name=\'email{{ module }}\']').bind('keydown', function(e) {
+		if (e.keyCode == 13) {
+			$('#button-subscribe{{ module }}').trigger('click');
+		}
+	});
+	$('#button-subscribe').on('click', function() {
+		$.ajax({
+			url: 'index.php?route=extension/module/newsletter/subscribe',
+			type: 'post',
+			dataType: 'json',
+			data:{email: ($('input[id=\'email{{ module }}\']').val()) , name: ($('input[id=\'name{{ module }}\']').val())}, 
+			success: function(json) {
+			
+				if (json['error']) {
+                    $('.text-danger').empty();
+					$('#respond').after('<span class="text-danger">' + json['error'] + '</span>');
+                    
+				}
+				if (json['success']) {
+                      $('.text-danger').empty();
+					$('#respond').after('<span class="text-success">' + 'Спасибо, сообщение отправлено!' + '</span>');
+					$.cookie( 'newsletter_already_added' , 1 , { expires: 14 , path: '/' });
+					setTimeout(function() { $('.popup_close').trigger('click'); }, 1200);
+					$('input[id=\'email{{ module }}\']').val('');
+                    $('input[id=\'name{{ module }}\']').val('');
+				}}
+		});
+	});
+  </script>
+{{ footer }} 
