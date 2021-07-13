@@ -32,6 +32,8 @@ $_['entry_name']             = 'Название товара';
 $_['entry_description']      = 'Описание';
 $_['entry_short_description']= 'Краткое описание';
 $_['entry_performance_capability']= 'Технические характеристики';
+$_['entry_product_video']= 'Видео';
+
 
 
 $_['entry_meta_title']       = 'Мета-тег Title';

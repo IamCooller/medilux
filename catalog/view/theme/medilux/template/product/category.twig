@@ -41,9 +41,9 @@
                   {{filter}}
          
                 <div class="Offers__list">
-                   {% if products == true %}
+                   {% if products %}
                 {% for product in products %}
-                    <div class="Offers__list-item">
+                    <div class="Offers__list-item {% if product.discond %} discount {% endif %}" >
                         <a href="{{product.href}}">
                         <img src="{{product.thumb}}" alt="{{product.name}}" /> 
                             <p> {{product.name}}

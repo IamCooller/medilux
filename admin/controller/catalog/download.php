@@ -260,11 +260,11 @@ class ControllerCatalogDownload extends Controller {
 			$data['error_name'] = array();
 		}
 
-		if (isset($this->error['filename'])) {
+	/* 	if (isset($this->error['filename'])) {
 			$data['error_filename'] = $this->error['filename'];
 		} else {
 			$data['error_filename'] = '';
-		}
+		} */
 
 		if (isset($this->error['mask'])) {
 			$data['error_mask'] = $this->error['mask'];
@@ -428,9 +428,9 @@ class ControllerCatalogDownload extends Controller {
 					$allowed[] = trim($filetype);
 				}
 
-				if (!in_array(strtolower(substr(strrchr($filename, '.'), 1)), $allowed)) {
+			/* 	if (!in_array(strtolower(substr(strrchr($filename, '.'), 1)), $allowed)) {
 					$json['error'] = $this->language->get('error_filetype');
-				}
+				} */
 
 				// Allowed file mime types
 				$allowed = array();

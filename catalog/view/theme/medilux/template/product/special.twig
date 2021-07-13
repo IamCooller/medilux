@@ -1,113 +1,50 @@
 {{ header }}
-<div id="product-search" class="container">
-  <ul class="breadcrumb">
-    {% for breadcrumb in breadcrumbs %}
-    <li><a href="{{ breadcrumb.href }}">{{ breadcrumb.text }}</a></li>
-    {% endfor %}
-  </ul>
-  <div class="row">{{ column_left }}
-    {% if column_left and column_right %}
-    {% set class = 'col-sm-6' %}
-    {% elseif column_left or column_right %}
-    {% set class = 'col-sm-9' %}
-    {% else %}
-    {% set class = 'col-sm-12' %}
-    {% endif %}
-    <div id="content" class="{{ class }}">{{ content_top }}
-      <h2>{{ heading_title }}</h2>
-      {% if products %}
-      <div class="row">
-        <div class="col-md-2 col-sm-6 hidden-xs">
-          <div class="btn-group btn-group-sm">
-            <button type="button" id="list-view" class="btn btn-default" data-toggle="tooltip" title="{{ button_list }}"><i class="fa fa-th-list"></i></button>
-            <button type="button" id="grid-view" class="btn btn-default" data-toggle="tooltip" title="{{ button_grid }}"><i class="fa fa-th"></i></button>
-          </div>
+
+ <div class="container">
+        <div class="breadcrumbs">
+          {% for breadcrumb in breadcrumbs %} 
+            <span><a href="{{ breadcrumb.href}}">{{ breadcrumb.text }}</a></span> 
+            {% if breadcrumb == true %}
+            <svg width="6" height="10" viewBox="0 0 6 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M5.58656 4.72558L0.961262 0.113083C0.80972 -0.0379512 0.56437 -0.0376973 0.413081 0.113865C0.26191 0.265407 0.2623 0.510894 0.413862 0.662046L4.76384 5.00002L0.413706 9.33797C0.262164 9.48914 0.261773 9.73447 0.412925 9.88603C0.488764 9.96201 0.58812 10 0.687475 10C0.786576 10 0.88554 9.96226 0.961243 9.88681L5.58656 5.27443C5.65954 5.20181 5.7005 5.10299 5.7005 5.00002C5.7005 4.89705 5.65943 4.79834 5.58656 4.72558Z" fill="#707070"></path>
+                </svg>
+                 {% endif %}
+            {% endfor %} 
         </div>
-        <div class="col-md-3 col-sm-6">
-          <div class="form-group"><a href="{{ compare }}" id="compare-total" class="btn btn-link">{{ text_compare }}</a></div>
-        </div>
-        <div class="col-md-4 col-xs-6">
-          <div class="form-group input-group input-group-sm">
-            <label class="input-group-addon" for="input-sort">{{ text_sort }}</label>
-            <select id="input-sort" class="form-control" onchange="location = this.value;">
-              
-              {% for sorts in sorts %}
-              {% if sorts.value == '%s-%s'|format(sort, order) %}
-              
-              <option value="{{ sorts.href }}" selected="selected">{{ sorts.text }}</option>
-              
-              {% else %}
-              
-              <option value="{{ sorts.href }}">{{ sorts.text }}</option>
-              
-              {% endif %}
-              {% endfor %}
-            
-            </select>
-          </div>
-        </div>
-        <div class="col-md-3 col-xs-6">
-          <div class="form-group input-group input-group-sm">
-            <label class="input-group-addon" for="input-limit">{{ text_limit }}</label>
-            <select id="input-limit" class="form-control" onchange="location = this.value;">
-              
-              {% for limits in limits %}
-              {% if limits.value == limit %}
-              
-              <option value="{{ limits.href }}" selected="selected">{{ limits.text }}</option>
-              
-              {% else %}
-              
-              <option value="{{ limits.href }}">{{ limits.text }}</option>
-              
-              {% endif %}
-              {% endfor %}
-            
-            </select>
-          </div>
-        </div>
-      </div>
-      <div class="row"> {% for product in products %}
-        <div class="product-layout product-list col-xs-12">
-          <div class="product-thumb">
-            <div class="image"><a href="{{ product.href }}"><img src="{{ product.thumb }}" alt="{{ product.name }}" title="{{ product.name }}" class="img-responsive" /></a></div>
-            <div>
-              <div class="caption">
-                <h4><a href="{{ product.href }}">{{ product.name }}</a></h4>
-                <p>{{ product.description }}</p>
-                {% if product.price %}
-                <p class="price"> {% if not product.special %}
-                  {{ product.price }}
-                  {% else %} <span class="price-new">{{ product.special }}</span> <span class="price-old">{{ product.price }}</span> {% endif %}
-                  {% if product.tax %} <span class="price-tax">{{ text_tax }} {{ product.tax }}</span> {% endif %} </p>
-                {% endif %}
-                {% if product.rating %}
-                <div class="rating">
-                  {% for i in 1..5 %}
-                  {% if product.rating < i %} <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span> {% else %} <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i><i class="fa fa-star-o fa-stack-2x"></i></span> {% endif %}
-                  {% endfor %}
+    </div>
+
+
+ {% if products %}
+  <section class="specialOfferMore">
+
+        <div class="container option">
+            <div class="specialOfferMore__list">
+
+             {% for product in products %}
+
+          <div class="specialOfferMore-item {% if product.discond == true %}   discount {% endif %}">
+                    <a href="{{ product.href }}">
+                        <img src="{{ product.thumb }}" alt="{{ product.name }}" title="{{ product.name }}">
+                        <p> {{ product.name }}
+                        </p>
+                        <a class="itemPoP" href="#KPForm" data-fancybox>Получить КП</a>
+                    </a>
                 </div>
-                {% endif %} </div>
-              <div class="button-group">
-                <button type="button" onclick="cart.add('{{ product.product_id }}', '{{ product.minimum }}');"><i class="fa fa-shopping-cart"></i> <span class="hidden-xs hidden-sm hidden-md">{{ button_cart }}</span></button>
-                <button type="button" data-toggle="tooltip" title="{{ button_wishlist }}" onclick="wishlist.add('{{ product.product_id }}');"><i class="fa fa-heart"></i></button>
-                <button type="button" data-toggle="tooltip" title="{{ button_compare }}" onclick="compare.add('{{ product.product_id }}');"><i class="fa fa-exchange"></i></button>
-              </div>
+
+             {% endfor %}
+
             </div>
-          </div>
+
+
         </div>
-        {% endfor %} </div>
-      <div class="row">
-        <div class="col-sm-6 text-left">{{ pagination }}</div>
-        <div class="col-sm-6 text-right">{{ results }}</div>
-      </div>
-      {% else %}
-      <p>{{ text_empty }}</p>
-      <div class="buttons">
-        <div class="pull-right"><a href="{{ continue }}" class="btn btn-primary">{{ button_continue }}</a></div>
-      </div>
-      {% endif %}
-      {{ content_bottom }}</div>
-    {{ column_right }}</div>
-</div>
+    </section>
+  {% else %}
+        
+        <div class="text-center">Товаров нет в наличии!</div>
+{% endif %}
+
+   <div class="Offers__paggination">
+                  {{pagination}}
+                </div>
+
 {{ footer }}

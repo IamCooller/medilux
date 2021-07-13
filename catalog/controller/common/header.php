@@ -73,6 +73,8 @@ class ControllerCommonHeader extends Controller {
 		$data['contact_link'] = $this->url->link('information/contact');
 		$data['about_link'] = $this->url->link('information/information', 'information_id=10');
 		$data['catalog_link'] = $this->url->link('product/category', 'path=59'); 
+
+		$data['special_link'] = $this->url->link('product/special'); 
 		$data['blog_link'] = $this->url->link('blog/home');
 
 

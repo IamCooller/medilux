@@ -118,9 +118,19 @@ class ControllerProductProduct extends Controller {
 				$url .= '&short_description=' . $this->request->get['short_description'];
 			}
 
+			if (isset($this->request->get['performance_capability'])) {
+				$url .= '&performance_capability=' . $this->request->get['performance_capability'];
+			}
+
 			if (isset($this->request->get['description'])) {
 				$url .= '&description=' . $this->request->get['description'];
 			}
+
+			if (isset($this->request->get['product_video'])) {
+				$url .= '&product_video=' . $this->request->get['product_video'];
+			  }
+
+
 
 			if (isset($this->request->get['category_id'])) {
 				$url .= '&category_id=' . $this->request->get['category_id'];
@@ -176,6 +186,10 @@ class ControllerProductProduct extends Controller {
 
 		$product_info = $this->model_catalog_product->getProduct($product_id);
 
+		$product_info_description = $this->model_catalog_product->getProductDescription($product_id);
+
+		
+
 		if ($product_info) {
 			$url = '';
 
@@ -203,13 +217,21 @@ class ControllerProductProduct extends Controller {
 				$url .= '&description=' . $this->request->get['description'];
 			}
 
+			if (isset($this->request->get['product_video'])) {
+				$url .= '&product_video=' . $this->request->get['product_video'];
+			}
+
+
+
 			if (isset($this->request->get['short_description'])) {
 				$url .= '&short_description=' . $this->request->get['short_description'];
 			}
 
-			if (isset($this->request->get['performance_capability '])) {
-				$url .= '&performance_capability =' . $this->request->get['performance_capability '];
+			if (isset($this->request->get['performance_capability'])) {
+				$url .= '&performance_capability=' . $this->request->get['performance_capability'];
 			}
+
+			
 
 			if (isset($this->request->get['category_id'])) {
 				$url .= '&category_id=' . $this->request->get['category_id'];
@@ -266,12 +288,16 @@ class ControllerProductProduct extends Controller {
 			$data['model'] = $product_info['model'];
 			$data['reward'] = $product_info['reward'];
 			$data['points'] = $product_info['points'];
+
 			$data['description'] = html_entity_decode($product_info['description'], ENT_QUOTES, 'UTF-8');
 
 			$data['short_description'] = html_entity_decode($product_info['short_description'], ENT_QUOTES, 'UTF-8');
-			
-			$data['performance_capability'] = html_entity_decode($product_info['performance_capability'], ENT_QUOTES, 'UTF-8');
-			 
+
+			$data['product_video'] = html_entity_decode($product_info_description['product_video'], ENT_QUOTES, 'UTF-8');
+
+
+			$data['performance_capability'] = html_entity_decode($product_info_description['performance_capability'], ENT_QUOTES, 'UTF-8');
+
 			if ($product_info['quantity'] <= 0) {
 				$data['stock'] = $product_info['stock_status'];
 			} elseif ($this->config->get('config_stock_display')) {
@@ -407,7 +433,16 @@ class ControllerProductProduct extends Controller {
 			$data['products'] = array();
 
 			$results = $this->model_catalog_product->getProductRelated($this->request->get['product_id']);
+			$resultsDesc = $this->model_catalog_product->getProductDescription($this->request->get['product_id']);
 
+			foreach ($resultsDesc as $resultDesc) {
+				$data['productsDesc'][] = array(
+					'performance_capability' => utf8_substr(trim(strip_tags(html_entity_decode($resultsDesc['performance_capability'], ENT_QUOTES, 'UTF-8'))), 0, $this->config->get('theme_' . $this->config->get('config_theme') . '_product_description_length')) . '..',
+					'product_video' => utf8_substr(trim(strip_tags(html_entity_decode($resultsDesc['product_video'], ENT_QUOTES, 'UTF-8'))), 0, $this->config->get('theme_' . $this->config->get('config_theme') . '_product_description_length')) . '..',
+				);
+			}
+
+		
 			foreach ($results as $result) {
 				if ($result['image']) {
 					$image = $this->model_tool_image->resize($result['image'], $this->config->get('theme_' . $this->config->get('config_theme') . '_image_related_width'), $this->config->get('theme_' . $this->config->get('config_theme') . '_image_related_height'));
@@ -438,14 +473,14 @@ class ControllerProductProduct extends Controller {
 				} else {
 					$rating = false;
 				}
-
+				
 				$data['products'][] = array(
 					'product_id'  => $result['product_id'],
 					'thumb'       => $image,
 					'name'        => $result['name'],
 					'description' => utf8_substr(trim(strip_tags(html_entity_decode($result['description'], ENT_QUOTES, 'UTF-8'))), 0, $this->config->get('theme_' . $this->config->get('config_theme') . '_product_description_length')) . '..',
 					'short_description' => utf8_substr(trim(strip_tags(html_entity_decode($result['short_description'], ENT_QUOTES, 'UTF-8'))), 0, $this->config->get('theme_' . $this->config->get('config_theme') . '_product_description_length')) . '..',
-					'performance_capability' => utf8_substr(trim(strip_tags(html_entity_decode($result['performance_capability'], ENT_QUOTES, 'UTF-8'))), 0, $this->config->get('theme_' . $this->config->get('config_theme') . '_product_description_length')) . '..',
+				
 					'price'       => $price,
 					'special'     => $special,
 					'tax'         => $tax,
@@ -453,8 +488,9 @@ class ControllerProductProduct extends Controller {
 					'rating'      => $rating,
 					'href'        => $this->url->link('product/product', 'product_id=' . $result['product_id'])
 				);
+			
 			}
-
+			
 			$data['tags'] = array();
 
 			if ($product_info['tag']) {
@@ -469,6 +505,42 @@ class ControllerProductProduct extends Controller {
 			}
 
 			$data['recurrings'] = $this->model_catalog_product->getProfiles($this->request->get['product_id']);
+
+			$data['downloads'] = array();
+
+            $results = $this->model_catalog_product->getDownloads($this->request->get['product_id']);
+
+            foreach ($results as $result) {
+                if (file_exists(DIR_DOWNLOAD . $result['filename'])) {
+                    $size = filesize(DIR_DOWNLOAD . $result['filename']);
+
+                    $i = 0;
+
+                    $suffix = array(
+                        'B',
+                        'KB',
+                        'MB',
+                        'GB',
+                        'TB',
+                        'PB',
+                        'EB',
+                        'ZB',
+                        'YB'
+                    );
+
+                    while (($size / 1024) > 1) {
+                        $size = $size / 1024;
+                        $i++;
+                    }
+
+                    $data['downloads'][] = array(
+                        'date_added' => date($this->language->get('date_format_short'), strtotime($result['date_added'])),
+                        'name'       => $result['name'],
+                        'size'       => round(substr($size, 0, strpos($size, '.') + 4), 2) . $suffix[$i],
+                        'href'       => $this->url->link('product/product/download', 'product_id='. $this->request->get['product_id']. '&download_id=' . $result['download_id'])
+                    );
+                }
+            }
 
 			$this->model_catalog_product->updateViewed($this->request->get['product_id']);
 			
@@ -510,7 +582,7 @@ class ControllerProductProduct extends Controller {
 			if (isset($this->request->get['short_description'])) {
 				$url .= '&short_description=' . $this->request->get['short_description'];
 			}
-			if (isset($this->request->get['performance_capability '])) {
+			if (isset($this->request->get['performance_capability'])) {
 				$url .= '&performance_capability=' . $this->request->get['performance_capability'];
 			  }
 			if (isset($this->request->get['category_id'])) {
@@ -558,6 +630,55 @@ class ControllerProductProduct extends Controller {
 			$this->response->setOutput($this->load->view('error/not_found', $data));
 		}
 	}
+
+	public function download() {
+
+        $this->load->model('catalog/product');
+
+        if (isset($this->request->get['download_id'])) {
+            $download_id = $this->request->get['download_id'];
+        } else {
+            $download_id = 0;
+        }
+
+        if (isset($this->request->get['product_id'])) {
+            $product_id = $this->request->get['product_id'];
+        } else {
+            $product_id = 0;
+        }
+
+        $download_info = $this->model_catalog_product->getDownload($product_id, $download_id);
+
+        if ($download_info) {
+            $file = DIR_DOWNLOAD . $download_info['filename'];
+            $mask = basename($download_info['mask']);
+
+            if (!headers_sent()) {
+                if (file_exists($file)) {
+                    header('Content-Description: File Transfer');
+                    header('Content-Type: application/octet-stream');
+                    header('Content-Disposition: attachment; filename="' . ($mask ? $mask : basename($file)) . '"');
+                    header('Content-Transfer-Encoding: binary');
+                    header('Expires: 0');
+                    header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
+                    header('Pragma: public');
+                    header('Content-Length: ' . filesize($file));
+
+                    readfile($file, 'rb');
+
+                    //$this->model_account_download->updateRemaining($this->request->get['download_id']);
+
+                    exit;
+                } else {
+                    exit('Error: Could not find file ' . $file . '!');
+                }
+            } else {
+                exit('Error: Headers already sent out!');
+            }
+        } else {
+            $this->redirect(HTTP_SERVER . 'index.php?route=account/download');
+        }
+    }
 
 	public function review() {
 		$this->load->language('product/product');
@@ -667,7 +788,7 @@ class ControllerProductProduct extends Controller {
 		$json = array();
 	
 
-		var_dump($image_producer);
+
 		if ($product_info && $recurring_info) {
 			if (!$json) {
 				$frequencies = array(

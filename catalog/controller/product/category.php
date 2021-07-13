@@ -343,6 +343,9 @@ class ControllerProductCategory extends Controller {
 				$url .= '&limit=' . $this->request->get['limit'];
 			}
 
+
+
+
 			$pagination = new Pagination();
 			$pagination->total = $product_total;
 			$pagination->page = $page;
@@ -376,8 +379,17 @@ class ControllerProductCategory extends Controller {
 
 			if($category_id == 59) {
 				$data['catalog'] = $this->load->controller('extension/module/category');
+				
 			}else{
 				$data['catalog'] = '';
+				$this->load->model('catalog/product');
+				$results = $this->model_catalog_product->getSpecialProducts($category_id);
+	
+			foreach ($results as $result) {
+				$data['products'][] = array('discond' =>  $result['product_discond']);
+			}
+	
+			var_dump($result);
 			}
 			$data['column_right'] = $this->load->controller('common/column_right');
 			$data['column_top'] = $this->load->controller('common/column_top');
@@ -430,6 +442,7 @@ class ControllerProductCategory extends Controller {
 
 			}else{
 				$data['catalog'] = '';
+
 			}
 			
 			$data['column_right'] = $this->load->controller('common/column_right');
