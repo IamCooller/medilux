@@ -114,6 +114,10 @@ class ControllerProductProduct extends Controller {
 				$url .= '&tag=' . $this->request->get['tag'];
 			}
 
+			if (isset($this->request->get['short_description'])) {
+				$url .= '&short_description=' . $this->request->get['short_description'];
+			}
+
 			if (isset($this->request->get['description'])) {
 				$url .= '&description=' . $this->request->get['description'];
 			}
@@ -153,8 +157,22 @@ class ControllerProductProduct extends Controller {
 		} else {
 			$product_id = 0;
 		}
-
+		if ($this->request->server['HTTPS']) {
+			$server = $this->config->get('config_ssl');
+		} else {
+			$server = $this->config->get('config_url');
+		}
 		$this->load->model('catalog/product');
+
+		$product_info_producer = $this->model_catalog_product->getProductProducer($product_id);
+		
+		if (is_file(DIR_IMAGE . $product_info_producer)) {
+			$data['thumb_producer'] = $server . 'image/' . $this->config->get('config_logo');
+		} else {
+			$data['thumb_producer'] = '';
+		}
+
+	
 
 		$product_info = $this->model_catalog_product->getProduct($product_id);
 
@@ -183,6 +201,14 @@ class ControllerProductProduct extends Controller {
 
 			if (isset($this->request->get['description'])) {
 				$url .= '&description=' . $this->request->get['description'];
+			}
+
+			if (isset($this->request->get['short_description'])) {
+				$url .= '&short_description=' . $this->request->get['short_description'];
+			}
+
+			if (isset($this->request->get['performance_capability '])) {
+				$url .= '&performance_capability =' . $this->request->get['performance_capability '];
 			}
 
 			if (isset($this->request->get['category_id'])) {
@@ -242,6 +268,10 @@ class ControllerProductProduct extends Controller {
 			$data['points'] = $product_info['points'];
 			$data['description'] = html_entity_decode($product_info['description'], ENT_QUOTES, 'UTF-8');
 
+			$data['short_description'] = html_entity_decode($product_info['short_description'], ENT_QUOTES, 'UTF-8');
+			
+			$data['performance_capability'] = html_entity_decode($product_info['performance_capability'], ENT_QUOTES, 'UTF-8');
+			 
 			if ($product_info['quantity'] <= 0) {
 				$data['stock'] = $product_info['stock_status'];
 			} elseif ($this->config->get('config_stock_display')) {
@@ -263,6 +293,7 @@ class ControllerProductProduct extends Controller {
 			} else {
 				$data['thumb'] = '';
 			}
+
 
 			$data['images'] = array();
 
@@ -413,6 +444,8 @@ class ControllerProductProduct extends Controller {
 					'thumb'       => $image,
 					'name'        => $result['name'],
 					'description' => utf8_substr(trim(strip_tags(html_entity_decode($result['description'], ENT_QUOTES, 'UTF-8'))), 0, $this->config->get('theme_' . $this->config->get('config_theme') . '_product_description_length')) . '..',
+					'short_description' => utf8_substr(trim(strip_tags(html_entity_decode($result['short_description'], ENT_QUOTES, 'UTF-8'))), 0, $this->config->get('theme_' . $this->config->get('config_theme') . '_product_description_length')) . '..',
+					'performance_capability' => utf8_substr(trim(strip_tags(html_entity_decode($result['performance_capability'], ENT_QUOTES, 'UTF-8'))), 0, $this->config->get('theme_' . $this->config->get('config_theme') . '_product_description_length')) . '..',
 					'price'       => $price,
 					'special'     => $special,
 					'tax'         => $tax,
@@ -474,6 +507,12 @@ class ControllerProductProduct extends Controller {
 				$url .= '&description=' . $this->request->get['description'];
 			}
 
+			if (isset($this->request->get['short_description'])) {
+				$url .= '&short_description=' . $this->request->get['short_description'];
+			}
+			if (isset($this->request->get['performance_capability '])) {
+				$url .= '&performance_capability=' . $this->request->get['performance_capability'];
+			  }
 			if (isset($this->request->get['category_id'])) {
 				$url .= '&category_id=' . $this->request->get['category_id'];
 			}
@@ -626,7 +665,9 @@ class ControllerProductProduct extends Controller {
 		$recurring_info = $this->model_catalog_product->getProfile($product_id, $recurring_id);
 
 		$json = array();
+	
 
+		var_dump($image_producer);
 		if ($product_info && $recurring_info) {
 			if (!$json) {
 				$frequencies = array(
@@ -635,6 +676,7 @@ class ControllerProductProduct extends Controller {
 					'semi_month' => $this->language->get('text_semi_month'),
 					'month'      => $this->language->get('text_month'),
 					'year'       => $this->language->get('text_year'),
+					''
 				);
 
 				if ($recurring_info['trial_status'] == 1) {

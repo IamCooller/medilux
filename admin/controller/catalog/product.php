@@ -75,6 +75,8 @@ class ControllerCatalogProduct extends Controller {
 		if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validateForm()) {
 			$this->model_catalog_product->editProduct($this->request->get['product_id'], $this->request->post);
 
+			
+
 			$this->session->data['success'] = $this->language->get('text_success');
 
 			$url = '';
@@ -110,7 +112,9 @@ class ControllerCatalogProduct extends Controller {
 			if (isset($this->request->get['page'])) {
 				$url .= '&page=' . $this->request->get['page'];
 			}
+
 			
+
 			$this->response->redirect($this->url->link('catalog/product', 'user_token=' . $this->session->data['user_token'] . $url, true));
 		}
 
@@ -593,6 +597,11 @@ class ControllerCatalogProduct extends Controller {
 			$data['product_description'] = array();
 		}
 
+
+		
+
+
+
 		if (isset($this->request->post['model'])) {
 			$data['model'] = $this->request->post['model'];
 		} elseif (!empty($product_info)) {
@@ -1071,7 +1080,18 @@ class ControllerCatalogProduct extends Controller {
 			$data['thumb'] = $this->model_tool_image->resize('no_image.png', 100, 100);
 		}
 
+
+		if (isset($this->request->post['image_producer']) && is_file(DIR_IMAGE . $this->request->post['image_producer'])) {
+			$data['thumb_producer'] = $this->model_tool_image->resize($this->request->post['image_producer'], 100, 100);
+		} elseif (!empty($product_info) && is_file(DIR_IMAGE . $product_info['image_producer'])) {
+			$data['thumb_producer'] = $this->model_tool_image->resize($product_info['image_producer'], 100, 100);
+		} else {
+			$data['thumb_producer'] = $this->model_tool_image->resize('no_image.png', 100, 100);
+		}
+
+
 		$data['placeholder'] = $this->model_tool_image->resize('no_image.png', 100, 100);
+		$data['placeholder_producer'] = $this->model_tool_image->resize('no_image.png', 100, 100);
 
 		// Images
 		if (isset($this->request->post['product_image'])) {
@@ -1100,6 +1120,8 @@ class ControllerCatalogProduct extends Controller {
 			);
 		}
 
+
+		
 		// Downloads
 		$this->load->model('catalog/download');
 
@@ -1202,6 +1224,9 @@ class ControllerCatalogProduct extends Controller {
 				$this->error['meta_title'][$language_id] = $this->language->get('error_meta_title');
 			}
 		}
+
+		
+
 
 		if ((utf8_strlen($this->request->post['model']) < 1) || (utf8_strlen($this->request->post['model']) > 64)) {
 			$this->error['model'] = $this->language->get('error_model');

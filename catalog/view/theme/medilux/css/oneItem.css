@@ -33,6 +33,11 @@
     max-width: 70%;
 }
 
+.oneItem__table .slider-for img,
+.slider-nav img {
+    width: 100%;
+}
+
 .slider-nav {
     max-width: 19%;
 }

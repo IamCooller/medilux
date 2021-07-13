@@ -3,24 +3,20 @@
                     Фильтровать по:
                    
                     {% for filter_group in filter_groups %} 
-                     <select>
+                     <select id="filter">
                         <option label="{{ filter_group.name }}" value="1" selected disabled>{{ filter_group.name }}</option>
                         {% for filter in filter_group.filter %}
-                        <option id="fillter">  {{ filter.name }}</option>
+                        <option name="filter[]" value="{{ filter.filter_id }}">  {{ filter.name }}</option>
                       {% endfor %}
                        </select>
                        {% endfor %}
-                      
-   
 </div>
 <script type="text/javascript"><!--
-$('#fillter').on('click', function() {
-	filter = [];
-
-	$('input[name^=\'filter\']:checked').each(function(element) {
+$('.catalogMore__filters select').change(function(){
+   	filter = [];  
+	$(this).find('option:selected').each(function(element) {
 		filter.push(this.value);
 	});
-
 	location = '{{ action }}&filter=' + filter.join(',');
 });
 //--></script> 

@@ -41,6 +41,7 @@
                   {{filter}}
          
                 <div class="Offers__list">
+                   {% if products == true %}
                 {% for product in products %}
                     <div class="Offers__list-item">
                         <a href="{{product.href}}">
@@ -50,6 +51,11 @@
                             </a><a class="itemPoP" href="#KPForm" data-fancybox="">Получить КП</a>
                     </div>
       {% endfor %}
+      {% else %}
+        
+        <div class="text-center">Товаров нет в наличии!</div>
+
+        {% endif %}
                 </div>
                 <div class="Offers__paggination">
                   {{pagination}}

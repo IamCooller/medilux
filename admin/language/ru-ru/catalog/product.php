@@ -28,7 +28,12 @@ $_['column_action']          = 'Действие';
 
 // Entry
 $_['entry_name']             = 'Название товара';
+
 $_['entry_description']      = 'Описание';
+$_['entry_short_description']= 'Краткое описание';
+$_['entry_performance_capability']= 'Технические характеристики';
+
+
 $_['entry_meta_title']       = 'Мета-тег Title';
 $_['entry_meta_keyword']     = 'Мета-тег Keyword';
 $_['entry_meta_description'] = 'Мета-тег Description';
@@ -64,6 +69,7 @@ $_['entry_length']           = 'Длина';
 $_['entry_width']            = 'Ширина';
 $_['entry_height']           = 'Высота';
 $_['entry_image']            = 'Изображение товара';
+$_['entry_image_producer']            = 'Изображение производителя';
 $_['entry_additional_image'] = 'Дополнительные изображения';
 $_['entry_customer_group']   = 'Группа клиентов';
 $_['entry_date_start']       = 'Дата начала';
