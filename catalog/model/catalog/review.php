@@ -66,4 +66,10 @@ class ModelCatalogReview extends Model {
 
 		return $query->row['total'];
 	}
+
+	public function getTotalAllReviewsByProductId() {
+		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "review");
+
+		return $query->rows;
+	}
 }

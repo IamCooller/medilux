@@ -184,6 +184,7 @@ class ControllerProductCategory extends Controller {
 
 			$results = $this->model_catalog_product->getProducts($filter_data);
 
+
 			foreach ($results as $result) {
 				if ($result['image']) {
 					$image = $this->model_tool_image->resize($result['image'], $this->config->get('theme_' . $this->config->get('config_theme') . '_image_product_width'), $this->config->get('theme_' . $this->config->get('config_theme') . '_image_product_height'));
@@ -209,11 +210,15 @@ class ControllerProductCategory extends Controller {
 					$tax = false;
 				}
 
+
+
 				if ($this->config->get('config_review_status')) {
 					$rating = (int)$result['rating'];
 				} else {
 					$rating = false;
 				}
+
+
 
 				$data['products'][] = array(
 					'product_id'  => $result['product_id'],
@@ -228,6 +233,8 @@ class ControllerProductCategory extends Controller {
 					'href'        => $this->url->link('product/product', 'path=' . $this->request->get['path'] . '&product_id=' . $result['product_id'] . $url)
 				);
 			}
+
+
 
 			$url = '';
 
@@ -382,14 +389,11 @@ class ControllerProductCategory extends Controller {
 				
 			}else{
 				$data['catalog'] = '';
-				$this->load->model('catalog/product');
-				$results = $this->model_catalog_product->getSpecialProducts($category_id);
+
 	
-			foreach ($results as $result) {
-				$data['products'][] = array('discond' =>  $result['product_discond']);
-			}
+
 	
-			var_dump($result);
+		
 			}
 			$data['column_right'] = $this->load->controller('common/column_right');
 			$data['column_top'] = $this->load->controller('common/column_top');

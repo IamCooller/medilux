@@ -23,10 +23,12 @@ class ControllerCommonFooter extends Controller {
 		}
 		$data['base'] = $server;
 		$data['contact'] = $this->url->link('information/contact');
+		$data['review_link'] = $this->url->link('information/reviews');
 		$data['return'] = $this->url->link('account/return/add', '', true);
 		$data['sitemap'] = $this->url->link('information/sitemap');
 		$data['catalog_link'] = $this->url->link('product/category', 'path=59'); 
 		$data['about_link'] = $this->url->link('information/information', 'information_id=4');
+		$data['police_link'] = $this->url->link('information/information', 'information_id=5');
 		$data['tracking'] = $this->url->link('information/tracking');
 		$data['manufacturer'] = $this->url->link('product/manufacturer');
 		$data['voucher'] = $this->url->link('account/voucher', '', true);

@@ -54,6 +54,29 @@ class ControllerCatalogReview extends Controller {
 				$url .= '&page=' . $this->request->get['page'];
 			}
 
+			if (isset($this->request->post['image'])) {
+				$data['image'] = $this->request->post['image'];
+			} elseif (!empty($review_info)) {
+				$data['image'] = $review_info['image'];
+			} else {
+				$data['image'] = '';
+			}
+	
+			$this->load->model('tool/image');
+	
+			if (isset($this->request->post['image']) && is_file(DIR_IMAGE . $this->request->post['image'])) {
+				$data['thumb'] = $this->model_tool_image->resize($this->review_info->post['image'], 100, 100);
+			} elseif (!empty($review_info) && is_file(DIR_IMAGE . $review_info['image'])) {
+				$data['thumb'] = $this->model_tool_image->resize($review_info['image'], 100, 100);
+			} else {
+				$data['thumb'] = $this->model_tool_image->resize('no_image.png', 100, 100);
+			}
+	
+			
+	
+			$data['placeholder'] = $this->model_tool_image->resize('no_image.png', 100, 100);
+
+
 			$this->response->redirect($this->url->link('catalog/review', 'user_token=' . $this->session->data['user_token'] . $url, true));
 		}
 
@@ -101,6 +124,27 @@ class ControllerCatalogReview extends Controller {
 			if (isset($this->request->get['page'])) {
 				$url .= '&page=' . $this->request->get['page'];
 			}
+
+			if (isset($this->request->post['image'])) {
+				$data['image'] = $this->request->post['image'];
+			} elseif (!empty($review_info)) {
+				$data['image'] = $review_info['image'];
+			} else {
+				$data['image'] = '';
+			}
+	
+			$this->load->model('tool/image');
+	
+			if (isset($this->request->post['image']) && is_file(DIR_IMAGE . $this->request->post['image'])) {
+				$data['thumb'] = $this->model_tool_image->resize($this->request->post['image'], 100, 100);
+			} elseif (!empty($review_info) && is_file(DIR_IMAGE . $review_info['image'])) {
+				$data['thumb'] = $this->model_tool_image->resize($review_info['image'], 100, 100);
+			} else {
+				$data['thumb'] = $this->model_tool_image->resize('no_image.png', 100, 100);
+			}
+	
+	
+			$data['placeholder'] = $this->model_tool_image->resize('no_image.png', 100, 100);
 
 			$this->response->redirect($this->url->link('catalog/review', 'user_token=' . $this->session->data['user_token'] . $url, true));
 		}
@@ -513,6 +557,27 @@ class ControllerCatalogReview extends Controller {
 			$data['rating'] = '';
 		}
 
+		if (isset($this->request->post['image'])) {
+			$data['image'] = $this->request->post['image'];
+		} elseif (!empty($review_info)) {
+			$data['image'] = $review_info['image'];
+		} else {
+			$data['image'] = '';
+		}
+
+		$this->load->model('tool/image');
+
+		if (isset($this->request->post['image']) && is_file(DIR_IMAGE . $this->request->post['image'])) {
+			$data['thumb'] = $this->model_tool_image->resize($this->request->post['image'], 100, 100);
+		} elseif (!empty($review_info) && is_file(DIR_IMAGE . $review_info['image'])) {
+			$data['thumb'] = $this->model_tool_image->resize($review_info['image'], 100, 100);
+		} else {
+			$data['thumb'] = $this->model_tool_image->resize('no_image.png', 100, 100);
+		}
+
+
+		$data['placeholder'] = $this->model_tool_image->resize('no_image.png', 100, 100);
+var_dump($data['thumb']);
 		if (isset($this->request->post['date_added'])) {
 			$data['date_added'] = $this->request->post['date_added'];
 		} elseif (!empty($review_info)) {

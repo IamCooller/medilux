@@ -11,12 +11,12 @@
                 </ul>
                 <ul>
                     <li><a href="#">Новости</a></li>
-                    <li><a href="#">Отзывы</a></li>
+                    <li><a href="{{review_link}}">Отзывы</a></li>
                     <li><a href="#">Спецпредложения</a></li>
                 </ul>
                 <ul>
                     <li><a href="{{contact}}">Контакты</a></li>
-                    <li><a href="#">Политика конфиденциальности</a></li>
+                    <li><a href="{{police_link}}">Политика конфиденциальности</a></li>
                 </ul>
             </div>
             <div class="footer__additional">
@@ -85,9 +85,10 @@
         <img src="{{logo}}" alt="logo">
         <p>Заполните форму и наш менеджер свяжется с вами в ближайшее время!</p>
         <form action="#" id='formPhone'>
-            <input type="text" placeholder="Введите имя...">
-            <input type="tel" id="tel" placeholder="Телефон...">
-            <button>Заказать звонок</button>
+          <div id="contact_results"></div>
+            <input  type="text" name="name" id="name" required="required" class="input-field" placeholder="Введите имя...">
+            <input type="text" name="phone2" maxlength="20" required="required" class="input-field" placeholder="Телефон...">
+            <button id='submit_btn'>Заказать звонок</button>
         </form>
     </div>
 

@@ -43,7 +43,7 @@
                 <div class="Offers__list">
                    {% if products %}
                 {% for product in products %}
-                    <div class="Offers__list-item {% if product.discond %} discount {% endif %}" >
+                    <div class="Offers__list-item {% for productDSC in productsDSC %}{% if productDSC.discond %} discount {% endif %}{% endfor %}" >
                         <a href="{{product.href}}">
                         <img src="{{product.thumb}}" alt="{{product.name}}" /> 
                             <p> {{product.name}}
