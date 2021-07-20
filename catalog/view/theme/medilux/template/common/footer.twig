@@ -6,13 +6,13 @@
             <div class="footer__menu">
                 <ul>
                     <li><a href="{{catalog_link}}">Каталог</a></li>
-                    <li><a href="#">Бренды</a></li>
+                    <li><a href="{{manufacturer}}">Бренды</a></li>
                     <li><a href="{{about_link}}">О компании</a></li>
                 </ul>
                 <ul>
-                    <li><a href="#">Новости</a></li>
+                    <li><a href="{{news_link}}">Новости</a></li>
                     <li><a href="{{review_link}}">Отзывы</a></li>
-                    <li><a href="#">Спецпредложения</a></li>
+                    <li><a href="{{special_link}}">Спецпредложения</a></li>
                 </ul>
                 <ul>
                     <li><a href="{{contact}}">Контакты</a></li>
@@ -86,28 +86,195 @@
         <p>Заполните форму и наш менеджер свяжется с вами в ближайшее время!</p>
         <form action="#" id='formPhone'>
           <div id="contact_results"></div>
-            <input  type="text" name="name" id="name" required="required" class="input-field" placeholder="Введите имя...">
-            <input type="text" name="phone2" maxlength="20" required="required" class="input-field" placeholder="Телефон...">
-            <button id='submit_btn'>Заказать звонок</button>
+            <input  type="text" name="nameTop" id="nameToop" required="required" class="input-field" placeholder="Введите имя...">
+            <input type="tel" name="phone2" id="TelClient" maxlength="8" required="required" class="input-field" placeholder="Телефон...">
+            <p id="errorPhone"></p>
+            <!-- добавление элемента div -->
+<div class="g-recaptcha" data-sitekey="6KepjAsTFFFFFFMqccY0ZiGqc3TEd3YVxo8cHsGX"></div>
+
+<!-- элемент для вывода ошибок -->
+<div class="text-danger" id="recaptchaError"></div>
+
+<!-- js-скрипт гугл капчи -->
+<script src='https://www.google.com/recaptcha/api.js'></script>
+            <div id='submit_btn'>Заказать звонок</div>
         </form>
+
+
     </div>
 
     <div id="KPForm" style="display: none;">
         <p>Оформить заявку</p>
         <form action="#" id='FormKP'>
-            <input type="text" placeholder="Введите имя...">
-            <input type="email" placeholder="E-mail...">
-            <select name="client" id="typeClient">
-                <option value="">Тип клиента</option>
-                <option value="">Тип клиента</option>
-                <option value="">Тип клиента</option>
-                <option value="">Тип клиента</option>
+            <input type="name" name="nameProduct" placeholder="Введите имя..." >
+            <input type="email" name="nameMail" required="required" placeholder="E-mail...">
+            <select name="clientPost" id="typeClient">
+                <option value="Пусто" selected disabled>Тип клиента</option>
+                <option value="Дилер">Дилер</option>
+                <option value="Частное лицо">Частное лицо</option>
+                <option value="Клиника">Клиника</option>
+               
             </select>
-            <input type="tel" id="KPTel" placeholder="Телефон...">
-            <textarea cols="30" rows="5" placeholder="Комментарий к заказу"></textarea>
-            <button>отправить</button>
+            <input type="tel" name="nameTel"  required="required" id="KPTel" placeholder="Телефон...">
+            <textarea cols="30" rows="5" name="nameText" placeholder="Комментарий к заказу"></textarea>
+            <input type="hidden" name="nameTitleProduct" >
+
+            <p id="errorProduct"></p>
+            <div id="submit_product" >отправить</div>
         </form>
     </div>
+
+
+
+<script type="text/javascript">
+	$('#submit_btn').click(function() {
+        if (grecaptcha.getResponse() == ""){
+    alert("You can't proceed!");
+} else {
+    $.ajax({
+			url: 'index.php?route=common/footer/send_form', //сюда пишите путь к контроллеру куда вставим код ниже
+			type: 'post',
+			data: $('#formPhone input'),
+			dataType: 'json',
+			success: function(json) {
+				if(json['error']){
+				 $('#errorPhone').html(json['error']) ;
+                	$('#errorPhone').show();
+                    setTimeout (function(){
+						$('#errorPhone').hide();
+					}, 2000);	
+				}			
+				if(json['success']){
+					$('#formPhone').hide();
+					$('#formPhone').before('<span class="succ" style="color:green;font-weight:bold;">Вы успешно отправили заявку!</span>');
+					setTimeout (function(){
+						$('.succ').remove();
+						$('#formPhone').show('1000');
+					}, 3000);
+				}
+		
+			}
+		});
+}
+		
+	});
+
+
+let nametovar;
+$('.itemPoP').click(function(){
+    nametovar = ($(this).parents('.specialOffers__list-item').find('.productName').text());
+    $("input[name='nameTitleProduct']").val(nametovar);
+   
+});
+
+    $('#submit_product').click(function() {
+      
+		$.ajax({
+			url: 'index.php?route=common/footer/send_form_product', //сюда пишите путь к контроллеру куда вставим код ниже
+			type: 'post',
+			data: $('#KPForm input, #KPForm textarea, #typeClient, #submit_product'),
+			dataType: 'json',
+			success: function(json) {
+				if(json['error']){
+                $('#errorProduct').html(json['error']) ;
+                	$('#errorProduct').show();
+                    setTimeout (function(){
+						$('#errorProduct').hide();
+					}, 2000);			
+				}			
+				if(json['success']){
+					$('#FormKP').hide();
+					$('#FormKP').before('<span class="succ" style="color:green;font-weight:bold;">Вы успешно отправили заявку!</span>');
+					setTimeout (function(){
+						$('.succ').remove();
+						$('#FormKP').show('1000');
+					}, 3000);
+				}
+		
+			}
+		});
+	});
+
+    
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+
+<script>
+  
+  
+
+{% if only_once %}
+	if (getCookie('newsletter_already_popup') == undefined) {	
+		initNewsletter();
+		$.cookie( 'newsletter_already_popup' , 1 , { expires: 14 , path: '/' });
+	}
+{% else %}
+	if (getCookie('newsletter_already_added') == undefined) {
+		initNewsletter();
+	}
+{% endif %}
+
+$('.popup_close').click(function () {
+	$('.popup_mask').hide();
+	$('.window_holder').hide();
+});	
+
+
+
+function initNewsletter() {
+	setTimeout(function() {	
+		$('.popup_mask').fadeTo(750,0.5);	
+		$('.window_holder').show();
+		setTimeout(function() { $('.window_holder').addClass('active'); }, 750);
+	}, {{ delay }});
+}
+function getCookie(name) {
+  var matches = document.cookie.match(new RegExp(
+    "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
+  ));
+  return matches ? decodeURIComponent(matches[1]) : undefined;
+}
+
+	$('.newsletter_box input[name=\'email{{ module }}\']').bind('keydown', function(e) {
+		if (e.keyCode == 13) {
+			$('#button-subscribe{{ module }}').trigger('click');
+		}
+	});
+	$('#button-subscribe').on('click', function() {
+		$.ajax({
+			url: 'index.php?route=extension/module/newsletter/subscribe',
+			type: 'post',
+			dataType: 'json',
+			data:{email: ($('input[id=\'email{{ module }}\']').val()) , name: ($('input[id=\'name{{ module }}\']').val())}, 
+			success: function(json) {
+			
+				if (json['error']) {
+                    $('.text-danger').empty();
+                     $('.text-success').empty();
+                  setTimeout (function(){
+					 $('.text-danger').empty();
+                     $('.text-success').empty();
+					}, 3000);
+					$('#respond').after('<span class="text-danger">' + json['error'] + '</span>');
+                    
+				}
+				if (json['success']) {
+                      $('.text-danger').empty();
+                       $('.text-success').empty();
+					$('#respond').after('<span class="text-success">' + 'Спасибо, сообщение отправлено!' + '</span>');
+					$.cookie( 'newsletter_already_added' , 1 , { expires: 14 , path: '/' });
+					setTimeout(function() { $('.popup_close').trigger('click'); }, 1200);
+					$('input[id=\'email{{ module }}\']').val('');
+                    $('input[id=\'name{{ module }}\']').val('');
+                      setTimeout (function(){
+					 $('.text-danger').empty();
+                     $('.text-success').empty();
+					}, 3000);
+				}}
+		});
+	});
+  </script>
 </body>
 
 </html>

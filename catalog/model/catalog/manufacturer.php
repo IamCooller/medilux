@@ -12,6 +12,7 @@ class ModelCatalogManufacturer extends Model {
 
 			$sort_data = array(
 				'name',
+				'image',
 				'sort_order'
 			);
 

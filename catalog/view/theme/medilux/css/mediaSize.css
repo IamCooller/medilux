@@ -96,6 +96,7 @@ body {
         display: flex;
         flex-wrap: wrap;
         justify-content: center;
+        flex-direction: column;
     }
     .btn {
         max-width: fit-content;
@@ -158,7 +159,7 @@ body {
     }
     .header-top__additional {
         max-width: fit-content;
-        gap: 20px;
+        gap: 5px;
     }
     .main header .header-top form {
         max-width: 28%;
@@ -265,6 +266,10 @@ body {
     }
     .oneItem__table-right_price h3 {
         font-size: 17px;
+    }
+    .main header .header-top .header-top__additional a,
+    .main header .header-top .header-top__additional .tel a {
+        font-size: 14px;
     }
 }
 
@@ -538,6 +543,11 @@ body {
     }
     .oneItem__table-right_price h3 {
         margin-right: auto;
+    }
+    .main header .header-top .form {
+        max-width: 69vw;
+        width: 100%;
+        position: relative;
     }
 }
 

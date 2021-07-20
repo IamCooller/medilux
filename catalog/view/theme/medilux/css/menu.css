@@ -83,6 +83,10 @@
     border-bottom: 1px solid #dbdbdb;
 }
 
+.menu .accordion .submenu li:last-child::after {
+    display: none
+}
+
 .menu .accordion .arrow-menu {
     -webkit-transition: all 0.4s ease;
     -o-transition: all 0.4s ease;
@@ -171,6 +175,8 @@
 
 .mobile__button {
     display: none;
+    background: none;
+    border: none;
     fill: #393185;
 }
 

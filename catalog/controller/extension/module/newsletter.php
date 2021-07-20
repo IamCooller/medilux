@@ -59,6 +59,9 @@ class ControllerExtensionModuleNewsletter extends Controller {
 				$json['error'] = $this->language->get('error_email');
 				
 			}
+			if ((utf8_strlen($this->request->post['name']) < 3) || (utf8_strlen($this->request->post['name']) > 2500)) {
+				$json['error'] = 'Пожалуйста, укажите Ваше имя';
+			}	
 			if (!isset($json['error'])) {
 				$this->load->model('extension/module/newsletter'); 
 			if($this->model_extension_module_newsletter->checkRegistered($this->request->post)){

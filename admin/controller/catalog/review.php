@@ -136,11 +136,11 @@ class ControllerCatalogReview extends Controller {
 			$this->load->model('tool/image');
 	
 			if (isset($this->request->post['image']) && is_file(DIR_IMAGE . $this->request->post['image'])) {
-				$data['thumb'] = $this->model_tool_image->resize($this->request->post['image'], 100, 100);
+				$data['image'] = $this->model_tool_image->resize($this->request->post['image'], 100, 100);
 			} elseif (!empty($review_info) && is_file(DIR_IMAGE . $review_info['image'])) {
-				$data['thumb'] = $this->model_tool_image->resize($review_info['image'], 100, 100);
+				$data['image'] = $this->model_tool_image->resize($review_info['image'], 100, 100);
 			} else {
-				$data['thumb'] = $this->model_tool_image->resize('no_image.png', 100, 100);
+				$data['image'] = $this->model_tool_image->resize('no_image.png', 100, 100);
 			}
 	
 	
@@ -203,11 +203,7 @@ class ControllerCatalogReview extends Controller {
 	}
 
 	protected function getList() {
-		if (isset($this->request->get['filter_product'])) {
-			$filter_product = $this->request->get['filter_product'];
-		} else {
-			$filter_product = '';
-		}
+
 
 		if (isset($this->request->get['filter_author'])) {
 			$filter_author = $this->request->get['filter_author'];
@@ -293,7 +289,7 @@ class ControllerCatalogReview extends Controller {
 		$data['reviews'] = array();
 
 		$filter_data = array(
-			'filter_product'    => $filter_product,
+		
 			'filter_author'     => $filter_author,
 			'filter_status'     => $filter_status,
 			'filter_date_added' => $filter_date_added,
@@ -312,7 +308,6 @@ class ControllerCatalogReview extends Controller {
 				'review_id'  => $result['review_id'],
 				'name'       => $result['name'],
 				'author'     => $result['author'],
-				'rating'     => $result['rating'],
 				'status'     => ($result['status']) ? $this->language->get('text_enabled') : $this->language->get('text_disabled'),
 				'date_added' => date($this->language->get('date_format_short'), strtotime($result['date_added'])),
 				'edit'       => $this->url->link('catalog/review/edit', 'user_token=' . $this->session->data['user_token'] . '&review_id=' . $result['review_id'] . $url, true)
@@ -371,7 +366,6 @@ class ControllerCatalogReview extends Controller {
 
 		$data['sort_product'] = $this->url->link('catalog/review', 'user_token=' . $this->session->data['user_token'] . '&sort=pd.name' . $url, true);
 		$data['sort_author'] = $this->url->link('catalog/review', 'user_token=' . $this->session->data['user_token'] . '&sort=r.author' . $url, true);
-		$data['sort_rating'] = $this->url->link('catalog/review', 'user_token=' . $this->session->data['user_token'] . '&sort=r.rating' . $url, true);
 		$data['sort_status'] = $this->url->link('catalog/review', 'user_token=' . $this->session->data['user_token'] . '&sort=r.status' . $url, true);
 		$data['sort_date_added'] = $this->url->link('catalog/review', 'user_token=' . $this->session->data['user_token'] . '&sort=r.date_added' . $url, true);
 
@@ -411,7 +405,7 @@ class ControllerCatalogReview extends Controller {
 
 		$data['results'] = sprintf($this->language->get('text_pagination'), ($review_total) ? (($page - 1) * $this->config->get('config_limit_admin')) + 1 : 0, ((($page - 1) * $this->config->get('config_limit_admin')) > ($review_total - $this->config->get('config_limit_admin'))) ? $review_total : ((($page - 1) * $this->config->get('config_limit_admin')) + $this->config->get('config_limit_admin')), $review_total, ceil($review_total / $this->config->get('config_limit_admin')));
 
-		$data['filter_product'] = $filter_product;
+	
 		$data['filter_author'] = $filter_author;
 		$data['filter_status'] = $filter_status;
 		$data['filter_date_added'] = $filter_date_added;
@@ -453,11 +447,7 @@ class ControllerCatalogReview extends Controller {
 			$data['error_text'] = '';
 		}
 
-		if (isset($this->error['rating'])) {
-			$data['error_rating'] = $this->error['rating'];
-		} else {
-			$data['error_rating'] = '';
-		}
+
 
 		$url = '';
 
@@ -549,13 +539,7 @@ class ControllerCatalogReview extends Controller {
 			$data['text'] = '';
 		}
 
-		if (isset($this->request->post['rating'])) {
-			$data['rating'] = $this->request->post['rating'];
-		} elseif (!empty($review_info)) {
-			$data['rating'] = $review_info['rating'];
-		} else {
-			$data['rating'] = '';
-		}
+
 
 		if (isset($this->request->post['image'])) {
 			$data['image'] = $this->request->post['image'];
@@ -568,16 +552,17 @@ class ControllerCatalogReview extends Controller {
 		$this->load->model('tool/image');
 
 		if (isset($this->request->post['image']) && is_file(DIR_IMAGE . $this->request->post['image'])) {
-			$data['thumb'] = $this->model_tool_image->resize($this->request->post['image'], 100, 100);
+			$data['image'] = $this->model_tool_image->resize($this->request->post['image'], 100, 100);
 		} elseif (!empty($review_info) && is_file(DIR_IMAGE . $review_info['image'])) {
-			$data['thumb'] = $this->model_tool_image->resize($review_info['image'], 100, 100);
+			$data['image'] = $this->model_tool_image->resize($review_info['image'], 100, 100);
 		} else {
-			$data['thumb'] = $this->model_tool_image->resize('no_image.png', 100, 100);
+			$data['image'] = $this->model_tool_image->resize('no_image.png', 100, 100);
 		}
 
+		
 
 		$data['placeholder'] = $this->model_tool_image->resize('no_image.png', 100, 100);
-var_dump($data['thumb']);
+
 		if (isset($this->request->post['date_added'])) {
 			$data['date_added'] = $this->request->post['date_added'];
 		} elseif (!empty($review_info)) {
@@ -618,9 +603,7 @@ var_dump($data['thumb']);
 			$this->error['text'] = $this->language->get('error_text');
 		}
 
-		if (!isset($this->request->post['rating']) || $this->request->post['rating'] < 0 || $this->request->post['rating'] > 5) {
-			$this->error['rating'] = $this->language->get('error_rating');
-		}
+
 
 		return !$this->error;
 	}

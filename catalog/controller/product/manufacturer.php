@@ -25,11 +25,18 @@ class ControllerProductManufacturer extends Controller {
 
 		$results = $this->model_catalog_manufacturer->getManufacturers();
 
+		
 		foreach ($results as $result) {
 			if (is_numeric(utf8_substr($result['name'], 0, 1))) {
 				$key = '0 - 9';
 			} else {
 				$key = utf8_substr(utf8_strtoupper($result['name']), 0, 1);
+			}
+
+			if ($result['image']) {
+				$image = $this->model_tool_image->resize($result['image'], $this->config->get('theme_' . $this->config->get('config_theme') . '_image_product_width'), $this->config->get('theme_' . $this->config->get('config_theme') . '_image_product_height'));
+			} else {
+				$image = $this->model_tool_image->resize('placeholder.png', $this->config->get('theme_' . $this->config->get('config_theme') . '_image_product_width'), $this->config->get('theme_' . $this->config->get('config_theme') . '_image_product_height'));
 			}
 
 			if (!isset($data['categories'][$key])) {
@@ -40,7 +47,19 @@ class ControllerProductManufacturer extends Controller {
 				'name' => $result['name'],
 				'href' => $this->url->link('product/manufacturer/info', 'manufacturer_id=' . $result['manufacturer_id'])
 			);
+
+			$data['manufacturer'][] = array(
+				'product_id'  => $result['manufacturer_id'],
+				'thumb'       => $image,
+				'name'        => $result['name'],
+				'href' => $this->url->link('product/manufacturer/info', 'manufacturer_id=' . $result['manufacturer_id'])
+			);
+
+			
+
 		}
+
+
 
 		$data['continue'] = $this->url->link('common/home');
 
@@ -196,6 +215,8 @@ class ControllerProductManufacturer extends Controller {
 					'rating'      => $result['rating'],
 					'href'        => $this->url->link('product/product', 'manufacturer_id=' . $result['manufacturer_id'] . '&product_id=' . $result['product_id'] . $url)
 				);
+
+		
 			}
 
 			$url = '';

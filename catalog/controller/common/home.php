@@ -19,7 +19,15 @@ class ControllerCommonHome extends Controller {
 	
 
 
+		if ($this->request->server['HTTPS']) {
+			$server = $this->config->get('config_ssl');
+		} else {
+			$server = $this->config->get('config_url');
+		}
 
+
+
+		$data['base'] = $server;
 
 		$this->load->model('catalog/product');
 

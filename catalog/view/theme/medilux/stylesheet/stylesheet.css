@@ -149,6 +149,11 @@ body {
     margin-bottom: 30px;
 }
 
+#hidden #errorPhone {
+    color: red;
+    font-size: 14px;
+}
+
 #hidden form {
     max-width: 370px;
     width: 100%;
@@ -175,8 +180,8 @@ body {
     color: #898989;
 }
 
-#hidden form button {
-    display: block;
+#hidden form #submit_btn {
+    display: flex;
     background: #393185;
     border-radius: 3px;
     height: 37px;
@@ -190,6 +195,10 @@ body {
     color: #FFFFFF;
     border: none;
     margin: 0 auto;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
 }
 
 #KPForm {
@@ -213,6 +222,14 @@ body {
     text-transform: uppercase;
     color: #393185;
     margin-bottom: 32px;
+}
+
+#KPForm #errorProduct {
+    width: 100%;
+    color: red;
+    margin: 0;
+    font-size: 13px;
+    text-transform: inherit;
 }
 
 #KPForm form {
@@ -260,7 +277,7 @@ body {
     margin-bottom: 30px;
 }
 
-#KPForm form button {
+#KPForm form #submit_product {
     background: #393185;
     border-radius: 3px;
     font-weight: bold;
@@ -269,12 +286,16 @@ body {
     text-transform: uppercase;
     height: 37px;
     color: #FFFFFF;
-    display: block;
     margin: 0 auto;
     width: 100%;
     max-width: 110px;
     outline: none;
     border: none;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    cursor: pointer;
+    align-items: center;
 }
 
 @media (max-width:880px) {
@@ -282,4 +303,123 @@ body {
     #KPForm form select {
         max-width: 100%;
     }
+}
+
+.reviews__list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 20px;
+    margin-top: 31px;
+    margin-bottom: 75px;
+}
+
+@media (max-width:770px) {
+    .reviews__list {
+        grid-template-columns: repeat(1, 1fr)
+    }
+}
+
+.reviews__list-block {
+    background: #FFFFFF;
+    border: 6px solid #EDECF2;
+    box-sizing: border-box;
+    border-radius: 3px;
+    padding: 33px;
+    padding-right: 52px;
+}
+
+.reviews__list-block_top {
+    display: flex;
+    align-items: center;
+}
+
+.reviews__list-block_top-img {
+    margin-right: 11.5px;
+    max-width: 38.25px;
+    width: 100%;
+}
+
+.reviews__list-block_top-img img {
+    width: 100%;
+    border-radius: 100px;
+}
+
+.reviews__list-block_top-title p {
+    font-style: normal;
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 152.3%;
+    color: #393185;
+    margin: 0;
+}
+
+.reviews__list-block_top-title span {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 152.3%;
+    color: #898989;
+}
+
+.reviews__list-block_bottom p {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 152.3%;
+    color: #000000;
+    margin: 0;
+    margin-top: 10px;
+}
+
+.manufacturer__list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 30px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.manufacturer__list-block {
+    display: flex;
+    flex-direction: column;
+    min-height: 270px;
+    background: #FFFFFF;
+    border: 6px solid #EDECF2;
+    box-sizing: border-box;
+    border-radius: 3px;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+}
+
+.manufacturer__list-block img {
+    width: 100%;
+    display: block;
+    padding: 0px 45px 0;
+    transition: .3s;
+    -webkit-filter: grayscale(1);
+    filter: grayscale(1);
+    -webkit-transition: .3s;
+    -moz-transition: .3s;
+    -ms-transition: .3s;
+    -o-transition: .3s;
+}
+
+.manufacturer__list-block:hover img {
+    filter: grayscale(0);
+    -webkit-filter: grayscale(0);
+}
+
+.manufacturer__list-block p {
+    position: absolute;
+    bottom: 20px;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    margin: 0;
+    line-height: 1.28;
+    width: 100%;
+    text-align: center;
+    color: #000000;
 }

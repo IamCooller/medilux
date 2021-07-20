@@ -544,13 +544,7 @@ class ControllerCatalogCategory extends Controller {
 		if (isset($this->request->get['category_id']) && $this->request->post['parent_id']) {
 			$results = $this->model_catalog_category->getCategoryPath($this->request->post['parent_id']);
 			
-			foreach ($results as $result) {
-				if ($result['path_id'] == $this->request->get['category_id']) {
-					$this->error['parent'] = $this->language->get('error_parent');
-					
-					break;
-				}
-			}
+		
 		}
 
 		if ($this->request->post['category_seo_url']) {

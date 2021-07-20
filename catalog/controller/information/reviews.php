@@ -14,11 +14,13 @@ class ControllerInformationReviews extends Controller
          
         $data['breadcrumbs'] = array();
          
-        $data['breadcrumbs'][] = array(
-        'text' => $this->language->get('text_home'),
-        'href' => $this->url->link('common/home')
-        );
          
+        if ($this->request->server['HTTPS']) {
+			$server = $this->config->get('config_ssl');
+		} else {
+			$server = $this->config->get('config_url');
+		}
+
         $data['breadcrumbs'][] = array(
         'text' => $this->language->get('heading_title'),
         'href' => $this->url->link('information/reviews')
@@ -30,6 +32,8 @@ class ControllerInformationReviews extends Controller
     
         $this->load->model('catalog/review');
 
+        $this->load->model('tool/image');
+        
         if (isset($this->request->get['page'])) {
             $page = $this->request->get['page'];
         } else {
@@ -46,30 +50,33 @@ class ControllerInformationReviews extends Controller
 
 
         
-       
+        
+	
+
 
         $results = $this->model_catalog_review->getTotalAllReviewsByProductId();
 
-        var_dump($review_total);
+        if (isset($this->request->get['page'])) {
+			$page = $this->request->get['page'];
+		} else {
+			$page = 1;
+		}
 
         foreach ($results as $result) {
+            if (is_file(DIR_IMAGE . $result['image'])) {
+				$image = $this->model_tool_image->resize($result['image'], 40, 40);
+			} else {
+				$image = $this->model_tool_image->resize('no_image.png', 40, 40);
+			}
             $data['reviews'][] = array(
                 'author'     => $result['author'],
                 'text'       => nl2br($result['text']),
-                'image'     => ($result['image']),
+                'image'     => $image,
                 'date_added' => date($this->language->get('date_format_short'), strtotime($result['date_added']))
             );
         }
 
-     /*    $pagination = new Pagination();
-        $pagination->total = $review_total;
-        $pagination->page = $page;
-        $pagination->limit = 5;
-        $pagination->url = $this->url->link('product/product/review', 'product_id=' . $this->request->get['product_id'] . '&page={page}');
 
-        $data['pagination'] = $pagination->render();
-
-        $data['results'] = sprintf($this->language->get('text_pagination'), ($review_total) ? (($page - 1) * 5) + 1 : 0, ((($page - 1) * 5) > ($review_total - 5)) ? $review_total : ((($page - 1) * 5) + 5), $review_total, ceil($review_total / 5)); */
 
        
      

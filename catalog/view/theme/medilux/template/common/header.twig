@@ -63,7 +63,7 @@
 
             <header>
                 <div class="header-top">
-                    <a href="#" class="mobile__button">
+                    <button class="mobile__button">
        <svg xmlns="http://www.w3.org/2000/svg" height="32" width="32" id="icon-2" xmlns:xlink="http://www.w3.org/1999/xlink" style="enable-background: new 0
                                                 0 32 32" version="1.1" viewBox="0
                                                 0 32 32" width="32px" xml:space="preserve">
@@ -76,7 +76,7 @@
                                                         S29.104,22,28,22z"
                                                         />
                                                     </g>
-                                                </svg>                    </a>
+                                                </svg>                    </button>
                     {{search}}
                 
                     <div class="header-top__additional">
@@ -268,7 +268,7 @@
                                                                     />
                                                                 </g>
                                                             </svg> 
-             <a href="{{mail}}">{{mail}} </a>
+             <a href="mailto:{{mail}}">{{mail}} </a>
                         </div>
                         <div class="tel">  
                               <svg width="23" height="23" viewBox="0 0 23 23" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -276,11 +276,11 @@
                                 <path d="M12.4297 5.47116C13.7016 5.68475 14.8569 6.28668 15.7792 7.209C16.7015 8.13132 17.2986 9.28665 17.5171 10.5585C17.5705 10.8789 17.8471 11.1022 18.1627 11.1022C18.2015 11.1022 18.2355 11.0973 18.2743 11.0924C18.6335 11.0342 18.8714 10.6944 18.8132 10.3352C18.551 8.79636 17.8229 7.39347 16.7112 6.28183C15.5996 5.17019 14.1967 4.44205 12.6579 4.17992C12.2987 4.12166 11.9637 4.35953 11.9006 4.71389C11.8375 5.06825 12.0705 5.41291 12.4297 5.47116Z" fill="#393185"/>
                                 <path d="M22.9733 10.1458C22.5413 7.61184 21.3471 5.30604 19.5122 3.47111C17.6772 1.63618 15.3714 0.442024 12.8375 0.00999088C12.4831 -0.0531151 12.1482 0.1896 12.0851 0.543965C12.0268 0.903183 12.2647 1.23813 12.6239 1.30124C14.886 1.68473 16.9491 2.75753 18.5898 4.39343C20.2306 6.03419 21.2986 8.09727 21.682 10.3594C21.7354 10.6798 22.0121 10.9031 22.3277 10.9031C22.3665 10.9031 22.4005 10.8982 22.4393 10.8933C22.7937 10.84 23.0364 10.5001 22.9733 10.1458Z" fill="#393185"/>
                                 </svg> 
-                       <a href="{{telephone}}">{{telephone}}</a> </div>
+                       <a href="tel:{{telephone}}">{{telephone}}</a> </div>
 
                     </div>
 
-                    <button data-fancybox href="#hidden" class="btn">Заказать звонок</button>
+                    <button data-fancybox data-touch='false' href="#hidden" class="btn" >Заказать звонок</button>
 
                     <ul class="header-top__menu">
                         <li class="active"><a href="{{special_link}}">Спецпредложения</a></li>

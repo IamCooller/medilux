@@ -101,6 +101,15 @@ class ControllerInformationContact extends Controller {
 		}
 		$data['locations'] = array();
 
+		$data['favicon'] = $this->config->get('config_icon');
+
+		if (is_file(DIR_IMAGE . $this->config->get('config_icon'))) {
+			$data['favicon'] = $server . 'image/' . $this->config->get('config_icon');
+		} else {
+			$data['favicon'] = '';
+		}
+
+	;
 		$this->load->model('localisation/location');
 
 		foreach((array)$this->config->get('config_location') as $location_id) {

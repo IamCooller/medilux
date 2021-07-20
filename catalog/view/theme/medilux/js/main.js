@@ -265,6 +265,7 @@ $(document).ready(function() {
 
     $("#tel").mask("+7(999)999-99-99");
     $("#KPTel").mask("+7(999)999-99-99");
+    $("#TelClient").mask("+7(999)999-99-99");
 
 
 

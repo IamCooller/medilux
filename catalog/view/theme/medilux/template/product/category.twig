@@ -43,7 +43,7 @@
                 <div class="Offers__list">
                    {% if products %}
                 {% for product in products %}
-                    <div class="Offers__list-item {% for productDSC in productsDSC %}{% if productDSC.discond %} discount {% endif %}{% endfor %}" >
+                    <div class="Offers__list-item {% if product.discond %} discount {% endif %}" >
                         <a href="{{product.href}}">
                         <img src="{{product.thumb}}" alt="{{product.name}}" /> 
                             <p> {{product.name}}
@@ -142,20 +142,30 @@ function getCookie(name) {
 			type: 'post',
 			dataType: 'json',
 			data:{email: ($('input[id=\'email{{ module }}\']').val()) , name: ($('input[id=\'name{{ module }}\']').val())}, 
-			success: function(json) {
+					success: function(json) {
 			
 				if (json['error']) {
                     $('.text-danger').empty();
+                     $('.text-success').empty();
+                  setTimeout (function(){
+					 $('.text-danger').empty();
+                     $('.text-success').empty();
+					}, 3000);
 					$('#respond').after('<span class="text-danger">' + json['error'] + '</span>');
                     
 				}
 				if (json['success']) {
                       $('.text-danger').empty();
+                       $('.text-success').empty();
 					$('#respond').after('<span class="text-success">' + 'Спасибо, сообщение отправлено!' + '</span>');
 					$.cookie( 'newsletter_already_added' , 1 , { expires: 14 , path: '/' });
 					setTimeout(function() { $('.popup_close').trigger('click'); }, 1200);
 					$('input[id=\'email{{ module }}\']').val('');
                     $('input[id=\'name{{ module }}\']').val('');
+                      setTimeout (function(){
+					 $('.text-danger').empty();
+                     $('.text-success').empty();
+					}, 3000);
 				}}
 		});
 	});

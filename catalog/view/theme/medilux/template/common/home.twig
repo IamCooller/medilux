@@ -17,7 +17,7 @@
                 <div class="specialOffers__list-item {% if product.discond == true %}   discount {% endif %}">
                                    <a href="{{product.href}}">
                         <img src="{{product.thumb}}" alt="{{ product.name }}" title="{{ product.name }}" class="img-responsive">
-                        <p> {{product.name }}
+                        <p class="productName"> {{product.name }}
                         </p>
                         </a><a class="itemPoP" href="#KPForm" data-fancybox="">Получить КП</a>
                 </div>
@@ -26,10 +26,10 @@
             </div>
      
     </section>
-  <section class="feedback">
+    <section class="feedback">
  
         <div class="container option">
-           <div class="feedback-form" id="respond">
+         <div class="feedback-form" id="respond">
                 <div class="feedback-description">
                   <div class="h4">
                         Хотите быть в курсе всех предложений от Медилюкс?
@@ -45,6 +45,8 @@
                     <button id="button-subscribe" class="{{ module }}">Подписаться</button>
                 </div>
             </div>
+
+        </div>
 
         </div>
        
@@ -65,7 +67,7 @@
                      {{information.title}} 
                     </div>
                     <div class="news__item-img">
-                          <img src=" {{information.thumb}} ">
+                          <img src=" {{information.thumb}} " alt="{{information.title}} " title="{{information.title}} ">
                     </div>
                     <div class="news__item-bottom-top">
                         <p>
@@ -141,7 +143,7 @@
                   
                 {% endif %}
           
-            <a href="#" class="news__more">Больше полезной информации <svg width="6" height="8" viewBox="0 0 6 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <a href="{{base}}news" class="news__more">Больше полезной информации <svg width="6" height="8" viewBox="0 0 6 8" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M5.06925 3.78047L1.36901 0.0904667C1.24778 -0.0303609 1.0515 -0.0301578 0.930465 0.0910917C0.809528 0.212326 0.80984 0.408715 0.93109 0.529637L4.41108 4.00001L0.930965 7.47037C0.809731 7.59131 0.809418 7.78758 0.93034 7.90883C0.991011 7.96961 1.0705 8 1.14998 8C1.22926 8 1.30843 7.96981 1.36899 7.90945L5.06925 4.21954C5.12764 4.16145 5.1604 4.08239 5.1604 4.00001C5.1604 3.91764 5.12754 3.83867 5.06925 3.78047Z" fill="#393185"/>
                 </svg>
                 </a>
@@ -149,75 +151,4 @@
     </section>
 
 {{ footer }}
-
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
-
-<script>
-$(document).ready(function() {
-
-{% if only_once %}
-	if (getCookie('newsletter_already_popup') == undefined) {	
-		initNewsletter();
-		$.cookie( 'newsletter_already_popup' , 1 , { expires: 14 , path: '/' });
-	}
-{% else %}
-	if (getCookie('newsletter_already_added') == undefined) {
-		initNewsletter();
-	}
-{% endif %}
-
-$('.popup_close').click(function () {
-	$('.popup_mask').hide();
-	$('.window_holder').hide();
-});	
-
-});
-
-function initNewsletter() {
-	setTimeout(function() {	
-		$('.popup_mask').fadeTo(750,0.5);	
-		$('.window_holder').show();
-		setTimeout(function() { $('.window_holder').addClass('active'); }, 750);
-	}, {{ delay }});
-}
-function getCookie(name) {
-  var matches = document.cookie.match(new RegExp(
-    "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
-  ));
-  return matches ? decodeURIComponent(matches[1]) : undefined;
-}
-</script>
-
-
-<script>
-$(document).ready(function() {
-	$('.newsletter_box input[name=\'email{{ module }}\']').bind('keydown', function(e) {
-		if (e.keyCode == 13) {
-			$('#button-subscribe{{ module }}').trigger('click');
-		}
-	});
-	$('#button-subscribe').on('click', function() {
-		$.ajax({
-			url: 'index.php?route=extension/module/newsletter/subscribe',
-			type: 'post',
-			dataType: 'json',
-			data: 'email=' + encodeURIComponent($('input[id=\'email{{ module }}\']').val()),
-			success: function(json) {
-			
-				if (json['error']) {
-                    $('.text-danger').empty();
-					$('#respond').after('<span class="text-danger">' + json['error'] + '</span>');
-                    
-				}
-				if (json['success']) {
-                      $('.text-danger').empty();
-					$('#respond').after('<span class="text-success">' + 'Спасибо, сообщение отправлено!' + '</span>');
-					$.cookie( 'newsletter_already_added' , 1 , { expires: 14 , path: '/' });
-					setTimeout(function() { $('.popup_close').trigger('click'); }, 1200);
-					$('input[id=\'email{{ module }}\']').val('');
-				}}
-		});
-	});
-});
-</script>
 
